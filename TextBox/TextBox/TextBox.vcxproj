@@ -146,6 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TextBox.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConstTextBox.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TextBox.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
