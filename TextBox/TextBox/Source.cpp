@@ -1,9 +1,13 @@
 #include <Windows.h>
 #include <stdio.h>
 #include "TextBox.h"
+#include "Controler.h"
+/*
+HANDLE hStdin;
+DWORD fdwSaveOldMode;
 
 int main(void) {
-/*
+
 	//set cursor position example
 
 	COORD c = { 7, 7 };
@@ -47,9 +51,11 @@ int main(void) {
 
 	printf("and now ?");
 
-	getchar();*/
-	COORD coord = { 7,7 };
-	TextBox box(20, coord);
 	getchar();
+
+	int i = 0;
+
+	control::controler();
+	
 	return 0;
-}
+}*/
