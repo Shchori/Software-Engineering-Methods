@@ -16,6 +16,7 @@ public:
 	CheckList(short x, short y);
 	void setConsoleCoor(short x , short y);
 	void setCheckList(string text);
+	void selectItem(string text);
 	~CheckList();
 };
 

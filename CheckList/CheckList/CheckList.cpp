@@ -20,6 +20,12 @@ void CheckList::setCheckList(string text) {
 	cout << "[ ]\t" << text<<endl;
 }
 
+void CheckList::selectItem(string text) {
+	y += 1;
+	setConsoleCoor(x, y);
+	cout << "[X]\t" << text << endl;
+}
+
 
 
 CheckList::~CheckList()
