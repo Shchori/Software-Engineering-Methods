@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C0BE7C14-E089-4192-912C-92262DDFB6CA}</ProjectGuid>
+    <ProjectGuid>{087E1266-5FD2-4D3A-A3AA-35B0765D7147}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TextBox</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -146,6 +146,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConstTextBox.cpp" />
+    <ClCompile Include="Controler.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TextBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConsolComponent.h" />
+    <ClInclude Include="Controler.h" />
+    <ClInclude Include="TextBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
