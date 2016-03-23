@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <Windows.h>
 #include <stdio.h>
 #include "CheckList.h"
@@ -12,6 +13,7 @@ DWORD fdwSaveOldMode;
 int choose = 0;
 int* selected;
 
+void setcursor(bool, DWORD, HANDLE);
 
 void keyEventHandler(KEY_EVENT_RECORD ker, int arrSize);
 void mouseEventHandler(MOUSE_EVENT_RECORD mer);
@@ -23,7 +25,7 @@ int main(int argc, char *argv[]) {
 	int arrSize = sizeof(labels) / sizeof(labels[0]);
 	INPUT_RECORD irInBuf[128];
 	selected = new int[arrSize]();
-
+	setcursor(0, 0, h);
 	//init selections
 	for (int i = 0; i < arrSize; i++) {
 		selected[i] = 0;
@@ -143,4 +145,16 @@ void mouseEventHandler(MOUSE_EVENT_RECORD mer) {
 			}
 		}
 	}
+}
+
+void setcursor(bool visible, DWORD size, HANDLE console) // set bool visible = 0 - invisible, bool visible = 1 - visible
+{
+	if (size == 0)
+	{
+		size = 20;	// default cursor size Changing to numbers from 1 to 20, decreases cursor width
+	}
+	CONSOLE_CURSOR_INFO lpCursor;
+	lpCursor.bVisible = visible;
+	lpCursor.dwSize = size;
+	SetConsoleCursorInfo(console, &lpCursor);
 }
