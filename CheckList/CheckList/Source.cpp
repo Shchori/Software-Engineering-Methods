@@ -2,7 +2,8 @@
 #include <Windows.h>
 #include <stdio.h>
 #include "CheckList.h"
-
+#define COOR_X 7
+#define COOR_Y 7
 using namespace std;
 
 HANDLE hStdin;
@@ -40,12 +41,12 @@ int main(int argc, char *argv[]) {
 
 	// Enable the window and mouse input events. 
 
-	fdwMode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT;
+	fdwMode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT | ENABLE_EXTENDED_FLAGS;
 	if (!SetConsoleMode(hStdin, fdwMode))
 		printf("SetConsoleMode");
 
 	while (true) {
-		CheckList* list = new CheckList(7, 7);
+		CheckList list(COOR_X, COOR_Y);
 		if (!ReadConsoleInput(
 			hStdin,      // input buffer handle 
 			irInBuf,     // buffer to read into 
@@ -58,26 +59,11 @@ int main(int argc, char *argv[]) {
 			switch (irInBuf[i].EventType)
 			{
 			case KEY_EVENT: // keyboard input 
-			//	KeyEventProc(irInBuf[i].Event.KeyEvent);
 				keyEventHandler(irInBuf[i].Event.KeyEvent, arrSize);
 				break;
 
 			case MOUSE_EVENT: // mouse input 
-				//MouseEventProc(irInBuf[i].Event.MouseEvent);
 				mouseEventHandler(irInBuf[i].Event.MouseEvent);
-				break;
-
-			case WINDOW_BUFFER_SIZE_EVENT: // scrn buf. resizing 
-				//ResizeEventProc(irInBuf[i].Event.WindowBufferSizeEvent);
-				break;
-
-			case FOCUS_EVENT:  // disregard focus events 
-
-			case MENU_EVENT:   // disregard menu events 
-				break;
-
-			default:
-				printf("Unknown event type");
 				break;
 			}
 		}
@@ -93,10 +79,10 @@ int main(int argc, char *argv[]) {
 			}
 			//checks if input number i was selected
 			if (selected && selected[i] == 1) {
-				list->selectItem(labels[i]);
+				list.selectItem(labels[i]);
 			}
 			else {
-				list->setCheckList(labels[i]);
+				list.setCheckList(labels[i]);
 			}
 
 			if (i == choose) {
@@ -127,6 +113,8 @@ void keyEventHandler(KEY_EVENT_RECORD ker, int arrSize) {
 		case VK_SPACE: case VK_RETURN:
 			selected[choose] = (selected[choose])? 0 : 1 ;
 			break;
+		case VK_LBUTTON:
+			selected[choose] = (selected[choose]) ? 0 : 1;
 		default:
 			break;
 		}
@@ -141,31 +129,18 @@ void mouseEventHandler(MOUSE_EVENT_RECORD mer) {
 
 		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
 		{
-			choose++;
+			if (COOR_X<=mer.dwMousePosition.X&& COOR_X+2>= mer.dwMousePosition.X) {
+				if (COOR_Y <= mer.dwMousePosition.Y&& COOR_Y + 1 >= mer.dwMousePosition.Y) {
+					selected[0] = (selected[0]) ? 0 : 1;
+				}
+				else if (COOR_Y + 1 < mer.dwMousePosition.Y&& COOR_Y + 2 >= mer.dwMousePosition.Y) {
+					selected[1] = (selected[1]) ? 0 : 1;
+				}
+				else if (COOR_Y +2 < mer.dwMousePosition.Y&& COOR_Y + 3 >= mer.dwMousePosition.Y) {
+					selected[2] = (selected[2]) ? 0 : 1;
+				}
+					
+			}
 		}
-		else if (mer.dwButtonState == RIGHTMOST_BUTTON_PRESSED)
-		{
-			printf("right button press \n");
-		}
-		else
-		{
-			printf("button press\n");
-		}
-		break;
-	case DOUBLE_CLICK:
-		printf("double click\n");
-		break;
-	case MOUSE_HWHEELED:
-		printf("horizontal mouse wheel\n");
-		break;
-	case MOUSE_MOVED:
-		printf("mouse moved\n");
-		break;
-	case MOUSE_WHEELED:
-		printf("vertical mouse wheel\n");
-		break;
-	default:
-		printf("unknown\n");
-		break;
 	}
 }

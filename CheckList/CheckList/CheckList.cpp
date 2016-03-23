@@ -27,7 +27,6 @@ void CheckList::selectItem(string text) {
 }
 
 
-
 CheckList::~CheckList()
 {
 }
