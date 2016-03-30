@@ -84,7 +84,7 @@ void ComboBox::refresh() {
 	temp.Y += 1;
 	SetConsoleCursorPosition(consol, temp);
 	printf("%c", 0xBA);
-	printf("%s", buffer[this->current]);
+	printf(buffer[this->current].data());
 	printf("%s", string(this->length - buffer[current].length(), ' ').c_str());
 	printf("%c", 0xBA);
 	temp.Y += 1;
@@ -103,14 +103,14 @@ void ComboBox::refresh() {
 			DWORD wAttr =FOREGROUND_INTENSITY | BACKGROUND_GREEN;
 			SetConsoleTextAttribute(consol, wAttr);
 			printf("%c", 0xBA);
-			printf("%s", buffer[i]);
+			printf(buffer[i].data());
 			printf("%s", string(this->length-buffer[i].length(), ' ').c_str());
 			printf("%c", 0xBA);
 			SetConsoleTextAttribute(consol, temp);
 		}
 		else {
 			printf("%c", 0xBA);
-			printf("%s", buffer[i]);
+			printf(buffer[i].data());
 			printf("%s", string(this->length - buffer[i].length(), ' ').c_str());
 			printf("%c", 0xBA);
 		}
