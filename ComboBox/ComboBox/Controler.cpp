@@ -13,6 +13,10 @@ VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD);
 
 int main(VOID)
 {
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO cci = { 100, FALSE }; // invisibil cursor
+	SetConsoleCursorInfo(console, &cci);;
+
 	DWORD cNumRead, fdwMode, i;
 	INPUT_RECORD irInBuf[128];
 	int counter = 0;
