@@ -27,7 +27,7 @@ cout << "( )"<< getOption() << endl;
 
 void RadioList::KeyEventProc(KEY_EVENT_RECORD ker, string* mystring, int size){
 	//satrt here i need to rewrite the row that was selsected befor just like the mouse event
-	tmpcrd2 = { 1, keyflag };
+	tmpcrd2 = { (short)1, (short)keyflag };
 	if (ker.bKeyDown) {
 		//checks the key value
 		switch (ker.wVirtualKeyCode) {
