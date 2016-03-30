@@ -14,10 +14,10 @@ COORD pressCourd;
 POINT pt;                  // cursor location  
 CONSOLE_SCREEN_BUFFER_INFO cbi;
 COORD crd = { 1, 0 };
-int keyflag = 0;
+int keyflag = 0; //for knowing where was the last position of cruser 
 COORD tmpcrd2;
 int k = 0;
-
+int chose = 0;
 
 /*
 void RadioList::PrintClass(){
@@ -77,12 +77,7 @@ void RadioList::KeyEventProc(KEY_EVENT_RECORD ker, string* mystring, int size){
 
 			}
 			break;
-			/*if (pt.x >= 1 && pt.x <= 13 && pt.y == 1){
-			GetConsoleScreenBufferInfo(h, &cbi);
-			DWORD wAttr2 = (BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY);
-			SetConsoleTextAttribute(h, wAttr2);
-			printf("nbhbjbjkjhkhkl\n");
-			}*/
+
 
 
 		case VK_UP:
@@ -136,22 +131,26 @@ void RadioList::KeyEventProc(KEY_EVENT_RECORD ker, string* mystring, int size){
 				tmpcrd = { 1, 1 };
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
 				cout << "(x) " << mystring[0];
+				chose = 1;
 			}
 
 			if (keyflag == 3){
 				tmpcrd = { 1, 3 };
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
 				cout << "(x) " << mystring[1];
+				chose = 3;
 			}
 			if (keyflag == 5){
 				tmpcrd = { 1, 5 };
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
 				cout << "(x) " << mystring[2];
+				chose = 5;
 			}
 			if (keyflag == 7){
 				tmpcrd = { 1, 7 };
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
 				cout << "(x) " << mystring[3];
+				chose = 7;
 			}
 
 			break;
@@ -159,21 +158,25 @@ void RadioList::KeyEventProc(KEY_EVENT_RECORD ker, string* mystring, int size){
 	}
 }
 
-
+//change the cruser curent position option of list  backgroung color 
 void RadioList::display(COORD tmpcrd, string text, int keyflag){
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
 	GetConsoleScreenBufferInfo(h, &cbi);
 	DWORD wAttr2 = (BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY);
 	SetConsoleTextAttribute(h, wAttr2);
-	cout << "( ) " << text;
+
 }
 
+//change back the backround color befor moving to another option in list
 void RadioList::changeDisplay(COORD tmpcrd2, string text, int keyflag){
 
 	WORD Attributes = cbi.wAttributes | FOREGROUND_INTENSITY;
 	SetConsoleTextAttribute(h, Attributes);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd2);
-	cout << "( ) " << text;
+	if (keyflag == chose){
+		cout << "(X) " << text;
+	}
+	else cout << "( ) " << text;
 }
 
 void RadioList::MouseEventProc(MOUSE_EVENT_RECORD mer, string* mystring, int size){
