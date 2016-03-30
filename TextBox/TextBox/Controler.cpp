@@ -39,7 +39,7 @@ int main(VOID)
 	COORD c = { 7, 7 };
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	TextBox box(20,c,h,"");
-	while (counter++ <= 100)
+	while (true)
 	{
 		// Wait for the events. 
 
@@ -57,15 +57,15 @@ int main(VOID)
 			switch (irInBuf[i].EventType)
 			{
 			case KEY_EVENT: // keyboard input 
-			
+				KeyEventProc(irInBuf[i].Event.KeyEvent,h,box);
 				break;
 
 			case MOUSE_EVENT: // mouse input 
-				
+				MouseEventProc(irInBuf[i].Event.MouseEvent,h,box);
 				break;
 
 			case WINDOW_BUFFER_SIZE_EVENT: // scrn buf. resizing 
-				ResizeEventProc(irInBuf[i].Event.WindowBufferSizeEvent);
+				//ResizeEventProc(irInBuf[i].Event.WindowBufferSizeEvent);
 				break;
 
 			case FOCUS_EVENT:  // disregard focus events 
@@ -105,7 +105,7 @@ VOID KeyEventProc(KEY_EVENT_RECORD ker, HANDLE h, ConsolComponent& c)
 	GetConsoleScreenBufferInfo(h, &info);
 	if (ker.bKeyDown) {}
 	else if (c.inArea(info.dwCursorPosition)) {
-		c.keyPress(ker, h);
+		c.keyPress(ker, h,info.dwCursorPosition);
 	}
 }
 
@@ -114,7 +114,7 @@ VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, ConsolComponent& c)
 #ifndef MOUSE_HWHEELED
 #define MOUSE_HWHEELED 0x0008
 #endif
-	printf("Mouse event: ");
+	//printf("Mouse event: ");
 
 	switch (mer.dwEventFlags)
 	{
@@ -124,39 +124,38 @@ VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, ConsolComponent& c)
 		{
 			if (c.inArea(mer.dwMousePosition)) {
 				c.mouseEvent(mer,h );
-			};
-			printf("left button press \n");
+			}
 		}
 		else if (mer.dwButtonState == RIGHTMOST_BUTTON_PRESSED)
 		{
-			printf("right button press \n");
+			//printf("right button press \n");
 		}
 		else
 		{
-			printf("button press\n");
+			//printf("button press\n");
 		}
 		break;
 	case DOUBLE_CLICK:
-		printf("double click\n");
+		//printf("double click\n");
 		break;
 	case MOUSE_HWHEELED:
-		printf("horizontal mouse wheel\n");
+		//printf("horizontal mouse wheel\n");
 		break;
 	case MOUSE_MOVED:
-		printf("mouse moved\n");
+		//printf("mouse moved\n");
 		break;
 	case MOUSE_WHEELED:
-		printf("vertical mouse wheel\n");
+		//printf("vertical mouse wheel\n");
 		break;
 	default:
-		printf("unknown\n");
+		//printf("unknown\n");
 		break;
 	}
 }
 
 VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD wbsr)
 {
-	printf("Resize event\n");
-	printf("Console screen buffer is %d columns by %d rows.\n", wbsr.dwSize.X, wbsr.dwSize.Y);
+	//printf("Resize event\n");
+	//printf("Console screen buffer is %d columns by %d rows.\n", wbsr.dwSize.X, wbsr.dwSize.Y);
 }
 
