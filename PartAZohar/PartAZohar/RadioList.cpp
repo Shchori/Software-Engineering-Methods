@@ -270,24 +270,7 @@ void RadioList::MouseEventProc(MOUSE_EVENT_RECORD mer, string* mystring, int siz
 		}
 		break;
 
-		/*case DOUBLE_CLICK:
-		printf("double click\n");
-		break;
-		case MOUSE_HWHEELED:
-		printf("horizontal mouse wheel\n");
-		break;*/
-		//case MOUSE_MOVED:
-		//printf("mouse moved\n");
-		//if (pressCourd.X >= 1 && pressCourd.X <= 13 && pressCourd.Y == 1)
-
-
-		//break;
-		/*case MOUSE_WHEELED:
-		printf("vertical mouse wheel\n");
-		break;
-		default:
-		printf("unknown\n");
-		break;*/
+		
 	}
 
 }
