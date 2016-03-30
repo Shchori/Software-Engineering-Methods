@@ -1,353 +1,117 @@
 #include "RadioList.h"
+#include <cstdio>
+#include <string>
+using namespace std;
 
-//using namespace System;
-void MarkFunc(int flag);
-bool selected = false;//chks if the option this option or onother option was selected
-bool selected2 = false;
-bool selected3 = false;
-bool selected4 = false;
-int flag = 0;
-int curnt_slct = 0;
-COORD tmpcrd;
-
-COORD pressCourd;
-POINT pt;                  // cursor location  
-CONSOLE_SCREEN_BUFFER_INFO cbi;
-COORD crd = { 1, 0 };
-int keyflag = 0; //for knowing where was the last position of cruser 
-COORD tmpcrd2;
-int k = 0;
-int chose = 0;
-
-/*
-void RadioList::PrintClass(){
-cout << "( )"<< getOption() << endl;
-
-}*/
-
-void RadioList::KeyEventProc(KEY_EVENT_RECORD ker, string* mystring, int size){
-	//satrt here i need to rewrite the row that was selsected befor just like the mouse event
-	tmpcrd2 = { 1, keyflag };
-	if (ker.bKeyDown) {
-		//checks the key value
-		switch (ker.wVirtualKeyCode) {
-			//GetCursorPos(&pt);
-		case VK_DOWN:
-			crd.Y += 1;
-			if (crd.Y == 1){
-
-				if (keyflag != 1 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-				tmpcrd = { 1, 1 };
-				display(tmpcrd, mystring[0], keyflag);
-
-				keyflag = 1;
-				k = 1;
-			}
-			else if (crd.Y == 3){
-
-				if (keyflag != 3 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-
-				tmpcrd = { 1, 3 };
-				display(tmpcrd, mystring[1], keyflag);
-				keyflag = 3;
-				k = 2;
-			}
-			else if (crd.Y == 5){
-				if (keyflag != 5 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-				tmpcrd = { 1, 5 };
-				display(tmpcrd, mystring[2], keyflag);
-				keyflag = 5;
-				k = 3;
-			}
-			else if (crd.Y == 7){
-
-				if (keyflag != 7 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-				tmpcrd = { 1, 7 };
-				display(tmpcrd, mystring[3], keyflag);
-				keyflag = 7;
-				k = 4;
-
-			}
-			break;
+# include <stdio.h>
 
 
 
-		case VK_UP:
-			crd.Y -= 1;
-			if (crd.Y == 1){
+RadioList::RadioList(const int size, const COORD coord, HANDLE consol, string context[]) :size(size), c(coord), consol(consol)
+{
+	this->buffer = context;
+	this->mark = 1;
+	COORD temp = coord;
+	this->length = 0;
+	for (int i = 0; i < size; ++i) {
+		if (this->length < context[i].length()) this->length = context[i].length();
+	}
+	this->length += 3;
+	this->current = 0;
+	refresh();
+}
+bool beetween(int p, int x1, int x2) {
+	return (p >= x1&&p <= x2);
+}
+bool RadioList::inArea(COORD c)
+{
+	int x = this->c.X, y = this->c.Y;
+	return beetween(c.X, x, x + this->length + 5) && beetween(c.Y, y, y + size + 2);
+}
 
-				if (keyflag != 1 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-				tmpcrd = { 1, 1 };
-				display(tmpcrd, mystring[0], keyflag);
-
-				keyflag = 1;
-				k = 1;
-			}
-			else if (crd.Y == 3){
-
-				if (keyflag != 3 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-
-				tmpcrd = { 1, 3 };
-				display(tmpcrd, mystring[1], keyflag);
-				keyflag = 3;
-				k = 2;
-			}
-			else if (crd.Y == 5){
-				if (keyflag != 5 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-				tmpcrd = { 1, 5 };
-				display(tmpcrd, mystring[2], keyflag);
-				keyflag = 5;
-				k = 3;
-			}
-			else if (crd.Y == 7){
-
-				if (keyflag != 7 && keyflag != 0){
-					changeDisplay(tmpcrd2, mystring[keyflag - k], keyflag);
-				}
-				tmpcrd = { 1, 7 };
-				display(tmpcrd, mystring[3], keyflag);
-				keyflag = 7;
-				k = 4;
-
-			}
-			break;
-
-		case VK_RETURN:
-			if (keyflag == 1){
-				tmpcrd = { 1, 1 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				cout << "(x) " << mystring[0];
-				chose = 1;
-			}
-
-			if (keyflag == 3){
-				tmpcrd = { 1, 3 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				cout << "(x) " << mystring[1];
-				chose = 3;
-			}
-			if (keyflag == 5){
-				tmpcrd = { 1, 5 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				cout << "(x) " << mystring[2];
-				chose = 5;
-			}
-			if (keyflag == 7){
-				tmpcrd = { 1, 7 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				cout << "(x) " << mystring[3];
-				chose = 7;
-			}
-
-			break;
+int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output)
+{
+	COORD c = mer.dwMousePosition;
+	if (inArea(c)) {
+		if (beetween(c.Y, this->c.Y+1, this->c.Y+this->size)) {
+			this->current = c.Y - this->c.Y-1 ;
 		}
+		this->refresh();
 	}
+	return 0;
 }
 
-//change the cruser curent position option of list  backgroung color 
-void RadioList::display(COORD tmpcrd, string text, int keyflag){
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-	GetConsoleScreenBufferInfo(h, &cbi);
-	DWORD wAttr2 = (BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY);
-	SetConsoleTextAttribute(h, wAttr2);
-
-}
-
-//change back the backround color befor moving to another option in list
-void RadioList::changeDisplay(COORD tmpcrd2, string text, int keyflag){
-
-	WORD Attributes = cbi.wAttributes | FOREGROUND_INTENSITY;
-	SetConsoleTextAttribute(h, Attributes);
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd2);
-	if (keyflag == chose){
-		cout << "(X) " << text;
+int RadioList::keyPress(KEY_EVENT_RECORD ker, HANDLE output, COORD c)
+{
+	int pos = c.X - (this->c.X + 1);
+	COORD temp = c;
+	switch (ker.wVirtualKeyCode) {
+	case VK_UP:
+		if (current > 0) this->current -= 1;
+		refresh();
+		break;
+	case VK_DOWN:
+		if (current < this->size-1) this->current += 1;
+		refresh();
+		break;
+	case VK_RETURN:
+		this->current = mark;
+		refresh();
+		break;
 	}
-	else cout << "( ) " << text;
+	return 0;
+
 }
 
-void RadioList::MouseEventProc(MOUSE_EVENT_RECORD mer, string* mystring, int size){
-#ifndef MOUSE_HWHEELED
-#define MOUSE_HWHEELED 0x0008
-#endif
 
-	int i = 0;
-	int t = 0;
-
-	pressCourd = mer.dwMousePosition;
-	//printf("%d", pressCourd);
-
-	//printf("Mouse event: ");
-
-	switch (mer.dwEventFlags)
+void RadioList::refresh() {
+	COORD temp = this->c;
+	SetConsoleCursorPosition(consol, temp);
+	DWORD wAttr = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+	SetConsoleTextAttribute(consol, wAttr);
+	CONSOLE_SCREEN_BUFFER_INFO cbi;
+	GetConsoleScreenBufferInfo(consol, &cbi);
+	DWORD wAttr2 = cbi.wAttributes | BACKGROUND_RED;
+	SetConsoleTextAttribute(consol, wAttr2);
+	SetConsoleCursorPosition(consol, temp);
+	printf("%c", 0xB9);
+	printf("%s", string(this->length+3, 0xCD).c_str());
+	printf("%c", 0xCC);
+	temp.Y += 1;
+	SetConsoleCursorPosition(consol, temp);
+	for (int i = 0; i < size; i++)
 	{
-
-	case 0:
-		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED || mer.dwButtonState == RIGHTMOST_BUTTON_PRESSED){
-			if (pressCourd.X >= 1 && pressCourd.X <= 13 && pressCourd.Y == 1){
-
-				if (flag != 1 && flag != 0){ //delete x from privious slection
-					MarkFunc(flag);
-				}
-				tmpcrd = { 2, 1 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				if (selected == false){ //chk if this was markd already
-					cout << 'x';
-					selected = true;
-				}
-				else{
-					cout << ' ';
-					selected = false;
-				}
-				flag = 1;
-			}
-			if (pressCourd.X >= 1 && pressCourd.X <= 13 && pressCourd.Y == 3){
-				//printf("button press seconed option\n");
-				if (flag != 2 && flag != 0){
-					MarkFunc(flag);
-				}
-				tmpcrd = { 2, 3 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				if (selected2 == false){
-					cout << 'x';
-					selected2 = true;
-				}
-				else{
-					cout << ' ';
-					selected2 = false;
-				}
-				flag = 2;
-			}
-
-
-			if (pressCourd.X >= 1 && pressCourd.X <= 13 && pressCourd.Y == 5){
-				if (flag != 3 && flag != 0){
-					MarkFunc(flag);
-				}
-				tmpcrd = { 2, 5 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				if (selected3 == false){ //chk if this was markd already
-					cout << 'x';
-					selected3 = true;
-				}
-				else{
-					cout << ' ';
-					selected3 = false;
-				}
-				flag = 3;
-			}
-
-			if (pressCourd.X >= 1 && pressCourd.X <= 13 && pressCourd.Y == 7){
-				if (flag != 4 && flag != 0){
-					MarkFunc(flag);
-				}
-				tmpcrd = { 2, 7 };
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-				if (selected4 == false){ //chk if this was markd already
-					cout << 'x';
-					selected4 = true;
-				}
-				else{
-					cout << ' ';
-					selected4 = false;
-
-				}
-				flag = 4;
-			}
+		if (i == current) {
+			string tempS = "(X)" + buffer[i];
+			CONSOLE_SCREEN_BUFFER_INFO cbi;
+			GetConsoleScreenBufferInfo(consol, &cbi);
+			DWORD temp = cbi.wAttributes;
+			DWORD wAttr = FOREGROUND_INTENSITY | BACKGROUND_GREEN;
+			SetConsoleTextAttribute(consol, wAttr);
+			printf("%c", 0xBA);
+			printf(tempS.data());
+			printf("%s", string(this->length - buffer[i].length(), ' ').c_str());
+			printf("%c", 0xBA);
+			SetConsoleTextAttribute(consol, temp);
 		}
-		break;
+		else {
+			printf("%c", 0xBA);
+			string tempS = "( )" + buffer[i];
+			printf(tempS.data());
+			printf("%s", string(this->length - buffer[i].length(), ' ').c_str());
+			printf("%c", 0xBA);
+		}
+		temp.Y += 1;
+		SetConsoleCursorPosition(consol, temp);
 
-		
 	}
 
-}
-void MarkFunc2(int flag){
-	//delete the x from the previous position
-
-	switch (flag)
-	{
-
-	case 1:
-		tmpcrd = { 2, 1 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	case 2:
-		tmpcrd = { 2, 3 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	case 3:
-		tmpcrd = { 2, 5 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	case 4:
-		tmpcrd = { 2, 7 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	default:
-		break;
-	}
-
+	printf("%c", 0xC8);
+	printf("%s", string(this->length+3, 0xCD).c_str());
+	printf("%c", 0xBC);
+	SetConsoleCursorPosition(consol, this->c);
 }
 
-
-
-
-void MarkFunc(int flag){
-	//delete the x from the previous position
-
-	switch (flag)
-	{
-
-	case 1:
-		tmpcrd = { 2, 1 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	case 2:
-		tmpcrd = { 2, 3 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	case 3:
-		tmpcrd = { 2, 5 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	case 4:
-		tmpcrd = { 2, 7 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmpcrd);
-		cout << ' ';
-		break;
-
-	default:
-		break;
-	}
-
+RadioList::~RadioList()
+{
 }
-
-
-
