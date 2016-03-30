@@ -120,7 +120,7 @@ void ComboBox::refresh() {
 	}
 
 	printf("%c", 0xC8);
-	printf("%s", string(size, 0xCD).c_str());
+	printf("%s", string(this->length, 0xCD).c_str());
 	printf("%c", 0xBC);
 	SetConsoleCursorPosition(consol, this->c);
 }
