@@ -15,6 +15,6 @@ public:
 	inline HANDLE GetConsole() { return _console; };
 	inline COORD GetCoord() { return _coord; };
 	inline void SetCoord(COORD c) { _coord = c; };
-	virtual string getString() = 0;
+	virtual string getString() { return ""; };
+	virtual ~ConsolComponent() = 0 {};
 };
-string ConsolComponent::getString() { return ""; }

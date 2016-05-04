@@ -20,9 +20,7 @@ RadioList::RadioList(const int size, const COORD coord, string context[]) : Resp
 	this->current = 0;
 	print();
 }
-bool beetween(int p, int x1, int x2) {
-	return (p >= x1&&p <= x2);
-}
+
 bool RadioList::inArea(COORD c)
 {
 	int x = GetCoord().X, y = GetCoord().Y;

@@ -20,9 +20,6 @@ ComboBox::ComboBox(const int size, const COORD coord, string context[]) : Respon
 	this->current = 0;
 	print();
 }
-bool beetween(int p, int x1, int x2) {
-	return (p >= x1&&p <= x2);
-}
 bool ComboBox::inArea(COORD c)
 {
 	int x = GetCoord().X, y = GetCoord().Y;
