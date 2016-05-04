@@ -1,13 +1,13 @@
 #include "RadioList.h"
 #include <cstdio>
 #include <string>
+# include <stdio.h>
 using namespace std;
 
-# include <stdio.h>
 
 
 
-RadioList::RadioList(const int size, const COORD coord, string context[]) : ResponseComponentCompositor(coord), size(size)
+RadioList::RadioList(const int size, const COORD coord, string context[]) :ResponseComponentCompositor(coord), size(size)
 {
 	this->buffer = context;
 	this->_mark = 1;
