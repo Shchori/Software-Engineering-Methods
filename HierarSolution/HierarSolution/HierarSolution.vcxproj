@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ComboBox.h" />
     <ClInclude Include="ConsoleComponent.h" />
     <ClInclude Include="RadioList.h" />
     <ClInclude Include="ResponseComponentCompositor.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="TextBox.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ComboBox.cpp" />
     <ClCompile Include="Lable.cpp" />
     <ClCompile Include="RadioList.cpp" />
     <ClCompile Include="Source.cpp" />
