@@ -125,6 +125,4 @@ void ComboBox::refresh() {
 	SetConsoleCursorPosition(consol, this->c);
 }
 
-ComboBox::~ComboBox()
-{
-}
+ComboBox::~ComboBox(){}

@@ -153,9 +153,13 @@ VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, ConsolComponent& c)
 	}
 }
 
+
+
+
+/*
 VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD wbsr)
 {
 	//printf("Resize event\n");
 	//printf("Console screen buffer is %d columns by %d rows.\n", wbsr.dwSize.X, wbsr.dwSize.Y);
 }
-
+*/

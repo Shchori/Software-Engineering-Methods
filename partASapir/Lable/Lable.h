@@ -1,10 +1,12 @@
+
 #include <Windows.h>
 #include <stdio.h>
 #include <string>
 
+
 using namespace std;
 
-class Lable{
+class Lable: public ConsolComponent {
 
 private:
 	

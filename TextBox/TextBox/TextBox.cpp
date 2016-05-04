@@ -39,9 +39,11 @@ TextBox::TextBox(const int size ,const COORD coord,HANDLE consol, string context
 	SetConsoleCursorPosition(consol, temp);
 	refresh();
 }
+
 bool beetween(int p,int x1, int x2) {
 	return (p>=x1&&p<=x2);
 }
+
 bool TextBox::inArea(COORD c)
 {
 	int x = this->c.X, y = this->c.Y;
@@ -127,6 +129,4 @@ void TextBox::refresh() {
 	
 }
 
-TextBox::~TextBox()
-{
-}
+TextBox::~TextBox(){}

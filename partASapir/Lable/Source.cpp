@@ -1,4 +1,4 @@
-#include "Lable.h";
+#include "lable.h";
 
 using namespace std;
 
