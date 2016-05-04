@@ -2,6 +2,8 @@
 #include <windows.h>
 #include <string>
 
+using namespace std;
+
 class ConsolComponent
 {
 private:
@@ -15,3 +17,4 @@ public:
 	inline void SetCoord(COORD c) { _coord = c; };
 	virtual string getString() = 0;
 };
+string ConsolComponent::getString() {}

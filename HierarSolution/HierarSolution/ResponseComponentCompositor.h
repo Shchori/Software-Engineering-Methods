@@ -4,8 +4,7 @@
 class ResponseComponentCompositor:public ResponseComponent
 {
 private:
-	int _mark;
 public:
-	void mark(int n) { this->_mark = n; };
+	virtual void mark(int n)=0;
 	virtual ~ResponseComponentCompositor ()= 0;
 };

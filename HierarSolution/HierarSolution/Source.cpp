@@ -41,7 +41,7 @@ int main(VOID)
 	COORD c = { 7, 7 };
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	TextBox box(20, c, "");
-	while (true)
+	while (true){
 	
 		// Wait for the events. 
 
@@ -81,7 +81,7 @@ int main(VOID)
 			}
 		}
 
-
+}
 	// Restore input mode on exit.
 
 	SetConsoleMode(hStdin, fdwSaveOldMode);
