@@ -2,9 +2,7 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include "TextBox.h"
-#include "ResponseComponent.h"
-
+#include "RadioList.h"
 
 HANDLE hStdin;
 DWORD fdwSaveOldMode;
@@ -40,7 +38,8 @@ int main(VOID)
 	// Loop to read and handle the next 100 input events.
 	COORD c = { 7, 7 };
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	TextBox box(20, c, "");
+	string buffer[] = { "1234","12345","123456","1234567","123456789" };
+	ResponseComponentCompositor box(5, c, buffer);
 	while (true){
 	
 		// Wait for the events. 

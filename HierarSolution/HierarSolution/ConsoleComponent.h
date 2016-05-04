@@ -17,4 +17,4 @@ public:
 	inline void SetCoord(COORD c) { _coord = c; };
 	virtual string getString() = 0;
 };
-string ConsolComponent::getString() {}
+string ConsolComponent::getString() { return ""; }

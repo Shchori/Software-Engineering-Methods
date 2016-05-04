@@ -10,3 +10,6 @@ public:
 	
 	virtual ~ResponseComponentCompositor ()= 0;
 };
+
+
+ResponseComponentCompositor::~ResponseComponentCompositor(){};

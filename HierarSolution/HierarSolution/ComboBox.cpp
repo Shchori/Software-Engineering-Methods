@@ -16,7 +16,7 @@ ComboBox::ComboBox(const int size, const COORD coord, string context[]) : Respon
 	for (int i = 0; i < size; ++i) {
 		if (this->length < context[i].length()) this->length = context[i].length();
 	}
-	this->mark = 0;
+	this->_mark = 0;
 	this->current = 0;
 	print();
 }
@@ -51,11 +51,11 @@ int ComboBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output, COORD c)
 	COORD temp = c;
 	switch (ker.wVirtualKeyCode) {
 	case VK_UP:
-		if (current > 0) this->mark -= 1;
+		if (current > 0) this->_mark -= 1;
 		print();
 		break;
 	case VK_DOWN:
-		if (current < this->size) this->mark += 1;
+		if (current < this->size) this->_mark += 1;
 		print();
 		break;
 	case VK_RETURN:
