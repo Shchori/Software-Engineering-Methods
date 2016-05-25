@@ -142,18 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CheckList.h" />
     <ClInclude Include="ConsoleComponent.h" />
     <ClInclude Include="ResponseComponentCompositor.h" />
-    <ClInclude Include="Lable.h" />
     <ClInclude Include="ResponseComponent.h" />
-    <ClInclude Include="TextBox.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CheckList.cpp" />
-    <ClCompile Include="Lable.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="TextBox.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

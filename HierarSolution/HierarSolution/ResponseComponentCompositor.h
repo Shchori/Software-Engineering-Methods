@@ -3,8 +3,15 @@
 
 class ResponseComponentCompositor:public ResponseComponent
 {
-private:
+protected:
+	virtual void mark(int n) = 0 {};
 public:
-	virtual void mark(int n)=0;
-	virtual ~ResponseComponentCompositor ()= 0;
+	ResponseComponentCompositor(const COORD c) :ResponseComponent(c) {};
+	bool beetween(int p, int x1, int x2) {
+		return (p >= x1&&p <= x2);
+	}
+
+	
+	virtual ~ResponseComponentCompositor() = 0 {};
 };
+
