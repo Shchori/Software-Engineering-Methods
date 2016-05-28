@@ -1,6 +1,6 @@
 #pragma once
 #include "ResponseComponentCompositor.h"
-#include <Windows.h>
+
 #include <string>
 #define FRAME_SIZE 2;
 using namespace std;
