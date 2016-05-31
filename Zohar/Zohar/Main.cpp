@@ -2,16 +2,34 @@
 #include <string>
 #include <iostream>
 #include <windows.h>
-#include "RadioList.h"
-
+#include "IControl.h"
+#include "Lable.h"
+#include "Graphics.h"
 using namespace std;
 
+
+int main() {
+	string str = "1";
+	Lable lable(str, 6);
+	COORD c = { 2,2 };
+	lable.setCoord(c);
+	//Color cl = Color::Cyan;
+	//Color cl2 = Color::White;
+	lable.setBackgroundColor(Color::White);
+	lable.setForegroundColor(Color::Black);
+	lable.draw();
+
+	getchar();
+	return 0;
+
+}
+/*
 HANDLE hStdin;
 DWORD fdwSaveOldMode;
 
 VOID ErrorExit(LPSTR);
-VOID KeyEventProc(KEY_EVENT_RECORD, HANDLE, RadioList&);
-VOID MouseEventProc(MOUSE_EVENT_RECORD, HANDLE, RadioList&);
+//VOID KeyEventProc(KEY_EVENT_RECORD, HANDLE, RadioList&);
+//VOID MouseEventProc(MOUSE_EVENT_RECORD, HANDLE, RadioList&);
 VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD);
 
 int main(VOID)
@@ -35,6 +53,7 @@ int main(VOID)
 	if (!GetConsoleMode(hStdin, &fdwSaveOldMode))
 		ErrorExit("GetConsoleMode");
 
+
 	// Enable the window and mouse input events. 
 
 	fdwMode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT;
@@ -44,8 +63,13 @@ int main(VOID)
 	// Loop to read and handle the next 100 input events.
 	COORD c = { 7, 7 };
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	string buffer[] = { "1234","12345","123456","1234567","123456789"};
-	RadioList box(5, c, buffer);
+	//string buffer[] = { "1234","12345","123456","1234567","123456789"};
+	string str = "zohar";
+	Lable lable(str, 6);
+	lable.draw();
+	cout << "nvjb,mn.\n";
+
+	//RadioList box(5, c, buffer);
 	while (true)
 	{
 		// Wait for the events. 
@@ -64,11 +88,11 @@ int main(VOID)
 			switch (irInBuf[i].EventType)
 			{
 			case KEY_EVENT: // keyboard input 
-				KeyEventProc(irInBuf[i].Event.KeyEvent, h, box);
+				//KeyEventProc(irInBuf[i].Event.KeyEvent, h, lable);
 				break;
 
 			case MOUSE_EVENT: // mouse input 
-				MouseEventProc(irInBuf[i].Event.MouseEvent, h, box);
+				//MouseEventProc(irInBuf[i].Event.MouseEvent, h, lable);
 				break;
 
 			case WINDOW_BUFFER_SIZE_EVENT: // scrn buf. resizing 
@@ -91,6 +115,7 @@ int main(VOID)
 
 	SetConsoleMode(hStdin, fdwSaveOldMode);
 
+	system("PAUSE");
 	return 0;
 }
 
@@ -104,8 +129,8 @@ VOID ErrorExit(LPSTR lpszMessage)
 
 	ExitProcess(0);
 }
-
-VOID KeyEventProc(KEY_EVENT_RECORD ker, HANDLE h, RadioList& c)
+/*
+VOID KeyEventProc(KEY_EVENT_RECORD ker, HANDLE h, Lable& l)
 {
 
 	CONSOLE_SCREEN_BUFFER_INFO info;
@@ -159,9 +184,9 @@ VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, RadioList& c)
 		break;
 	}
 }
-
+*//*
 VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD wbsr)
 {
 	//printf("Resize event\n");
 	//printf("Console screen buffer is %d columns by %d rows.\n", wbsr.dwSize.X, wbsr.dwSize.Y);
-}
+}*/
