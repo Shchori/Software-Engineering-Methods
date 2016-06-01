@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IControl.cpp" />
     <ClCompile Include="Lable.cpp" />
@@ -154,7 +155,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="border.h" />
-    <ClInclude Include="myEvent.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IControl.h" />
     <ClInclude Include="Lable.h" />

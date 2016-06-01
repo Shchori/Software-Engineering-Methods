@@ -17,6 +17,7 @@ int main() {
 	//Color cl2 = Color::White;
 	lable.setBackgroundColor(Color::White);
 	lable.setForegroundColor(Color::Black);
+
 	lable.draw();
 
 	getchar();

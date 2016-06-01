@@ -30,6 +30,9 @@
     <ClCompile Include="NumericBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lable.h">
@@ -44,10 +47,13 @@
     <ClInclude Include="border.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="myEvent.h">
+    <ClInclude Include="NumericBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NumericBox.h">
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
