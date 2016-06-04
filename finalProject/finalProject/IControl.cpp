@@ -2,10 +2,10 @@
 
 void IControl::draw() {
 	Graphics g = Graphics::getInstance();
-	if (_visability||this->_isCoordSet()) {
-		g.setCursorVisibility(this->_visability);
-		g.setBackground(this->_backGroundColor);
-		g.setForeground(this->_foregroundColor);
+	if (visability||this->isCoordSet()) {
+		g.setCursorVisibility(this->visability);
+		g.setBackground(this->backGroundColor);
+		g.setForeground(this->foregroundColor);
 		this->drawBorder();
 	}
 
@@ -19,16 +19,16 @@ IControl::IControl(
 	bool showcruser,
 	bool visability,
 	bool foucus
-		):height(height),width(width),_borderType(borderType),_foregroundColor(foregroundColor),
-		_backGroundColor(backGroundColor),_showcruser(showcruser),_visability(visability), _foucus(foucus)
+		):height(height),width(width),borderType(borderType),foregroundColor(foregroundColor),
+		backGroundColor(backGroundColor),showcruser(showcruser),visability(visability), foucus(foucus)
 {
 	this->_CoordSet = false;
 }
 void IControl::drawBorder() {
-	if (this->_borderType != BorderType::None) {
+	if (this->borderType != BorderType::None) {
 		Graphics g = Graphics::getInstance();
 		Border* b=NULL;
-		switch (this->_borderType)
+		switch (this->borderType)
 		{
 		case(BorderType::Double) :
 			b = new DoubleBorder();

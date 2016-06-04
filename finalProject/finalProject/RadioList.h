@@ -1,11 +1,14 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include "IControl.h"
+
+using namespace std;
 
 class RadioList: public IControl
 {
 private:
-	size_t selected_index;
+	size_t selectedIndex;
 	vector<string> options;
 public:
 	RadioList(int height, int width, vector<string> options);
