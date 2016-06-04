@@ -7,23 +7,23 @@ RadioList::RadioList(int height, int width, vector<string> options):IControl(hei
 }
 
 void RadioList::draw() {
-	Graphics graphics = Graphics::getInstance();
-	Border* border=NULL;
+	//Graphics graphics = Graphics::getInstance();
+	//Border* border=NULL;
 	
-	if (visability) {
-		switch (borderType) {
-		case BorderType::Single:
-			break;
-		case BorderType::Double:
-			break;
-		case BorderType::None:
-			break;
-		}
-	}
+	//if (visability) {
+	//	switch (borderType) {
+	//	case BorderType::Single:
+	//		break;
+	//	case BorderType::Double:
+	//		break;
+		//case BorderType::None:
+		//	break;
+		//}
+	//}
 
-	for (auto i : options){
-		graphics.write(this->getCoord().X + 1, this->getCoord().Y + 1, i);
-	}
+	//for (auto i : options){
+	//	graphics.write(this->getCoord().X + 1, this->getCoord().Y + 1, i);
+//	}
 	
 
 }
