@@ -1,13 +1,13 @@
 #pragma once
 #include "IControl.h"
-class Lable :public IControl
+class Label :public IControl
 {
 protected:
 	string str;
 public:
 
-	Lable(string s, int width);
-	~Lable();
+	Label(string s, int width);
+	~Label();
 	void SetValue(string value) {if(value.length()< this->width) str = value; };
 	string GetValue(){return str;};
 	void draw();

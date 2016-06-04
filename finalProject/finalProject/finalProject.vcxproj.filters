@@ -27,10 +27,13 @@
     <ClInclude Include="border.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Lable.h">
+    <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
+    <ClInclude Include="Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RadioList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,10 +44,13 @@
     <ClCompile Include="IControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lable.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Label.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RadioList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
