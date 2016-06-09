@@ -5,36 +5,42 @@
 #include "IControl.h"
 #include "Lable.h"
 #include "Graphics.h"
+#include "Button.h"
 using namespace std;
+HANDLE hStdin;
+DWORD fdwSaveOldMode;
+
+VOID ErrorExit(LPSTR);
+VOID KeyEventProc(KEY_EVENT_RECORD, HANDLE, Button&,Lable& );
+VOID MouseEventProc(MOUSE_EVENT_RECORD, HANDLE, Button&,Lable&);
+VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD);
 
 
 int main() {
 	string str = "1";
+	string plus = "+";
+	string minus = "-";
 	Lable lable(str, 6);
-	COORD c = { 2,2 };
+	COORD c = { 6,3 };
+	COORD c2 = { 2,3 };
+	COORD c3 = { 8,3 };
 	lable.setCoord(c);
 	//Color cl = Color::Cyan;
 	//Color cl2 = Color::White;
 	lable.setBackgroundColor(Color::White);
 	lable.setForegroundColor(Color::Black);
-
+	//lable.setBorder(BorderType::Single);
+	Button pbutton(plus, 1);
+	Button mbutton(minus, 1);
+	pbutton.setCoord(c2);
+	pbutton.setBorder(BorderType::Double);
+	mbutton.setCoord(c3);
+	mbutton.setBorder(BorderType::Double);
 	lable.draw();
+	pbutton.draw();
+	mbutton.draw();
 
-	getchar();
-	return 0;
 
-}
-/*
-HANDLE hStdin;
-DWORD fdwSaveOldMode;
-
-VOID ErrorExit(LPSTR);
-//VOID KeyEventProc(KEY_EVENT_RECORD, HANDLE, RadioList&);
-//VOID MouseEventProc(MOUSE_EVENT_RECORD, HANDLE, RadioList&);
-VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD);
-
-int main(VOID)
-{
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO cci = { 100, FALSE }; // invisibil cursor
 	SetConsoleCursorInfo(console, &cci);;
@@ -62,13 +68,13 @@ int main(VOID)
 		ErrorExit("SetConsoleMode");
 
 	// Loop to read and handle the next 100 input events.
-	COORD c = { 7, 7 };
+	//COORD c = { 7, 7 };
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	//string buffer[] = { "1234","12345","123456","1234567","123456789"};
-	string str = "zohar";
-	Lable lable(str, 6);
-	lable.draw();
-	cout << "nvjb,mn.\n";
+	//string str = "zohar";
+	//Lable lable(str, 6);
+	//lable.draw();
+	//cout << "nvjb,mn.\n";
 
 	//RadioList box(5, c, buffer);
 	while (true)
@@ -89,11 +95,11 @@ int main(VOID)
 			switch (irInBuf[i].EventType)
 			{
 			case KEY_EVENT: // keyboard input 
-				//KeyEventProc(irInBuf[i].Event.KeyEvent, h, lable);
+				KeyEventProc(irInBuf[i].Event.KeyEvent, h, pbutton,lable);
 				break;
 
 			case MOUSE_EVENT: // mouse input 
-				//MouseEventProc(irInBuf[i].Event.MouseEvent, h, lable);
+				MouseEventProc(irInBuf[i].Event.MouseEvent, h, pbutton,lable);
 				break;
 
 			case WINDOW_BUFFER_SIZE_EVENT: // scrn buf. resizing 
@@ -130,19 +136,19 @@ VOID ErrorExit(LPSTR lpszMessage)
 
 	ExitProcess(0);
 }
-/*
-VOID KeyEventProc(KEY_EVENT_RECORD ker, HANDLE h, Lable& l)
+
+VOID KeyEventProc(KEY_EVENT_RECORD ker, HANDLE h, Button& b, Lable& l)
 {
 
 	CONSOLE_SCREEN_BUFFER_INFO info;
 	GetConsoleScreenBufferInfo(h, &info);
 	if (ker.bKeyDown) {}
-	else if (c.inArea(info.dwCursorPosition)) {
-		c.keyPress(ker, h, info.dwCursorPosition);
+	else if (b.inArea(info.dwCursorPosition)) {
+		b.keyPress(ker, h, info.dwCursorPosition);
 	}
 }
 
-VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, RadioList& c)
+VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, Button& b, Lable& l)
 {
 #ifndef MOUSE_HWHEELED
 #define MOUSE_HWHEELED 0x0008
@@ -155,8 +161,8 @@ VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, RadioList& c)
 
 		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
 		{
-			if (c.inArea(mer.dwMousePosition)) {
-				c.mouseEvent(mer, h);
+			if (b.inArea(mer.dwMousePosition)) {
+				b.mouseEvent(mer, h,l);
 			}
 		}
 		else if (mer.dwButtonState == RIGHTMOST_BUTTON_PRESSED)
@@ -185,9 +191,9 @@ VOID MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h, RadioList& c)
 		break;
 	}
 }
-*//*
+
 VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD wbsr)
 {
 	//printf("Resize event\n");
 	//printf("Console screen buffer is %d columns by %d rows.\n", wbsr.dwSize.X, wbsr.dwSize.Y);
-}*/
+}

@@ -11,12 +11,12 @@
 
 class Button :public Event,public Lable
 {
-
+	
 public:
 	Button(string str, int width);
 	~Button();
-	virtual int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output);
+	virtual int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output,Lable& lable);
 	virtual int keyPress(KEY_EVENT_RECORD ker, HANDLE output, COORD);
-
+	//void MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h);
 
 };

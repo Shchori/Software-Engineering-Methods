@@ -3,6 +3,7 @@
 
 
 
+
 Lable::Lable(string s, int width) :IControl(3, width + 2, BorderType::None, Color::White, Color::Black, false, true, false), str("")
 {
 	this->SetValue(s);
