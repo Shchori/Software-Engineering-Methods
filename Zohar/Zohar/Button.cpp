@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "subMouseListner.h"
 
 
 
@@ -12,6 +13,32 @@ Button::~Button()
 bool beetween(int p, int x1, int x2) {
 	return (p >= x1&&p <= x2);
 }*/
+
+void Button::AddListener(MouseListener & listener)
+{
+
+	listener.MousePressed(*this, 0, 0, true);
+	//listener.MousePressed(this->getInstence(), 0, 0, true);
+
+}
+
+
+
+void Button::pressCorrect()
+{
+	cout << "got to figure it out\n";
+}
+
+void Button::draw()
+{
+	{
+		if (this->getVisability() && this->_isCoordSet()) {
+			IControl::draw();
+			Graphics g = Graphics::getInstance();
+			g.write(this->getCoord().X + 1, this->getCoord().Y + 1, str);
+		}
+	}
+}
 
 int Button::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output, Lable& lable)
 {

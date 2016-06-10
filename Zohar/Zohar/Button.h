@@ -7,6 +7,9 @@
 #include "Lable.h"
 #include "Graphics.h"
 #include "Event.h"
+#include "subMouseListner.h"
+
+
 
 
 class Button :public Event,public Lable
@@ -15,6 +18,11 @@ class Button :public Event,public Lable
 public:
 	Button(string str, int width);
 	~Button();
+	void SetValue(string str) { Lable::SetValue(str); }
+	void AddListener(MouseListener &listener);
+	Button& getInstence() { return *this; }
+	void pressCorrect();
+	void draw();
 	virtual int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output,Lable& lable);
 	virtual int keyPress(KEY_EVENT_RECORD ker, HANDLE output, COORD);
 	//void MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h);

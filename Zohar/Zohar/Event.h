@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Event {
+class Event  {
 
 public:
 	virtual int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output, Lable &lable) = 0;

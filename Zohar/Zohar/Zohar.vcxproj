@@ -152,6 +152,7 @@
     <ClCompile Include="Lable.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NumericBox.cpp" />
+    <ClCompile Include="subMouseListner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="border.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="IControl.h" />
     <ClInclude Include="Lable.h" />
     <ClInclude Include="NumericBox.h" />
+    <ClInclude Include="subMouseListner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

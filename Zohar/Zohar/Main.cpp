@@ -6,6 +6,9 @@
 #include "Lable.h"
 #include "Graphics.h"
 #include "Button.h"
+#include "subMouseListner.h"
+#include "NumericBox.h"
+
 using namespace std;
 HANDLE hStdin;
 DWORD fdwSaveOldMode;
@@ -16,19 +19,21 @@ VOID MouseEventProc(MOUSE_EVENT_RECORD, HANDLE, Button&,Lable&);
 VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD);
 
 
+
+
 int main() {
-	string str = "1";
+/*	string str = "1";
 	string plus = "+";
 	string minus = "-";
-	Lable lable(str, 6);
+	//Lable lable(str, 6);
 	COORD c = { 6,3 };
 	COORD c2 = { 2,3 };
 	COORD c3 = { 8,3 };
-	lable.setCoord(c);
+	//lable.setCoord(c);
 	//Color cl = Color::Cyan;
 	//Color cl2 = Color::White;
-	lable.setBackgroundColor(Color::White);
-	lable.setForegroundColor(Color::Black);
+//	lable.setBackgroundColor(Color::White);
+//	lable.setForegroundColor(Color::Black);
 	//lable.setBorder(BorderType::Single);
 	Button pbutton(plus, 1);
 	Button mbutton(minus, 1);
@@ -36,10 +41,24 @@ int main() {
 	pbutton.setBorder(BorderType::Double);
 	mbutton.setCoord(c3);
 	mbutton.setBorder(BorderType::Double);
-	lable.draw();
-	pbutton.draw();
-	mbutton.draw();
+	subMouseListner ms;
+	//ms.MousePressed(pbutton, 2, 3, true);
+	pbutton.AddListener(ms);*/
+	COORD c = { 2,2 };
+	COORD c1 = { 0,0 };
+	string str = "OK";
+	NumericBox numericbox(10,0, 100, 1, 6,c);
+	numericbox.draw();
+	Button button(str, 3);
+	button.setCoord(c1);
+	subMouseListner ms;
+	button.AddListener(ms);
 
+//	lable.draw();
+//	pbutton.draw();
+//	mbutton.draw();
+
+	/*
 
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO cci = { 100, FALSE }; // invisibil cursor
@@ -196,4 +215,4 @@ VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD wbsr)
 {
 	//printf("Resize event\n");
 	//printf("Console screen buffer is %d columns by %d rows.\n", wbsr.dwSize.X, wbsr.dwSize.Y);
-}
+}*/
