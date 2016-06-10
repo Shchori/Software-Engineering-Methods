@@ -11,7 +11,7 @@
 class NumericBox
 {
 public:
-	NumericBox(int width,int min,int max, int b_width,int lable_width,COORD c):b_plus("+" ,b_width),b_minus("-",b_width),lable(to_string(min),b_width),coord(c){
+	NumericBox(int width, int min,int max, short int b_width, short int lable_width,COORD c):b_plus("+" ,b_width),b_minus("-",b_width),lable(to_string(min),b_width),coord(c){
 		COORD tmp;
 		b_plus.setCoord(c);
 		tmp = { c.X + lable_width,c.Y };

@@ -1,6 +1,5 @@
 #include "Button.h"
-#include "subMouseListner.h"
-
+using namespace std;
 
 
 Button::Button(string str,int width):Lable(str,width){}
@@ -9,24 +8,21 @@ Button::Button(string str,int width):Lable(str,width){}
 Button::~Button()
 {
 }
-/*
-bool beetween(int p, int x1, int x2) {
-	return (p >= x1&&p <= x2);
-}*/
+
 
 void Button::AddListener(MouseListener & listener)
 {
 
 	listener.MousePressed(*this, 0, 0, true);
-	//listener.MousePressed(this->getInstence(), 0, 0, true);
 
 }
 
 
 
+
 void Button::pressCorrect()
 {
-	cout << "got to figure it out\n";
+	cout << "got to chk it out\n";
 }
 
 void Button::draw()
