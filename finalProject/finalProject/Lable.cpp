@@ -1,9 +1,7 @@
-#include "stdafx.h"
 #include "Lable.h"
 
 
-
-Lable::Lable(string s, int width):IControl(3, width+2, BorderType::None, Color::White, Color::Black, false, true, false),str("")
+Lable::Lable(string s, int width):IControl(3, width+2, BorderType::None,false, true, false, Color::White, Color::Black),str("")
 {
 	this->SetValue(s);
 

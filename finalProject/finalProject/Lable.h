@@ -1,5 +1,8 @@
 #pragma once
 #include "IControl.h"
+
+using namespace std;
+
 class Lable :public IControl
 {
 protected:
