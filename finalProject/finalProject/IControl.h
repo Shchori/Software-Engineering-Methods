@@ -17,6 +17,7 @@ protected:
 	BorderType _borderType;
 	Color _foregroundColor;
 	Color _backGroundColor;
+	Graphics g;
 	bool _showcruser;
 	bool _cursorVisability;
 	bool _foucus;

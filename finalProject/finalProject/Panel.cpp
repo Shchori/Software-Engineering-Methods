@@ -47,6 +47,6 @@ void Panel::AddControl(IControl& control, int left, int top)
 	}
 
 	else
-		printf("There is no plase for this control");
+		printf("There is no place for this control");
 
 }

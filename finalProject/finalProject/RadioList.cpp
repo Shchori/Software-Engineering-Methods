@@ -16,8 +16,6 @@ void RadioList::draw() {
 			break;
 		case BorderType::Double:
 			break;
-		case BorderType::None:
-			break;
 		}
 	}
 

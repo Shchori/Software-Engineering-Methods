@@ -1,7 +1,6 @@
 #include "IControl.h"
 
 void IControl::draw() {
-	Graphics g = Graphics::getInstance();
 	if (_cursorVisability ||this->_isCoordSet()) {
 		g.setCursorVisibility(this->_cursorVisability);
 		g.setBackground(this->_backGroundColor);
@@ -21,7 +20,7 @@ IControl::IControl(
 	Color foregroundColor,
 	Color backGroundColor
 		):height(height),width(width),_backGroundColor(backGroundColor),_showcruser(showcruser),
-		 _cursorVisability(visability), _foucus(foucus), _borderType(borderType), _foregroundColor(foregroundColor)
+		 _cursorVisability(visability), _foucus(foucus), _borderType(borderType), _foregroundColor(foregroundColor), g(Graphics::getInstance())
 {
 	this->_CoordSet = false;
 }
