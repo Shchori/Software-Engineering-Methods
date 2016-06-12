@@ -36,7 +36,7 @@ public:
 	Color getForegroundColor() { return _foregroundColor; };
 	COORD getCoord() { 	return _coord; };
 	void setCoord(COORD c);
-	virtual void draw();
+	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
