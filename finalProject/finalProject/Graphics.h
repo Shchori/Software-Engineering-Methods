@@ -15,6 +15,7 @@ class Graphics {
 		Color _background;
 		Color _foreground;
 		Graphics(DWORD  stdHandle);
+
 	public:	
 		static Graphics& getInstance(DWORD  stdHandle);
 		static Graphics& getInstance();
