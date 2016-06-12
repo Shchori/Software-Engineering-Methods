@@ -149,11 +149,13 @@
     <ClInclude Include="border.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IControl.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="Panel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IControl.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Panel.cpp" />
   </ItemGroup>
