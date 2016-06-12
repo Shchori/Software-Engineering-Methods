@@ -5,13 +5,13 @@
 #include "Graphics.h"
 #include "border.h"
 #include "IControl.h"
-#include "Lable.h"
+#include "Label.h"
 #include "Panel.h"
 
 
 void main() {
 
-	Lable text("hey",4);
+	Label text("hey",4);
 	text.draw();
 	Panel main(20,30);
 	//main.setBorder(Double);

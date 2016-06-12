@@ -27,9 +27,6 @@
     <ClInclude Include="border.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Lable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Panel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,9 +36,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Lable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Panel.cpp">
