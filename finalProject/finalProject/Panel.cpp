@@ -2,7 +2,7 @@
 
 bool Panel::firstPanel = false;
 
-Panel::Panel(int height, int width) :IControl(height, width + 2, BorderType::None, false, true, false, Color::White, Color::Black)
+Panel::Panel(int height, int width) :IControl(height, width + 2)
 {
 	if (!firstPanel)
 		firstPanel = true;

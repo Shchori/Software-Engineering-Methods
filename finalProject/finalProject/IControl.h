@@ -11,7 +11,7 @@ private:
 	COORD _coord;
 	bool _CoordSet;
 protected:
-	IControl(unsigned int height, unsigned int width, BorderType borderType, bool showcruser, bool visability, bool foucusColor, Color foregroundColor, Color backGroundColor) ;
+	IControl(unsigned int height, unsigned int width) ;
 	unsigned int height;
 	unsigned int width;
 	BorderType _borderType;
