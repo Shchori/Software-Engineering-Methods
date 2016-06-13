@@ -1,6 +1,7 @@
 #pragma once
 #include "constants.h" //include all project constants
 #include<Windows.h>
+#include "border.h"
 #include <vector>
 #include "Graphics.h"
 #include "border.h"
@@ -11,12 +12,24 @@
 
 void main() {
 
+	BorderType b = BorderType::Double;
 	Label text("hey",4);
-	text.draw();
+	COORD c = { 2,3 };
+	text.setCoord(c);
+	text.setBorder(b);
+
+	Label t("jj", 4);
+	COORD f = { 12, 13 };
+	t.setCoord(f);
+	t.setBorder(b);
+
+
 	Panel main(20,30);
-	//main.setBorder(Double);
+	main.setBorder(b);
+	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
+	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
+	main.printBy();
 	main.draw();
-	main.AddControl(text, 2, 3);
 
 	getchar();
 

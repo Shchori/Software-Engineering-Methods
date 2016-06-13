@@ -11,12 +11,14 @@ using namespace std;
 class Panel: public IControl {
 	private:
 		vector<IControl*> _innerPanels;
+		void senInIocation(IControl& control);
 
 	public:
 		Panel(int height, int width);
 		void AddControl(IControl& control, int left, int top);
-		void draw(){ IControl::draw(); }
+		void draw();
+		void printBy();
 		virtual ~Panel() {};
 
-		static bool firstPanel;
+		//static bool firstPanel;
 };
