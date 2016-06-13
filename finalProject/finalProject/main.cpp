@@ -12,24 +12,23 @@
 
 void main() {
 
+	Graphics g = Graphics::getInstance();
 	BorderType b = BorderType::Double;
-	Label text("hey", 4);
-	COORD c = { 2,3 };
-	text.setCoord(c);
-	text.setBorder(b);
-
 	Label t("jj", 4);
 	COORD f = { 15, 15 };
 	t.setCoord(f);
 	t.setBorder(b);
 
-
+	Label text("hey", 4);
+	COORD c = { 20,35 };
+	text.setCoord(c);
+	text.setBorder(b);
 
 	Panel main(20,30);
 	main.setBorder(b);
 	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
 	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
-	main.clearScreen();
+	g.clearScreen();
 	main.draw();
 
 	getchar();
