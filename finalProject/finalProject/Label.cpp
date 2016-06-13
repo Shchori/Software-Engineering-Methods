@@ -1,7 +1,7 @@
 #include "Label.h"
 
 
-Label::Label(string s, int width) :IControl(3, width + 2, BorderType::None, false, true, false, Color::White, Color::Black), str("")
+Label::Label(string s, int width) :IControl(3, width + 2), str("")
 {
 	this->SetValue(s);
 

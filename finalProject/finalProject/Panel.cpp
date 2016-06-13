@@ -2,7 +2,7 @@
 
 //bool Panel::firstPanel = false;
 
-Panel::Panel(int height, int width) :IControl(height, width + 2, BorderType::None, false, true, false, Color::White, Color::Black)
+Panel::Panel(int height, int width) :IControl(height, width + 2)
 {
 	/*if (!firstPanel)
 		firstPanel = true;
@@ -53,7 +53,7 @@ void Panel::AddControl(IControl& control, int left, int top)
 	}
 
 	else
-		printf("There is no plase for this control");
+		printf("There is no place for this control");
 
 }
 

@@ -1,5 +1,4 @@
 #include "Graphics.h"
-using namespace std;
 
 
 Graphics* Graphics::instance=NULL;
