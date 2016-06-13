@@ -39,6 +39,7 @@ public:
 	void setCoord(COORD c);
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
+	void clearScreen() { g.clearScreen(); }
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
 	inline virtual ~IControl() {};
