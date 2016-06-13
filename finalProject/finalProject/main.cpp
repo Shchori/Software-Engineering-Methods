@@ -13,22 +13,21 @@
 void main() {
 
 	BorderType b = BorderType::Double;
-	Label text("hey",4);
-	COORD c = { 2,3 };
-	text.setCoord(c);
-	text.setBorder(b);
-
 	Label t("jj", 4);
 	COORD f = { 12, 13 };
 	t.setCoord(f);
 	t.setBorder(b);
 
+	Label text("hey", 4);
+	COORD c = { 2,3 };
+	text.setCoord(c);
+	text.setBorder(b);
+
 
 	Panel main(20,30);
 	main.setBorder(b);
-	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
 	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
-	main.printBy();
+	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
 	main.draw();
 
 	getchar();

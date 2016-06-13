@@ -17,7 +17,7 @@ class Panel: public IControl {
 		Panel(int height, int width);
 		void AddControl(IControl& control, int left, int top);
 		void draw();
-		void printBy();
+		vector<IControl*> getInnerPanels() { return _innerPanels; }
 		virtual ~Panel() {};
 
 		//static bool firstPanel;

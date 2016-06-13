@@ -68,13 +68,12 @@ void Panel::draw() {
 void Panel::senInIocation(IControl& control) {
 
 	IControl* temp;
-	IControl* after = NULL;
 	int current, index = 0;
 	int controlX = control.getCoord().X;
 
 	vector<IControl*> tempVec;
 
-	for (int i = 1; i < _innerPanels.size(); i++) {
+	for (int i = 0; i < _innerPanels.size(); i++) {
 		current = (*_innerPanels[i]).getCoord().X;
 		if (controlX < current) {
 			index = i;
@@ -94,7 +93,4 @@ void Panel::senInIocation(IControl& control) {
 
 }
 
-void Panel::printBy() {
-	for (int i = 0; i < _innerPanels.size(); i++)
-		printf((*_innerPanels[i]).getHeight() + "/n");
-}
+
