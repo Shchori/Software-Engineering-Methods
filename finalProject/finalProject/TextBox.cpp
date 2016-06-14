@@ -1,17 +1,30 @@
 #include "TextBox.h"
 
-TextBox::TextBox(int width, string val) :value(val), IControl(width, 1) {
+TextBox::TextBox(int width) : IControl(width, 1) {
+	value.resize(width);
+
+	currData = -1;
 	g.moveTo(1, 1);
+	COORD c;
+	c.X = getCoord().X + 1;
+	c.Y = getCoord().Y+1;
+	setCoord(c);
 	g.setCursorVisibility(true);
-	mouseEvent();
 }
 
-void TextBox::SetText(string value) {
-	g.write(value);
-	g.moveTo(value.length(), 1);
+void TextBox::SetText(char value) {
+	string s(1, value);
+	g.write(s);
+	g.moveTo(getCoord().X+1, getCoord().Y);
+	COORD c;
+	c.X = getCoord().X + 1;
+	c.Y = getCoord().Y;
+	setCoord(c);
 }
+
 string TextBox::GetText() {
-	return value;
+	string s = string(value.begin(), value.end());
+	return s;
 }
 
 void TextBox::SetForeground(Color color) {
@@ -32,18 +45,14 @@ void TextBox::draw() {
 
 }
 
-bool beetween(int p, int x1, int x2) {
-	return (p >= x1&&p <= x2);
-}
-
 int TextBox::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 	COORD c = mer.dwMousePosition;
-	if (inArea(c))
-		if (!beetween(c.X, getCoord().X, getCoord().X + value.length())) {
-			c.X = getCoord().X + value.length() + 1;
-		}
+	cout << "mouse";
+	if (c.X < currData && c.Y == getCoord().Y) {
+		g.moveTo(c.X, c.Y);
+		setCoord(c);
+	}
 	c.Y = getCoord().Y + 1;
-	SetConsoleCursorPosition(output, c);
 	return 0;
 }
 
@@ -61,8 +70,17 @@ int TextBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
 			break;
 		case VK_LBUTTON:break;
 		default:
-			if (value.length() < width) {
-				SetText(value += ker.uChar.AsciiChar);
+			width = 20;
+			//cout << "width:" << width << " " << currData;
+			if (currData != width-1) {
+				currData += 1;
+				/*g.moveTo(getCoord().X + 1, getCoord().Y);
+				COORD c;
+				c.X = getCoord().X + 1;
+				c.Y = getCoord().Y;
+				setCoord(c);*/
+				value.at(currData) = ker.uChar.AsciiChar;
+				SetText(ker.uChar.AsciiChar);
 			}
 			break;
 		}

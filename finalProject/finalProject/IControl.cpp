@@ -52,7 +52,7 @@ void IControl::draw() {
 
 };
 
-bool beetween(int p, int x1, int x2) {
+bool IControl::beetween(int p, int x1, int x2) {
 	return (p >= x1&&p <= x2);
 }
 

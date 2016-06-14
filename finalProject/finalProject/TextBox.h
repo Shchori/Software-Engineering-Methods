@@ -1,11 +1,15 @@
 #pragma once
 #include "IControl.h"
+#include <vector>
+#include <iostream>
+using namespace std;
 class TextBox : public IControl
 {
-	string value;
+	vector<char> value;
+	int currData;
 public:
-	TextBox(int width, string val="");
-	void SetText(string value);
+	TextBox(int width);
+	void SetText(char value);
 	string GetText();
 	void SetForeground(Color color);
 	void SetBackground(Color color);
