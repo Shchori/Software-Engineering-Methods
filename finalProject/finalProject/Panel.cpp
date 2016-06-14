@@ -14,10 +14,10 @@ void Panel::AddControl(IControl& control, int left, int top)
 {
 	COORD panelCoord = { this->getCoord().X,this->getCoord().Y };
 	COORD topLeftCoord = { panelCoord.X +left, panelCoord.Y + top };
-	COORD topRightCoord = { topLeftCoord.X, topLeftCoord.Y + control.getWidth() };
-	COORD bottomLeftCoord = { topLeftCoord.X + control.getHeight(), topLeftCoord.Y };
-	COORD bottomRightCoord = { topLeftCoord.X + control.getHeight(),
-							  topLeftCoord.Y + control.getWidth() };
+	COORD topRightCoord = { topLeftCoord.X + control.getWidth(), topLeftCoord.Y };
+	COORD bottomLeftCoord = { topLeftCoord.X , topLeftCoord.Y + control.getHeight() };
+	COORD bottomRightCoord = { topLeftCoord.X + control.getWidth() ,
+							  topLeftCoord.Y + control.getHeight() };
 
 	bool res, flag = false;
 
@@ -48,8 +48,8 @@ void Panel::AddControl(IControl& control, int left, int top)
 		control.setCoord(topLeftCoord);
 		// non - relative -> with offset:
 		// the exact Coord acording to the full screen
-		//IControl* position = location(control);
-		senInIocation(control);
+
+		senInLocation(control);
 	}
 
 	else
@@ -65,7 +65,7 @@ void Panel::draw() {
 
 //----------------------------------------------------------------
 
-void Panel::senInIocation(IControl& control) {
+void Panel::senInLocation(IControl& control) {
 
 	IControl* temp;
 	int current, index = 0;
