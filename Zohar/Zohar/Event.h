@@ -1,4 +1,5 @@
-#pragma once
+
+/*#pragma once
 #include <stdio.h>
 #include <string>
 #include <windows.h>
@@ -14,3 +15,4 @@ public:
 
 
 };
+*/

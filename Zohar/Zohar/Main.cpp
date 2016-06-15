@@ -3,32 +3,40 @@
 #include <iostream>
 #include <windows.h>
 #include "IControl.h"
-#include "Lable.h"
+#include "Label.h"
 #include "Graphics.h"
 #include "Button.h"
-#include "subMouseListner.h"
 #include "NumericBox.h"
 
 using namespace std;
-/*HANDLE hStdin;
-DWORD fdwSaveOldMode;
 
-VOID ErrorExit(LPSTR);
-VOID KeyEventProc(KEY_EVENT_RECORD, HANDLE, Button&,Lable& );
-VOID MouseEventProc(MOUSE_EVENT_RECORD, HANDLE, Button&,Lable&);
-VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD);
-*/
 
+
+struct myStruct :MouseListener
+{
+	void MousePressed(Button &b, int x, int y, bool isLeft) {
+		cout << "h";
+	}
+
+};
 
 
 int main() {
 
 	COORD c = { 2,2 };
-	//COORD c1 = { 0,0 };
-	//string str = "OK";
-	NumericBox numericbox(10, 0, 100, 1, 6, c);
-	numericbox.draw();
+	string str = "+";
+	Button b(str, 1);
+	b.setCoord(c);
+	b.draw();
+	myStruct _mystruct;
+	b.AddListener(_mystruct);
+	b.mouseEvent(2, 2);
 
+	COORD c2 = { 4,4};
+	NumericBox numericbox(10, 0, 100, 1, 2, c2);
+	numericbox.draw();
+	numericbox.addEvent();
+	cout << "\n\n\n";
 	system("PAUSE");
 	return 0;
 }

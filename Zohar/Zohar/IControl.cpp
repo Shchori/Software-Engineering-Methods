@@ -1,29 +1,24 @@
 #include "IControl.h"
 
 void IControl::draw() {
-	Graphics g = Graphics::getInstance();
-	if (_visability || this->_isCoordSet()) {
-		g.setCursorVisibility(this->_visability);
+	if (_cursorVisability || this->_isCoordSet()) {
+		g.setCursorVisibility(this->_cursorVisability);
 		g.setBackground(this->_backGroundColor);
 		g.setForeground(this->_foregroundColor);
+		g.updateConsoleAttributes();
 		this->drawBorder();
 	}
 
 };
-IControl::IControl(
-	unsigned int height,
-	unsigned int width,
-	BorderType borderType,
-	Color foregroundColor,
-	Color backGroundColor,
-	bool showcruser,
-	bool visability,
-	bool foucus
-) :height(height), width(width), _borderType(borderType), _foregroundColor(foregroundColor),
-_backGroundColor(backGroundColor), _showcruser(showcruser), _visability(visability), _foucus(foucus)
+IControl::IControl(unsigned int height, unsigned int width) :
+	height(height), width(width), _backGroundColor(Color::Black), _showcruser(false),
+	_cursorVisability(true), _foucus(false), _borderType(BorderType::None), _foregroundColor(Color::White), g(Graphics::getInstance())
 {
+
 	this->_CoordSet = false;
 }
+
+
 void IControl::drawBorder() {
 	if (this->_borderType != BorderType::None) {
 		Graphics g = Graphics::getInstance();
@@ -55,6 +50,7 @@ void IControl::drawBorder() {
 	}
 
 }
+
 bool beetween(int p, int x1, int x2) {
 	return (p >= x1&&p <= x2);
 }
@@ -63,4 +59,10 @@ bool IControl::inArea(COORD c)
 {
 	int x = this->getCoord().X, y = this->getCoord().Y;
 	return beetween(c.X, x, x + width) && beetween(c.Y, y, y + this->height);
+}
+
+
+void IControl::setCoord(COORD c) {
+	this->_CoordSet = true;
+	_coord = c;
 }
