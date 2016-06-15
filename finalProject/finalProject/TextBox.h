@@ -5,19 +5,16 @@
 using namespace std;
 class TextBox : public IControl
 {
-	vector<char> value;
+	string value;
 	int dataLen;
 	int currPosition;
 public:
 	TextBox(int width);
-	void SetText(char value);
+	void SetText(string value);
 	string GetText();
-	void SetForeground(Color color);
-	void SetBackground(Color color);
-	void SetBorder(BorderType border);
-	virtual void draw();
-	virtual int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output);
-	virtual int keyPress(KEY_EVENT_RECORD ker, HANDLE output);
+	void draw();
+	int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output);
+	int keyPress(KEY_EVENT_RECORD ker, HANDLE output);
 	~TextBox();
 };
 
