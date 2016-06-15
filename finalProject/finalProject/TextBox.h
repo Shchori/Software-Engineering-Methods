@@ -6,7 +6,8 @@ using namespace std;
 class TextBox : public IControl
 {
 	vector<char> value;
-	int currData;
+	int dataLen;
+	int currPosition;
 public:
 	TextBox(int width);
 	void SetText(char value);
