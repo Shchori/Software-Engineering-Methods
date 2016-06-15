@@ -19,7 +19,6 @@ void Button::AddListener(MouseListener & listener)
 
 void Button::draw()
 {
-	//IControl::draw();
 	Label::draw();
 	
 }

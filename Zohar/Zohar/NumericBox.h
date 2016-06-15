@@ -55,7 +55,7 @@ struct Plus_Struct :public MouseListener
 };
 
 
-class NumericBox 
+class NumericBox :public Panel
 {
 protected:
 	Plus_Struct p;
@@ -63,28 +63,33 @@ protected:
 
 
 public:
-	NumericBox(int width, int min,int max, short int b_width, short int lable_width,COORD c):b_plus("+" ,b_width),b_minus("-",b_width),label(to_string(min),b_width),coord(c){
-		/*COORD tmp;
-		b_plus.setCoord(c);
-		tmp = { c.X + lable_width,c.Y };
+	NumericBox(int height,int width,int min,int max, short int b_width, short int lable_width,COORD c_panel):Panel(height,width),b_plus("+" ,b_width),b_minus("-",b_width),label(to_string(min),b_width),panel_c(c_panel){
+		coord = { 4,4 };
+		COORD tmp;
+		b_plus.setCoord(coord);
+		tmp = { coord.X + lable_width,coord.Y };
 		label.setCoord(tmp);
-		tmp = { tmp.X + b_width,c.Y};
-		b_minus.setCoord(tmp);*/
-	//	this->draw();
-		//Plus_Struct p;
-		
-		BorderType b = BorderType::Double;
+		tmp = { tmp.X + b_width,coord.Y};
+		b_minus.setCoord(tmp);
+	
+		/*BorderType b = BorderType::Double;
 		Panel panel(10, 20);
+		panel.setCoord(panel_c);
 		panel.setBorder(b);
-		panel.AddControl(b_plus, c.X, c.Y);
-		panel.AddControl(label, c.X + lable_width, c.Y);
-		panel.AddControl(b_minus, c.X + lable_width + b_width, c.Y);
+		panel.AddControl(b_plus, coord.X, coord.Y);
+		panel.AddControl(label, coord.X + lable_width+1, coord.Y);
+		panel.AddControl(b_minus, coord.X + lable_width + b_width +5, coord.Y);*/
+		setCoord(panel_c);
+		AddControl(b_plus, coord.X, coord.Y);
+		AddControl(label, coord.X + lable_width + 1, coord.Y);
+		AddControl(b_minus, coord.X + lable_width + b_width + 5, coord.Y);
 
+		
 	}
 	
 	~NumericBox();
 	void draw();
-	void addEvent();
+	void addEvent(string eventType);
 	
 	
 private:
@@ -92,6 +97,7 @@ private:
 	Button b_minus;
 	Label label;
 	COORD coord;
+	COORD panel_c;
 
 };
 
