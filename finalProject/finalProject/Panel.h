@@ -11,7 +11,7 @@ using namespace std;
 class Panel: public IControl {
 	private:
 		vector<IControl*> _innerPanels;
-		void senInIocation(IControl& control);
+		void senInLocation(IControl& control);
 
 	public:
 		Panel(int height, int width);

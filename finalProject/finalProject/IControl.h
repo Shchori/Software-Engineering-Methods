@@ -39,6 +39,8 @@ public:
 	void setCoord(COORD c);
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
+	bool beetween(int p, int x1, int x2);
+	void clearScreen() { g.clearScreen(); }
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
 	inline virtual ~IControl() {};
