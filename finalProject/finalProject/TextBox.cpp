@@ -15,10 +15,27 @@ TextBox::TextBox(int width) : IControl(width, 1) {
 }
 
 void TextBox::SetText(char value) {
-	string s(1, value);
-	g.write(s);
-	g.moveTo(getCoord().X+1, getCoord().Y);
 	COORD c;
+	string s(1, value);
+
+	if (currPosition == dataLen) {
+		this->value.at(dataLen) = value;
+		g.write(s);
+	}
+	else if(currPosition < dataLen){
+		string subS;
+		for (int i = dataLen; i >= currPosition; i--) {
+			this->value[i] = this->value[i-1];
+		}
+		this->value[currPosition] = value;
+		string sub="";
+		for (int i = currPosition; i < dataLen+1; i++) {
+			sub += (this->value[i]);
+		}
+		g.write(sub);
+
+	}
+	g.moveTo(getCoord().X + 1, getCoord().Y);
 	c.X = getCoord().X + 1;
 	c.Y = getCoord().Y;
 	setCoord(c);
@@ -43,8 +60,6 @@ void TextBox::SetBorder(BorderType border) {
 
 void TextBox::draw() {
 	drawBorder();
-
-
 }
 
 int TextBox::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
@@ -71,9 +86,28 @@ int TextBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
 		//checks the key value
 		switch (ker.wVirtualKeyCode) {
 		case VK_BACK:// backspace
+			if (currPosition > -2 && dataLen > -1) {
+					c.X = getCoord().X - 1;
+					c.Y = getCoord().Y;
+					g.moveTo(c.X, c.Y);
+				if(currPosition<=dataLen){
+					string sub = "";
+					for (int i = currPosition+1; i <= dataLen; i++) {
+						sub += (this->value[i]);
+						this->value[i] = this->value[i+2];
+					}
+					this->value[dataLen] = ' ';
+					sub += " ";
+					g.write(sub);
+					setCoord(c);
+					currPosition--;
+					dataLen--;
+				}
+				
+			}
 			break;
 		case VK_LEFT:
-			if (getCoord().X > dataLen) {
+			if (currPosition>-1) {
 				c.X = getCoord().X - 1;
 				c.Y = getCoord().Y;
 				g.moveTo(c.X, c.Y);
@@ -109,7 +143,7 @@ int TextBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
 				c.X = getCoord().X + 1;
 				c.Y = getCoord().Y;
 				setCoord(c);*/
-				value.at(dataLen) = ker.uChar.AsciiChar;
+				//value.at(dataLen) = ker.uChar.AsciiChar;
 				SetText(ker.uChar.AsciiChar);
 			}
 			break;
