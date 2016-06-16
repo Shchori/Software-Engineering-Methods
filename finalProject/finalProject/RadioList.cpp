@@ -27,11 +27,11 @@ void RadioList::draw() {
 }
 
 bool RadioList::inArea(COORD c) {
-
+	return true;
 }
 
 size_t RadioList::GetSelectedIndex() {
-
+	return 1;
 }
 
 void RadioList::SetSelectedIndex(size_t index) {

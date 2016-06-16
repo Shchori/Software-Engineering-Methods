@@ -57,13 +57,22 @@ struct Plus_Struct :public MouseListener
 
 class NumericBox :public Panel
 {
+
+private:
+	Button b_plus;
+	Button b_minus;
+	Label label;
+	COORD coord;
+	COORD panel_c;
+
 protected:
 	Plus_Struct p;
 	Minus_Struct m;
 
 
 public:
-	NumericBox(int height, int width, int min, int max, short int b_width, short int lable_width, COORD c_panel) :Panel(height, width), b_plus("+", b_width), b_minus("-", b_width), label(to_string(min), b_width), panel_c(c_panel) {
+	NumericBox(int height, int width, int min, int max, short int b_width, short int lable_width, COORD c_panel) :Panel(height, width), b_plus("+", b_width), b_minus("-", b_width), label(b_width), panel_c(c_panel) {
+		label.SetValue(to_string(min));
 		coord = { 4,4 };
 		COORD tmp;
 		b_plus.setCoord(coord);
@@ -90,14 +99,6 @@ public:
 	~NumericBox();
 	void draw();
 	void addEvent(string eventType);
-
-
-private:
-	Button b_plus;
-	Button b_minus;
-	Label label;
-	COORD coord;
-	COORD panel_c;
 
 };
 
