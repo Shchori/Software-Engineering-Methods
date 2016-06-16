@@ -1,4 +1,5 @@
 #include "Panel.h"
+#include <typeinfo>
 
 //bool Panel::firstPanel = false;
 
@@ -61,6 +62,21 @@ void Panel::draw() {
 	IControl::draw(); 
 	for (int i = 0; i < _innerPanels.size(); i++)
 		(*_innerPanels[i]).draw();
+}
+
+vector<IControl*> Panel::getAllControls() {
+	vector<IControl*> tempVec, result;
+	for(int i=0; i < _innerPanels.size(); i++) 
+	{
+		if (Panel* var = dynamic_cast<Panel*>(_innerPanels[i])) {
+			tempVec = var->getAllControls();
+			result.insert(result.end(), tempVec.begin(), tempVec.end());
+		}
+		else
+			result.push_back(_innerPanels[i]);
+	}
+
+	return result;
 }
 
 //----------------------------------------------------------------

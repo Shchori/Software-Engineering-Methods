@@ -8,6 +8,7 @@
 #include "IControl.h"
 #include "Label.h"
 #include "Panel.h"
+#include <typeinfo>
 
 
 void main() {
@@ -28,8 +29,8 @@ void main() {
 	main.setBorder(b);
 	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
 	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
-	g.clearScreen();
 	main.draw();
+	printf(typeid(t).name());
 
 	getchar();
 
