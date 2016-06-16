@@ -15,7 +15,7 @@
 #include "RadioList.h"
 using namespace std;
 void main() {
-	/*
+	
 	BorderType b = BorderType::Double;
 	Label t(4);
 	t.SetValue("dfdf");
@@ -34,34 +34,34 @@ void main() {
 	te.SetValue("hi");
 	COORD d = { 10,3 };
 	te.setCoord(d);
-	te.setBorder(b);*/
+	te.setBorder(b);
 
-	//Panel main(25, 30);
-	//main.setBorder(b);
-	//main.AddControl(te, te.getCoord().X, te.getCoord().Y);
-	//main.AddControl(t, t.getCoord().X, t.getCoord().Y);
-	//main.AddControl(text, text.getCoord().X, text.getCoord().Y);
-
-	//main.draw();
-
-	//string plus = "plus";
-	//string minus = "minus";
-	//COORD numeric_c = { 6,7 };
-	//NumericBox numericbox(10, 20, 0, 100, 1, 4, numeric_c);
-	//numericbox.setBorder(b);
-	//main.AddControl(numericbox, numericbox.getCoord().X, numericbox.getCoord().Y);
-
-	//numericbox.draw();
+	Panel main(25, 40);
+	main.setBorder(b);
+	main.AddControl(te, te.getCoord().X, te.getCoord().Y);
+	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
+	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
 
 	//main.draw();
 
+	string plus = "plus";
+	string minus = "minus";
+	COORD numeric_c = { 6,7 };
+	NumericBox numericbox(10, 20, 0, 100, 1, 4, numeric_c);
+	numericbox.setBorder(b);
+	main.AddControl(numericbox, numericbox.getCoord().X, numericbox.getCoord().Y);
 
-	//numericbox.addEvent(plus);
-	//numericbox.addEvent(plus);
-	//numericbox.addEvent(minus);
-	vector<string> lab = {"hi","bi"};
-	RadioList n(10, 20,lab );
-	n.draw();
+	numericbox.draw();
+
+	main.draw();
+
+
+	numericbox.addEvent(plus);
+	numericbox.addEvent(plus);
+	numericbox.addEvent(minus);
+	//vector<string> lab = {"hi","bi"};
+	//RadioList n(10, 20,lab );
+	//n.draw();
 
 	getchar();
 	
