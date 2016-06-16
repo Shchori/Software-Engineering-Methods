@@ -64,6 +64,7 @@ private:
 	Label label;
 	COORD coord;
 	COORD panel_c;
+	
 
 protected:
 	Plus_Struct p;
@@ -81,13 +82,7 @@ public:
 		tmp = { tmp.X + b_width,coord.Y };
 		b_minus.setCoord(tmp);
 
-		/*BorderType b = BorderType::Double;
-		Panel panel(10, 20);
-		panel.setCoord(panel_c);
-		panel.setBorder(b);
-		panel.AddControl(b_plus, coord.X, coord.Y);
-		panel.AddControl(label, coord.X + lable_width+1, coord.Y);
-		panel.AddControl(b_minus, coord.X + lable_width + b_width +5, coord.Y);*/
+
 		setCoord(panel_c);
 		AddControl(b_plus, coord.X, coord.Y);
 		AddControl(label, coord.X + lable_width + 1, coord.Y);
