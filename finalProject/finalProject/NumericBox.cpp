@@ -26,7 +26,8 @@ void NumericBox::addEvent(string eventType)
 	if (eventType == "plus") {
 		p.setLabel(label);
 		b_plus.AddListener(p);
-		b_plus.mouseEvent(this->getCoord().X+coord.X, this->getCoord().Y+coord.Y);//i need to cng this to mouse position
+		b_plus.mouseEvent(b_plus.getCoord().X, b_plus.getCoord().Y);
+		//b_plus.mouseEvent(this->getCoord().X+coord.X, this->getCoord().Y+coord.Y);//i need to cng this to mouse position
 	}
 	if (eventType == "minus") {
 		m.setLabel(label);

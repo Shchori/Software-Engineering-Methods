@@ -64,6 +64,7 @@ private:
 	Label label;
 	COORD coord;
 	COORD panel_c;
+	
 
 protected:
 	Plus_Struct p;
