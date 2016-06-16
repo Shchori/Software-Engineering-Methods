@@ -3,10 +3,10 @@
 #include <vector>
 #include "Panel.h"
 #include "Label.h"
-
+#include "Event.h"
 using namespace std;
 
-class RadioList: public Panel
+class RadioList: public Panel, public Event
 {
 private:
 	size_t selectedIndex;
@@ -17,6 +17,8 @@ public:
 	bool inArea(COORD c);
 	size_t GetSelectedIndex();
 	void SetSelectedIndex(size_t index);
+	int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output);
+	int keyPress(KEY_EVENT_RECORD ker, HANDLE output);
 	~RadioList();
 };
 

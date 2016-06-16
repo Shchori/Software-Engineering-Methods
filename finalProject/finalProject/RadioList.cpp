@@ -23,11 +23,19 @@ bool RadioList::inArea(COORD c) {
 }
 
 size_t RadioList::GetSelectedIndex() {
-	return 1;
+	return selectedIndex;
 }
 
 void RadioList::SetSelectedIndex(size_t index) {
+	selectedIndex = index;
+}
 
+int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
+	return 1;
+}
+
+int RadioList::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
+	return 1;
 }
 
 RadioList::~RadioList()
