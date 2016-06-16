@@ -1,5 +1,8 @@
 #include "Label.h"
 
+Label::Label():IControl(1,1)
+{
+}
 
 Label::Label(int width) :IControl(3, width + 2)
 {

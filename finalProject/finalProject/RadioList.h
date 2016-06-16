@@ -1,15 +1,16 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "IControl.h"
+#include "Panel.h"
+#include "Label.h"
 
 using namespace std;
 
-class RadioList: public IControl
+class RadioList: public Panel
 {
 private:
 	size_t selectedIndex;
-	vector<string> options;
+	vector<Label> ops;
 public:
 	RadioList(int height, int width, vector<string> options);
 	void draw();

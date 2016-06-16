@@ -1,6 +1,6 @@
 #include "IControl.h"
 
-IControl::IControl(unsigned int height, unsigned int width):
+IControl::IControl(int height, int width):
 	height(height),width(width),_backGroundColor(Color::Black),_showcruser(false),
 		 _cursorVisability(true), _foucus(false), _borderType(BorderType::None), _foregroundColor(Color::White), g(Graphics::getInstance())
 {

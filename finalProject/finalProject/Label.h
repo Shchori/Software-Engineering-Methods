@@ -6,6 +6,7 @@ protected:
 	string str;
 public:
 	Label(int width);
+	Label();
 	~Label();
 	virtual void SetValue(string value) {if(value.length()< this->width) str = value; };
 	string GetValue(){return str;};

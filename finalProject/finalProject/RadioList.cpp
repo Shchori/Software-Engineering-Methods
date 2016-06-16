@@ -1,27 +1,19 @@
 #include "RadioList.h"
 
 
-RadioList::RadioList(int height, int width, vector<string> options):IControl(height, width),selectedIndex(-1)
+RadioList::RadioList(int height, int width, vector<string> options):Panel(height, width),selectedIndex(-1),ops(width)
 {
-	this->options = options;
+	ops.resize(options.size());
+	for (int i = 0; i < options.size();i++) {
+		ops[i].SetValue(options[i]);
+		AddControl(ops[i],width, height);
+	}
+
 }
 
 void RadioList::draw() {
-	Graphics graphics = Graphics::getInstance();
-	Border* border=NULL;
 	
-	if (getVisability()) {
-		switch (getBorder()) {
-		case BorderType::Single:
-			break;
-		case BorderType::Double:
-			break;
-		}
-	}
-
-	for (auto i : options){
-		graphics.write(this->getCoord().X + 1, this->getCoord().Y + 1, i);
-	}
+	Panel::draw();
 	
 
 }

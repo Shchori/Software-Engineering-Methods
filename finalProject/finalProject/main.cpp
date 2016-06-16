@@ -12,9 +12,10 @@
 #include <iostream>
 #include "Button.h"
 #include "NumericBox.h"
+#include "RadioList.h"
 using namespace std;
 void main() {
-
+	/*
 	BorderType b = BorderType::Double;
 	Label t(4);
 	t.SetValue("dfdf");
@@ -33,13 +34,13 @@ void main() {
 	te.SetValue("hi");
 	COORD d = { 10,3 };
 	te.setCoord(d);
-	te.setBorder(b);
+	te.setBorder(b);*/
 
-	Panel main(25, 30);
-	main.setBorder(b);
-	main.AddControl(te, te.getCoord().X, te.getCoord().Y);
-	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
-	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
+	//Panel main(25, 30);
+	//main.setBorder(b);
+	//main.AddControl(te, te.getCoord().X, te.getCoord().Y);
+	//main.AddControl(t, t.getCoord().X, t.getCoord().Y);
+	//main.AddControl(text, text.getCoord().X, text.getCoord().Y);
 
 	//main.draw();
 
@@ -52,13 +53,15 @@ void main() {
 
 	//numericbox.draw();
 
-	main.draw();
+	//main.draw();
 
 
 	//numericbox.addEvent(plus);
 	//numericbox.addEvent(plus);
 	//numericbox.addEvent(minus);
-
+	vector<string> lab = {"hi","bi"};
+	RadioList n(10, 20,lab );
+	n.draw();
 
 	getchar();
 	
