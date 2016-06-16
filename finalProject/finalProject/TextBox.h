@@ -5,6 +5,7 @@
 using namespace std;
 class TextBox : public Label, public Event
 {
+private:
 	string value;
 	int dataLen;
 	int currPosition;
