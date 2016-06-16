@@ -3,6 +3,7 @@
 
 CheckBox::CheckBox(int height, int width, vector<string> options)
 {
+	selectedIndexes = new int[options.size()];
 }
 
 
