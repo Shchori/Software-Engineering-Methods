@@ -56,9 +56,9 @@ void main() {
 	main.draw();
 
 
-	numericbox.addEvent(plus);
-	numericbox.addEvent(plus);
-	numericbox.addEvent(minus);
+	//numericbox.addEvent(plus);
+	//numericbox.addEvent(plus);
+	//numericbox.addEvent(minus);
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
