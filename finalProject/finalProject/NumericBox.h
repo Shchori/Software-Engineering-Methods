@@ -72,8 +72,7 @@ protected:
 
 
 public:
-	NumericBox(int height, int width, int min, int max, short int b_width, short int lable_width, COORD c_panel) :Panel(height, width), b_plus("+", b_width), b_minus("-", b_width), label(b_width), panel_c(c_panel) {
-		label.SetValue(to_string(min));
+	NumericBox(int height, int width, int min, int max, short int b_width, short int lable_width, COORD c_panel) :Panel(height, width), b_plus("+", b_width), b_minus("-", b_width), label(b_width,to_string(min)), panel_c(c_panel) {
 		coord = { 4,4 };
 		COORD tmp;
 		b_plus.setCoord(coord);

@@ -43,7 +43,7 @@ void Panel::AddControl(IControl& control, int left, int top)
 	else
 	 flag = true;
 
-	if (!flag)
+	if (true)
 	{
 		control.setCoord(topLeftCoord);
 		// non - relative -> with offset:

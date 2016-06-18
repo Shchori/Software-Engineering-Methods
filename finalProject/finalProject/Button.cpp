@@ -2,7 +2,7 @@
 using namespace std;
 
 
-Button::Button(string str, int width) :Label(width), pressed(false) { SetValue(str); }
+Button::Button(string str, int width) :Label(width, str), pressed(false) { }
 
 
 Button::~Button()

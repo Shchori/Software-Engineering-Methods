@@ -1,25 +1,24 @@
 #include "RadioList.h"
 
 
-RadioList::RadioList(int height, int width, vector<string> options):Panel(height, width),selectedIndex(-1),ops(width)
+RadioList::RadioList(int height, int width, vector<string> options):Panel(height, width),selectedIndex(-1),ops(options.size(),Label(width,"")), btn(options.size(),Button("( )", 3))
 {
-	ops.resize(options.size());
 	for (int i = 0; i < options.size();i++) {
 		ops[i].SetValue(options[i]);
-		AddControl(ops[i],width, height);
 	}
 
 }
 
 void RadioList::draw() {
-	
+	for (int i = 0; i < ops.size(); i++) {
+		AddControl(btn[i], getCoord().X, getCoord().Y + i);
+		AddControl(ops[i], getCoord().X+4, getCoord().Y+i);
+	}
 	Panel::draw();
+
+	g.setCursorVisibility(false);
 	
 
-}
-
-bool RadioList::inArea(COORD c) {
-	return true;
 }
 
 size_t RadioList::GetSelectedIndex() {
