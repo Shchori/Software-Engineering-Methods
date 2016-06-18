@@ -30,7 +30,29 @@ void RadioList::SetSelectedIndex(size_t index) {
 }
 
 int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
-	return 1;
+	switch (mer.dwEventFlags)
+	{
+	case 0:
+
+		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
+		{
+			if (getCoord().X<mer.dwMousePosition.X&& mer.dwMousePosition.X<=getCoord().X) {
+				for (int i = 0; i < ops.size(); i++) {
+					if (getCoord().Y + i <= mer.dwMousePosition.Y && mer.dwMousePosition.Y < getCoord().Y + i + 1) {
+						
+						if (selectedIndex == -1) {
+							selectedIndex = i;
+						}
+
+						btn[selectedIndex].SetValue("( )");
+						btn[i].SetValue("(X)");
+						selectedIndex = i;
+					}
+				}
+			}
+			
+		}
+	}
 }
 
 int RadioList::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
