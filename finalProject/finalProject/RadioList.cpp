@@ -7,13 +7,14 @@ RadioList::RadioList(int height, int width, vector<string> options):Panel(height
 		ops[i].SetValue(options[i]);
 	}
 
+	for (int i = 0; i < ops.size(); i++) {
+		AddControl(btn[i], getCoord().X, getCoord().Y + i);
+		AddControl(ops[i], getCoord().X + 4, getCoord().Y + i);
+	}
 }
 
 void RadioList::draw() {
-	for (int i = 0; i < ops.size(); i++) {
-		AddControl(btn[i], getCoord().X, getCoord().Y + i);
-		AddControl(ops[i], getCoord().X+4, getCoord().Y+i);
-	}
+	
 	Panel::draw();
 
 	g.setCursorVisibility(false);
@@ -37,7 +38,7 @@ int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
 		{
 			if (getCoord().X<mer.dwMousePosition.X&& mer.dwMousePosition.X<=getCoord().X+3) {
-				for (int i = 0; i < ops.size(); i++) {
+				for (int i = 0; i < btn.size(); i++) {
 					if (getCoord().Y + i <= mer.dwMousePosition.Y && mer.dwMousePosition.Y < getCoord().Y + i + 1) {
 						
 						if (selectedIndex == -1) {
