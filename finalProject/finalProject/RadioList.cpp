@@ -54,6 +54,7 @@ int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 			
 		}
 	}
+	return 1;
 }
 
 int RadioList::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
