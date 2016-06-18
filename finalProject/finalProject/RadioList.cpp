@@ -36,7 +36,7 @@ int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 
 		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
 		{
-			if (getCoord().X<mer.dwMousePosition.X&& mer.dwMousePosition.X<=getCoord().X) {
+			if (getCoord().X<mer.dwMousePosition.X&& mer.dwMousePosition.X<=getCoord().X+3) {
 				for (int i = 0; i < ops.size(); i++) {
 					if (getCoord().Y + i <= mer.dwMousePosition.Y && mer.dwMousePosition.Y < getCoord().Y + i + 1) {
 						
