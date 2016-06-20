@@ -5,8 +5,7 @@ class Label :public IControl
 protected:
 	string str;
 public:
-	Label(int width);
-	Label();
+	Label(int width, string str);
 	~Label();
 	virtual void SetValue(string value) {if(value.length()< this->width) str = value; };
 	string GetValue(){return str;};

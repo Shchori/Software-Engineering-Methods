@@ -1,66 +1,119 @@
 #include "TextBox.h"
 
-TextBox::TextBox(int width):Label(width) {
-	currPosition = 0;
-	dataLen = 0;
+TextBox::TextBox(int width) : IControl(width, 1) {
 	value.resize(width);
-}
 
-void TextBox::draw() {
-	Label::draw();
+	dataLen = -1;
+	currPosition = -1;
+	g.moveTo(1, 1);
+	COORD c;
+	c.X = getCoord().X + 1;
+	c.Y = getCoord().Y + 1;
+
+	setCoord(c);
 	g.setCursorVisibility(true);
 }
 
-void TextBox::SetValue(string value) {
-	Label::SetValue(value);
-	dataLen += value.length();
+void TextBox::SetText(char value) {
+	COORD c;
+	string s(1, value);
+
+	if (currPosition == dataLen) {
+		this->value.at(dataLen) = value;
+		g.write(s);
+	}
+	else if (currPosition < dataLen) {
+		string subS;
+		for (int i = dataLen; i >= currPosition; i--) {
+			this->value[i] = this->value[i - 1];
+		}
+		this->value[currPosition] = value;
+		string sub = "";
+		for (int i = currPosition; i < dataLen + 1; i++) {
+			sub += (this->value[i]);
+		}
+		g.write(sub);
+
+	}
+	g.moveTo(getCoord().X + 1, getCoord().Y);
+	c.X = getCoord().X + 1;
+	c.Y = getCoord().Y;
+	setCoord(c);
+}
+
+string TextBox::GetText() {
+	string s = string(value.begin(), value.end());
+	return s;
+}
+
+void TextBox::draw() {
+	drawBorder();
 }
 
 int TextBox::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 	COORD c = mer.dwMousePosition;
-	if (inArea(c))
-		if (!beetween(c.X, getCoord().X, getCoord().X + value.length())) {
-			c.X = getCoord().X + value.length() + 1;
-		}
+	cout << "mouse";
+	if (c.X < dataLen && c.Y == getCoord().Y) {
+		g.moveTo(c.X, c.Y);
+		setCoord(c);
+	}
+	else if (c.Y == getCoord().Y) {
+		g.moveTo(width, c.Y);
+	}
+	else {
+		g.setCursorVisibility(false);
+	}
 	c.Y = getCoord().Y + 1;
-	g.moveTo(c.X, c.Y);
 	return 0;
 }
 
+
 int TextBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
-	POINT p;
-	GetCursorPos(&p);
-	// if key was pressed in the textbox
-	if (ker.bKeyDown && p.x==getCoord().X && p.y>=getCoord().Y && p.y<=width) {
+	COORD c;
+	// if key was pressed
+	if (ker.bKeyDown) {
 		//checks the key value
 		switch (ker.wVirtualKeyCode) {
 		case VK_BACK:// backspace
-			if (currPosition > 0) {
-				p.x --;
-				g.moveTo(p.x, p.y);
+			if (currPosition > -1 && dataLen > -1) {
+				c.X = getCoord().X-1 ;
+				c.Y = getCoord().Y;
+				g.moveTo(c.X, c.Y);
+
 				if (currPosition <= dataLen) {
 					string sub = "";
-					for (int i = currPosition + 1; i <= dataLen; i++) {
+					for (int i = currPosition+1; i <= dataLen; i++) {
 						sub += (this->value[i]);
-						this->value[i] = this->value[i + 2];
+						this->value[i-1] = this->value[i];
 					}
-					this->value[dataLen] = ' ';
+					this->value[currPosition] = ' ';
 					sub += " ";
 					g.write(sub);
-					currPosition--;
-					dataLen--;
+					setCoord(c);
+					
 				}
+				currPosition--;
+				dataLen--;
+				g.moveTo(c.X, c.Y);
+
 			}
 			break;
 		case VK_LEFT:
-			if (currPosition > 0) {
-				g.moveTo(p.x - 1, p.y);
+			if (currPosition>-1) {
+				c.X = getCoord().X - 1;
+				c.Y = getCoord().Y;
+				g.moveTo(c.X, c.Y);
+				setCoord(c);
 				currPosition--;
 			}
+
 			break;
 		case VK_RIGHT:
 			if (currPosition < dataLen) {
-				g.moveTo(p.x + 1, p.y);
+				c.X = getCoord().X + 1;
+				c.Y = getCoord().Y;
+				g.moveTo(c.X, c.Y);
+				setCoord(c);
 				currPosition++;
 			}
 			break;
@@ -72,31 +125,18 @@ int TextBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
 			break;
 		case VK_LBUTTON:break;
 		default:
-			char k = ker.uChar.AsciiChar;
-			if (dataLen<width) {
-				string s = "";
-				s += k;
-				currPosition++;
+			width = 20;
+			//cout << "width:" << width << " " << currData;
+			if (dataLen != width - 1) {
 				dataLen++;
-				if (currPosition == dataLen) {
-					this->value[dataLen] = k;
-					g.write(s);
-				}
-				else if (currPosition < dataLen) {
-					string subS;
-					for (int i = dataLen; i >= currPosition; i--) {
-						this->value[i] = this->value[i - 1];
-					}
-					this->value[currPosition] = k;
-					string sub = "";
-					for (int i = currPosition; i < dataLen + 1; i++) {
-						sub += (this->value[i]);
-					}
-					g.write(sub);
-
-				}
-				g.moveTo(p.x + 1, p.y);
-
+				currPosition++;
+				/*g.moveTo(getCoord().X + 1, getCoord().Y);
+				COORD c;
+				c.X = getCoord().X + 1;
+				c.Y = getCoord().Y;
+				setCoord(c);*/
+				//value.at(dataLen) = ker.uChar.AsciiChar;
+				SetText(ker.uChar.AsciiChar);
 			}
 			break;
 		}
@@ -104,4 +144,5 @@ int TextBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
 	return 0;
 }
 
-TextBox::~TextBox() {}
+TextBox::~TextBox() {
+}

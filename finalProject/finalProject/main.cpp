@@ -15,7 +15,7 @@
 #include "RadioList.h"
 using namespace std;
 void main() {
-	
+	/*
 	BorderType b = BorderType::Double;
 	Label t(4);
 	t.SetValue("dfdf");
@@ -54,7 +54,7 @@ void main() {
 	numericbox.draw();
 
 	main.draw();
-
+	*/
 
 	//numericbox.addEvent(plus);
 	//numericbox.addEvent(plus);
@@ -62,9 +62,17 @@ void main() {
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
-
+	BorderType b = BorderType::Double;
+	vector<string> values = { "hi", "bi" };
+	COORD c = { 2,2 };
+	RadioList r(values.size(),20,values);
+	r.setCoord(c);
+	r.draw();
+	Panel main(50, 40);
+	main.setBorder(b);
+	main.AddControl(r, r.getCoord().X, r.getCoord().Y);
+	main.draw();
 	getchar();
-	
 	
 
 }
