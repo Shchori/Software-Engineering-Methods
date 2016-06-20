@@ -11,7 +11,9 @@ private:
 	COORD _coord;
 	bool _CoordSet;
 	int _layer;
+	static IControl* focused;
 protected:
+	static void setFocused(IControl* c);
 	IControl(int height, int width) ;
 	unsigned int height;
 	unsigned int width;
