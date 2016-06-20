@@ -35,7 +35,7 @@ public:
 	Color getBackgroundColor() { return _backGroundColor; }
 	void setForegroundColor(Color Color) { _foregroundColor = Color; }
 	Color getForegroundColor() { return _foregroundColor; };
-	COORD getCoord() { 	return _coord; };
+	virtual COORD getCoord() { 	return _coord; };
 	void setCoord(COORD c);
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);

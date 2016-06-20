@@ -62,12 +62,14 @@ void main() {
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
-	BorderType b = BorderType::Double;
+	BorderType b = BorderType::Single;
 	vector<string> values = { "hi", "bi" };
 	COORD c = { 2,2 };
-	RadioList r(values.size(),20,values);
+	RadioList r(6,30,values);
+	r.setBorder(b);
+
 	r.setCoord(c);
-	r.draw();
+	//r.draw();
 	Panel main(50, 40);
 	main.setBorder(b);
 	main.AddControl(r, r.getCoord().X, r.getCoord().Y);

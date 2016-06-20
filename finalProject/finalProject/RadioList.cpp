@@ -1,20 +1,27 @@
 #include "RadioList.h"
 
 
-RadioList::RadioList(int height, int width, vector<string> options):Panel(height, width),selectedIndex(-1),ops(options.size(),Label(width,"")), btn(options.size(),Button("( )", 3))
+RadioList::RadioList(int height, int width, vector<string> options):Panel(height, width),selectedIndex(-1),ops(options.size(),Label(width-5,"")), btn(options.size(),Button("( )", 3))
 {
+	BorderType b = BorderType::None;
+
 	for (int i = 0; i < options.size();i++) {
 		ops[i].SetValue(options[i]);
+		ops[i].setBorder(b);
+
 	}
 
-	for (int i = 0; i < ops.size(); i++) {
-		AddControl(btn[i], getCoord().X, getCoord().Y + i);
-		AddControl(ops[i], getCoord().X + 4, getCoord().Y + i);
-	}
 }
 
 void RadioList::draw() {
-	
+	for (int i = 0; i < ops.size(); i++) {
+		if (selectedIndex == i) {
+			btn[i].SetValue("(X)");
+		}
+		AddControl(btn[i], 0, i);
+		AddControl(ops[i], 4, i);
+	}
+
 	Panel::draw();
 
 	g.setCursorVisibility(false);
@@ -45,6 +52,7 @@ int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 							selectedIndex = i;
 						}
 
+						int selected = GetSelectedIndex();
 						btn[selectedIndex].SetValue("( )");
 						btn[i].SetValue("(X)");
 						selectedIndex = i;
@@ -54,7 +62,7 @@ int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 			
 		}
 	}
-	return 1;
+	return 0;
 }
 
 int RadioList::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
