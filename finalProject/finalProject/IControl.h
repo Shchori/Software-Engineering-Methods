@@ -10,7 +10,10 @@ class IControl {
 private:
 	COORD _coord;
 	bool _CoordSet;
+	int _layer;
+	static IControl* focused;
 protected:
+	static void setFocused(IControl* c);
 	IControl(int height, int width) ;
 	unsigned int height;
 	unsigned int width;
@@ -23,6 +26,8 @@ protected:
 	bool _foucus;
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
+	void _setLayer(int layer) { _layer = layer; };
+	int _getLayer() { return _layer; };
 public:
 	bool isFoucus() { return _foucus; };
 	virtual int getHeight() { return height + 2; };

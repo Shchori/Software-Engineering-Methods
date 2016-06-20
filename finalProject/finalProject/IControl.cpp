@@ -1,11 +1,23 @@
 #include "IControl.h"
 
+IControl* IControl::focused = NULL;
+
+void IControl::setFocused(IControl* c) {
+	if (c) {
+		if(IControl::focused) IControl::focused->_foucus = false;
+		c->_foucus = true;
+		IControl::focused = c;
+	}
+}
+
+
 IControl::IControl(int height, int width):
 	height(height),width(width),_backGroundColor(Color::Black),_showcruser(false),
 		 _cursorVisability(true), _foucus(false), _borderType(BorderType::None), _foregroundColor(Color::White), g(Graphics::getInstance())
 {
 
 	this->_CoordSet = false;
+	this->_layer = 0;
 }
 
 
