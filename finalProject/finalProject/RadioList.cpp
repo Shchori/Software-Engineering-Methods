@@ -3,19 +3,17 @@
 
 RadioList::RadioList(int height, int width, vector<string> options):Panel(height, width),selectedIndex(-1),ops(options.size(),Label(width-5,"")), btn(options.size(),Button("( )", 3))
 {
-	BorderType b = BorderType::None;
-
 	for (int i = 0; i < options.size();i++) {
 		COORD c1 = { 0, i };
-		COORD c2 = { 4, i };
-		
+		COORD c2 = { 6, i };
 		ops[i].setValue(options[i]);
-		ops[i].setBorder(b);
 		ops[i].setCoord(c2);
 		btn[i].setCoord(c1);
-		addControl(btn[i], 0, i);
-		addControl(ops[i], 4, i);
-
+	//	if (i % 2 != 0) {
+			addControl(btn[i], btn[i].getCoord().X, btn[i].getCoord().Y);
+			addControl(ops[i], ops[i].getCoord().X, ops[i].getCoord().Y);
+		//}
+		
 	}
 
 }
@@ -27,11 +25,11 @@ void RadioList::draw() {
 	g.setCursorVisibility(false);
 }
 
-size_t RadioList::GetSelectedIndex() {
+int RadioList::GetSelectedIndex() {
 	return selectedIndex;
 }
 
-void RadioList::SetSelectedIndex(size_t index) {
+void RadioList::SetSelectedIndex(int index) {
 	btn[selectedIndex].setValue("( )");
 	btn[index].setValue("(X)");
 	selectedIndex = index;

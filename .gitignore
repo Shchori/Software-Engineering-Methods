@@ -234,4 +234,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-/final/final/IControl.css
+
+finalProject/finalProject.sln
+finalProject/finalProject/main.cpp
