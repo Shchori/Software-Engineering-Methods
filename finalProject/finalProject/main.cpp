@@ -73,6 +73,7 @@ void main() {
 	COORD f = {2, 1 };
 	t.setCoord(f);
 	t.setBorder(b);
+	t.draw();
 
 	Label text(1,"");
 	text.setValue("d");
