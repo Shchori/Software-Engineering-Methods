@@ -64,20 +64,20 @@ void main() {
 	//RadioList n(10, 20,lab );
 	//n.draw();
 	BorderType b = BorderType::Single;
-/*	vector<string> values = { "hi", "bi" };
+	vector<string> values = { "hi", "bi" };
 	COORD c = { 0,0 };
 	RadioList r(20,40,values);
 	r.setBorder(b);
-	*/
+	
 	//r.setCoord(c);
-	MsgBox m(10,10);
+	/*MsgBox m(10,10);
 	COORD c = { 0,0 };
 	m.SetText("check");
-	m.setCoord(c);
+	m.setCoord(c);*/
 
 	Panel main(50, 40);
 	main.setBorder(b);
-	main.addControl(m,0,0);
+	main.addControl(r,0,0);
 	main.draw();
 	getchar();
 	
