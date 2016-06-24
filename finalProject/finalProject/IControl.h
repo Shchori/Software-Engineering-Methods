@@ -30,7 +30,6 @@ protected:
 public:
 	static void setFocused(IControl* c);
 	static IControl* getFocused() { return IControl::focused; };
-	void IControl::setFocused(IControl* c);
 	bool isFocus() { return _focus; };
 	virtual int getHeight() { return height + 2; };
 	virtual int getWidth() { return width + 2; };
