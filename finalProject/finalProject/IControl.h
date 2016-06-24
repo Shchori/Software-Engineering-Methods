@@ -26,7 +26,7 @@ protected:
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
 	void _setLayer(int layer) { _layer = layer; };
-	int _getLayer() { return _layer; };
+	
 public:
 	static IControl* getFocused() { return IControl::focused; };
 	bool isFoucus() { return _foucus; };
@@ -48,6 +48,7 @@ public:
 	void clearScreen() { g.clearScreen(); }
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
+	int getLayer() { return _layer; };
 	inline virtual ~IControl() {};
 
 };

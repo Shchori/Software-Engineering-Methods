@@ -72,7 +72,7 @@ void main() {
 	//r.draw();
 	Panel main(50, 40);
 	main.setBorder(b);
-	main.AddControl(r, r.getCoord().X, r.getCoord().Y);
+	main.addControl(r, r.getCoord().X, r.getCoord().Y);
 	main.draw();
 	getchar();
 	

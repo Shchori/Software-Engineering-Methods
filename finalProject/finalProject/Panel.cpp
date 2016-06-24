@@ -11,8 +11,9 @@ Panel::Panel(int height, int width) :IControl(height, width + 2)
 	IControl::setCoord(c);*/
 }
 
-void Panel::AddControl(IControl& control, int left, int top)
+void Panel::addControl(IControl& control, int left, int top)
 {
+	// set the absolute corrd
 	COORD panelCoord = { this->getCoord().X,this->getCoord().Y };
 	COORD topLeftCoord = { panelCoord.X +left, panelCoord.Y + top };
 	COORD topRightCoord = { topLeftCoord.X + control.getWidth(), topLeftCoord.Y };
@@ -50,7 +51,7 @@ void Panel::AddControl(IControl& control, int left, int top)
 		// non - relative -> with offset:
 		// the exact Coord acording to the full screen
 
-		senInLocation(control);
+		setInLocation(control);
 	}
 
 
@@ -58,8 +59,19 @@ void Panel::AddControl(IControl& control, int left, int top)
 
 void Panel::draw() {
 	IControl::draw(); 
-	for (int i = 0; i < _innerPanels.size(); i++)
-		(*_innerPanels[i]).draw();
+	for (int i = 0; i < _innerPanels.size(); i++) {
+		if ((*_innerPanels[i]).getLayer() == 0)
+			(*_innerPanels[i]).draw();
+	}
+	for (int i = 0; i < _innerPanels.size(); i++) {
+		if ((*_innerPanels[i]).getLayer() == 1)
+			(*_innerPanels[i]).draw();
+	}
+	for (int i = 0; i < _innerPanels.size(); i++) {
+		if ((*_innerPanels[i]).getLayer() == 2)
+			(*_innerPanels[i]).draw();
+	}
+		
 }
 
 vector<IControl*> Panel::getAllControls() {
@@ -79,17 +91,23 @@ vector<IControl*> Panel::getAllControls() {
 
 //----------------------------------------------------------------
 
-void Panel::senInLocation(IControl& control) {
+void Panel::setInLocation(IControl& control) {
 
 	IControl* temp;
-	int current, index = 0;
+	int currentX, currentY, index = 0;
 	int controlX = control.getCoord().X;
+	int controlY = control.getCoord().Y;
 
 	vector<IControl*> tempVec;
 
 	for (int i = 0; i < _innerPanels.size(); i++) {
-		current = (*_innerPanels[i]).getCoord().X;
-		if (controlX < current) {
+		currentX = (*_innerPanels[i]).getCoord().X;
+		currentY = (*_innerPanels[i]).getCoord().Y;
+		if (controlY < currentY) {
+			index = i;
+			break;
+		}
+		else if (controlX < currentX && controlY > currentY) {
 			index = i;
 			break;
 		}
