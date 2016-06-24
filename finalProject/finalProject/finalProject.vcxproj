@@ -148,20 +148,25 @@
   <ItemGroup>
     <ClInclude Include="border.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckBox.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IControl.h" />
     <ClInclude Include="IControlResponser.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="msgBox.h" />
     <ClInclude Include="Panel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IControl.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MsgBox.cpp" />
     <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="RadioList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
