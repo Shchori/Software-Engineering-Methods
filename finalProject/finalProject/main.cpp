@@ -11,6 +11,7 @@
 #include "TextBox.h"
 #include <iostream>
 #include "Button.h"
+#include "MsgBox.h"
 #include "NumericBox.h"
 #include "RadioList.h"
 using namespace std;
@@ -63,16 +64,20 @@ void main() {
 	//RadioList n(10, 20,lab );
 	//n.draw();
 	BorderType b = BorderType::Single;
-	vector<string> values = { "hi", "bi" };
-	COORD c = { 2,2 };
-	RadioList r(6,30,values);
+/*	vector<string> values = { "hi", "bi" };
+	COORD c = { 0,0 };
+	RadioList r(20,40,values);
 	r.setBorder(b);
+	*/
+	//r.setCoord(c);
+	MsgBox m(10,10);
+	COORD c = { 0,0 };
+	m.SetText("check");
+	m.setCoord(c);
 
-	r.setCoord(c);
-	//r.draw();
 	Panel main(50, 40);
 	main.setBorder(b);
-	main.addControl(r, r.getCoord().X, r.getCoord().Y);
+	main.addControl(m,0,0);
 	main.draw();
 	getchar();
 	

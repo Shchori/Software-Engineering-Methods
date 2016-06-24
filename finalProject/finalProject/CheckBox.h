@@ -1,7 +1,7 @@
 #pragma once
-#include "Event.h"
+#include "RadioList.h"
 #include <vector>
-class CheckBox : public Event
+class CheckBox : public RadioList
 {
 	int* selectedIndexes;
 public:
