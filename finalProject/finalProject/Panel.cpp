@@ -1,20 +1,28 @@
 #include "Panel.h"
 #include <typeinfo>
 
-//bool Panel::firstPanel = false;
 
 Panel::Panel(int height, int width) :IControl(height, width + 2)
-{
-	/*if (!firstPanel)
-		firstPanel = true;
-	COORD c = {0,0};
-	IControl::setCoord(c);*/
+{}
+
+void Panel::setCoord(COORD c) {
+	IControl::setCoord(c);
+	for(int i = 0; i < _innerPanels.size(); i++) {
+		IControl& control = (*_innerPanels[i]);
+		COORD topLeftCoord = { this->getCoord().X + control.getCoord().X , this->getCoord().Y + control.getCoord().Y };
+		(*_innerPanels[i]).setCoord(topLeftCoord);
+	}
 }
 
 void Panel::addControl(IControl& control, int left, int top)
 {
 	// set the absolute corrd
-	COORD panelCoord = { this->getCoord().X,this->getCoord().Y };
+	COORD panelCoord;
+	if (!this->_isCoordSet())
+		panelCoord = { 0,0 }; //will stay relative
+	else
+		panelCoord = { this->getCoord().X,this->getCoord().Y };
+
 	COORD topLeftCoord = { panelCoord.X +left, panelCoord.Y + top };
 	COORD topRightCoord = { topLeftCoord.X + control.getWidth(), topLeftCoord.Y };
 	COORD bottomLeftCoord = { topLeftCoord.X , topLeftCoord.Y + control.getHeight() };
@@ -50,10 +58,8 @@ void Panel::addControl(IControl& control, int left, int top)
 		control.setCoord(topLeftCoord);
 		// non - relative -> with offset:
 		// the exact Coord acording to the full screen
-
 		setInLocation(control);
 	}
-
 
 }
 
@@ -70,8 +76,7 @@ void Panel::draw() {
 	for (int i = 0; i < _innerPanels.size(); i++) {
 		if ((*_innerPanels[i]).getLayer() == 2)
 			(*_innerPanels[i]).draw();
-	}
-		
+	}		
 }
 
 vector<IControl*> Panel::getAllControls() {

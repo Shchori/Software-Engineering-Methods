@@ -17,8 +17,8 @@ class Panel: public IControl {
 		Panel(int height, int width);
 		void addControl(IControl& control, int left, int top);
 		void draw();
+		void setCoord(COORD c);
 		vector<IControl*> getAllControls();
 		virtual ~Panel() {};
 
-		//static bool firstPanel;
 };

@@ -62,17 +62,31 @@ void main() {
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
-	BorderType b = BorderType::Single;
-	vector<string> values = { "hi", "bi" };
-	COORD c = { 2,2 };
-	RadioList r(6,30,values);
-	r.setBorder(b);
 
-	r.setCoord(c);
-	//r.draw();
-	Panel main(50, 40);
+	BorderType b = BorderType::Double;
+	Label t(4,"");
+	t.setValue("dfdf");
+	COORD f = { 8, 12 };
+	t.setCoord(f);
+	t.setBorder(b);
+
+	Label text(1,"");
+	text.setValue("d");
+	COORD c = { 2,3 };
+	text.setCoord(c);
+	text.setBorder(b);
+
+	COORD v = { 0,0 };
+
+	Panel minP(2, 2);
+	minP.setBorder(b);
+	Panel main(25, 40);
 	main.setBorder(b);
-	main.addControl(r, r.getCoord().X, r.getCoord().Y);
+	main.addControl(text, text.getCoord().X, text.getCoord().Y);
+	main.addControl(t, t.getCoord().X, t.getCoord().Y);
+	main.setCoord(v);
+	main.addControl(minP, 16, 30);
+
 	main.draw();
 	getchar();
 	

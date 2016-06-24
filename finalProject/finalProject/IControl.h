@@ -30,7 +30,6 @@ protected:
 public:
 	static void setFocused(IControl* c);
 	static IControl* getFocused() { return IControl::focused; };
-	void IControl::setFocused(IControl* c);
 	bool isFocus() { return _focus; };
 	virtual int getHeight() { return height + 2; };
 	virtual int getWidth() { return width + 2; };
@@ -43,7 +42,7 @@ public:
 	void setForegroundColor(Color Color) { _foregroundColor = Color; }
 	Color getForegroundColor() { return _foregroundColor; };
 	virtual COORD getCoord() { 	return _coord; };
-	void setCoord(COORD c);
+	virtual void setCoord(COORD c);
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
 	bool beetween(int p, int x1, int x2);
