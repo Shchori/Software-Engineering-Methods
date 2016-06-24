@@ -149,9 +149,9 @@
     <ClInclude Include="border.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="constants.h" />
-    <ClInclude Include="Event.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IControl.h" />
+    <ClInclude Include="IControlResponser.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Panel.h" />
   </ItemGroup>
