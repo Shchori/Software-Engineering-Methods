@@ -43,6 +43,7 @@ public:
 	Color getForegroundColor() { return _foregroundColor; };
 	virtual COORD getCoord() { 	return _coord; };
 	virtual void setCoord(COORD c);
+	virtual void setCoord(int x, int y) { COORD c = { x,y }; this->setCoord(c); };
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
 	bool beetween(int p, int x1, int x2);
