@@ -10,8 +10,10 @@ class IControl {
 private:
 	COORD _coord;
 	bool _CoordSet;
+	int _layer;
+	static IControl* focused;
 protected:
-	IControl(unsigned int height, unsigned int width) ;
+	IControl(int height, int width) ;
 	unsigned int height;
 	unsigned int width;
 	BorderType _borderType;
@@ -23,7 +25,10 @@ protected:
 	bool _foucus;
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
+	void _setLayer(int layer) { _layer = layer; };
+	int _getLayer() { return _layer; };
 public:
+	static IControl* getFocused() { return IControl::focused; };
 	bool isFoucus() { return _foucus; };
 	virtual int getHeight() { return height + 2; };
 	virtual int getWidth() { return width + 2; };
@@ -35,10 +40,11 @@ public:
 	Color getBackgroundColor() { return _backGroundColor; }
 	void setForegroundColor(Color Color) { _foregroundColor = Color; }
 	Color getForegroundColor() { return _foregroundColor; };
-	COORD getCoord() { 	return _coord; };
+	virtual COORD getCoord() { 	return _coord; };
 	void setCoord(COORD c);
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
+	bool beetween(int p, int x1, int x2);
 	void clearScreen() { g.clearScreen(); }
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };

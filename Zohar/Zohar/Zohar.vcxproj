@@ -149,19 +149,22 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IControl.cpp" />
-    <ClCompile Include="Lable.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NumericBox.cpp" />
+    <ClCompile Include="Panel.cpp" />
     <ClCompile Include="subMouseListner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="border.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="constants.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IControl.h" />
-    <ClInclude Include="Lable.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="NumericBox.h" />
+    <ClInclude Include="Panel.h" />
     <ClInclude Include="subMouseListner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -18,9 +18,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,11 +33,14 @@
     <ClCompile Include="subMouseListner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Panel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,6 +60,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subMouseListner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

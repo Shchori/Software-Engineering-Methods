@@ -39,6 +39,21 @@
     <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NumericBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RadioList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
@@ -54,6 +69,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NumericBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RadioList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

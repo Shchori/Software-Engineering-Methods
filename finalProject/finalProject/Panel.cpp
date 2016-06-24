@@ -53,8 +53,6 @@ void Panel::AddControl(IControl& control, int left, int top)
 		senInLocation(control);
 	}
 
-	else
-		printf("There is no place for this control");
 
 }
 

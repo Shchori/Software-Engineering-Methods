@@ -3,32 +3,37 @@
 #include <iostream>
 #include <windows.h>
 #include "IControl.h"
-#include "Lable.h"
+#include "Label.h"
 #include "Graphics.h"
 #include "Button.h"
-#include "subMouseListner.h"
 #include "NumericBox.h"
 
 using namespace std;
-/*HANDLE hStdin;
-DWORD fdwSaveOldMode;
 
-VOID ErrorExit(LPSTR);
-VOID KeyEventProc(KEY_EVENT_RECORD, HANDLE, Button&,Lable& );
-VOID MouseEventProc(MOUSE_EVENT_RECORD, HANDLE, Button&,Lable&);
-VOID ResizeEventProc(WINDOW_BUFFER_SIZE_RECORD);
-*/
+
+
 
 
 
 int main() {
 
-	COORD c = { 2,2 };
-	//COORD c1 = { 0,0 };
-	//string str = "OK";
-	NumericBox numericbox(10, 0, 100, 1, 6, c);
+	
+	BorderType b = BorderType::Double;
+	string plus = "plus";
+	string minus = "minus";
+	COORD c2 = { 4,4};
+	COORD numeric_c = { 0,0 };
+	NumericBox numericbox(10,20,0,100, 1, 4, numeric_c);
+	numericbox.setBorder(b);
+	
+
 	numericbox.draw();
 
+	numericbox.addEvent(plus);
+	numericbox.addEvent(plus);
+	numericbox.addEvent(minus);
+
+	cout << "\n\n\n\n\n\n\n";
 	system("PAUSE");
 	return 0;
 }
