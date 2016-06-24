@@ -21,6 +21,8 @@ MsgBox::MsgBox(int height, int width) :Panel(height, width), btns(2, Button("", 
 	for (int i = 0; i < 2; i++) {
 		addControl(btns[i], btns[i].getCoord().X, btns[i].getCoord().Y);
 	}
+
+	this->_setLayer(2);
 }
 
 void MsgBox::setText(string text) {

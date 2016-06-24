@@ -29,7 +29,7 @@ void IControl::drawBorder() {
 		{
 		case(BorderType::Double) :
 			b = new DoubleBorder();
-
+			break;
 		case(BorderType::Single) :
 			b = new SingleBorder();
 			break;

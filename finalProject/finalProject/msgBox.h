@@ -12,6 +12,6 @@ public:
 	void setText(string text);
 	string getText();
 	void draw();
-	~MsgBox();
+	virtual ~MsgBox();
 };
 

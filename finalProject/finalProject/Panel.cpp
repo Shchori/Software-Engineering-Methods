@@ -20,6 +20,9 @@ void Panel::setCoord(COORD c) {
 
 void Panel::addControl(IControl& control, int left, int top)
 {
+	COORD temp = { left,top };
+	control.setCoord(temp);
+
 	// set the absolute corrd
 	COORD panelCoord;
 	if (!this->_isCoordSet())
