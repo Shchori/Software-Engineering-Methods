@@ -22,7 +22,7 @@ protected:
 	Graphics g;
 	bool _showcruser;
 	bool _cursorVisability;
-	bool _foucus;
+	bool _focus;
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
 	void _setLayer(int layer) { _layer = layer; };
@@ -30,7 +30,8 @@ protected:
 public:
 	static void setFocused(IControl* c);
 	static IControl* getFocused() { return IControl::focused; };
-	bool isFoucus() { return _foucus; };
+	void IControl::setFocused(IControl* c);
+	bool isFocus() { return _focus; };
 	virtual int getHeight() { return height + 2; };
 	virtual int getWidth() { return width + 2; };
 	void setVisability(bool visability) { _cursorVisability = visability; };//of the cursor
