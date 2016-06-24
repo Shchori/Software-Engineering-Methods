@@ -13,6 +13,8 @@
 #include "Button.h"
 #include "NumericBox.h"
 #include "RadioList.h"
+#include "MsgBox.h"
+
 using namespace std;
 void main() {
 
@@ -64,7 +66,7 @@ void main() {
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
-	Graphics g = Graphics::getInstance();
+	/*Graphics g = Graphics::getInstance();
 	g.clearScreen();
 
 	BorderType b = BorderType::Double;
@@ -79,18 +81,18 @@ void main() {
 	COORD c = { 2,3 };
 	text.setCoord(c);
 	text.setBorder(b);
-
-	COORD v = { 16,30 };
-
+	*/
+	/*COORD v = { 16,30 };
+	
 	Panel minP(20, 20);
-	minP.setBorder(b);
+	//minP.setBorder(b);
 	minP.setCoord(v);
-	minP.addControl(t, 2, 1);
-	Panel main(45, 45);
-	main.setBorder(b);
+	//minP.addControl(t, 2, 1);
+	//Panel main(45, 45);
+	///main.setBorder(b);
 	COORD d = { 0,0 };
 	main.setCoord(d);
-	main.addControl(text, text.getCoord().X, text.getCoord().Y);
+	//main.addControl(text, text.getCoord().X, text.getCoord().Y);
 	//main.addControl(t, t.getCoord().X, t.getCoord().Y);
 	main.addControl(minP, 20, 20);
 	g.clearScreen();
@@ -98,7 +100,23 @@ void main() {
 
 	main.draw();
 	
-	
+	*/
+	COORD c = {1,1};
+	BorderType b = BorderType::Double; 
+	/*vector<string> values = { "hi","bye" };
+	RadioList r(20, 20, values);
+	r.setCoord(c);
+	BorderType b = BorderType::Double;*/
+
+	MsgBox m(9,30);
+	m.setBorder(b);
+	m.setText("try");
+	Panel main(40, 40);
+	main.addControl(m, 0, 0);
+	main.setBorder(b);
+
+	main.draw();
+
 	getchar();
 	
 
