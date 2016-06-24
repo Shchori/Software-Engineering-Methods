@@ -23,7 +23,7 @@ struct Minus_Struct :public MouseListener
 			value--;
 			if (value >= 0)
 			{
-				(*l).SetValue(to_string(value));
+				(*l).setValue(to_string(value));
 				(*l).draw();
 			}
 
@@ -46,7 +46,7 @@ struct Plus_Struct :public MouseListener
 			value = atoi(l->GetValue().c_str());
 			value++;
 			if (value <= 100) {
-				(*l).SetValue(to_string(value));
+				(*l).setValue(to_string(value));
 				(*l).draw();
 			}
 		}
@@ -83,9 +83,9 @@ public:
 
 
 		setCoord(panel_c);
-		AddControl(b_plus, coord.X, coord.Y);
-		AddControl(label, coord.X + lable_width + 1, coord.Y);
-		AddControl(b_minus, coord.X + lable_width + b_width + 5, coord.Y);
+		addControl(b_plus, coord.X, coord.Y);
+		addControl(label, coord.X + lable_width + 1, coord.Y);
+		addControl(b_minus, coord.X + lable_width + b_width + 5, coord.Y);
 
 
 	}

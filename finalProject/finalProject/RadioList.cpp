@@ -6,27 +6,25 @@ RadioList::RadioList(int height, int width, vector<string> options):Panel(height
 	BorderType b = BorderType::None;
 
 	for (int i = 0; i < options.size();i++) {
-		ops[i].SetValue(options[i]);
+		COORD c1 = { 0, i };
+		COORD c2 = { 4, i };
+		
+		ops[i].setValue(options[i]);
 		ops[i].setBorder(b);
+		ops[i].setCoord(c2);
+		btn[i].setCoord(c1);
+		addControl(btn[i], 0, i);
+		addControl(ops[i], 4, i);
 
 	}
 
 }
 
 void RadioList::draw() {
-	for (int i = 0; i < ops.size(); i++) {
-		if (selectedIndex == i) {
-			btn[i].SetValue("(X)");
-		}
-		AddControl(btn[i], 0, i);
-		AddControl(ops[i], 4, i);
-	}
 
 	Panel::draw();
 
 	g.setCursorVisibility(false);
-	
-
 }
 
 size_t RadioList::GetSelectedIndex() {
@@ -34,6 +32,8 @@ size_t RadioList::GetSelectedIndex() {
 }
 
 void RadioList::SetSelectedIndex(size_t index) {
+	btn[selectedIndex].setValue("( )");
+	btn[index].setValue("(X)");
 	selectedIndex = index;
 }
 
@@ -53,8 +53,8 @@ int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 						}
 
 						int selected = GetSelectedIndex();
-						btn[selectedIndex].SetValue("( )");
-						btn[i].SetValue("(X)");
+						btn[selectedIndex].setValue("( )");
+						btn[i].setValue("(X)");
 						selectedIndex = i;
 					}
 				}

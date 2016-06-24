@@ -68,5 +68,5 @@ void EventEngine::moveFocus(Control &main, Control *focused)
 		if (++it == controls.end())
 			it = controls.begin();
 	while (!(*it)->canGetFocus());
-	Control::setFocus(**it);
+	Control::setFocused(**it);
 }

@@ -18,29 +18,29 @@ void main() {
 	/*
 	BorderType b = BorderType::Double;
 	Label t(4);
-	t.SetValue("dfdf");
+	t.setValue("dfdf");
 	COORD f = { 15, 17 };
 	t.setCoord(f);
 	t.setBorder(b);
 
 	Label text(4);
-	text.SetValue("dddfd");
+	text.setValue("dddfd");
 	COORD c = { 2,3 };
 	text.setCoord(c);
 	text.setBorder(b);
 
 
 	TextBox te(30);
-	te.SetValue("hi");
+	te.setValue("hi");
 	COORD d = { 10,3 };
 	te.setCoord(d);
 	te.setBorder(b);
 
 	Panel main(25, 40);
 	main.setBorder(b);
-	main.AddControl(te, te.getCoord().X, te.getCoord().Y);
-	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
-	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
+	main.addControl(te, te.getCoord().X, te.getCoord().Y);
+	main.addControl(t, t.getCoord().X, t.getCoord().Y);
+	main.addControl(text, text.getCoord().X, text.getCoord().Y);
 
 	//main.draw();
 
@@ -49,7 +49,7 @@ void main() {
 	COORD numeric_c = { 6,7 };
 	NumericBox numericbox(10, 20, 0, 100, 1, 4, numeric_c);
 	numericbox.setBorder(b);
-	main.AddControl(numericbox, numericbox.getCoord().X, numericbox.getCoord().Y);
+	main.addControl(numericbox, numericbox.getCoord().X, numericbox.getCoord().Y);
 
 	numericbox.draw();
 

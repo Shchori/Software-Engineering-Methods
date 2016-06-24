@@ -17,7 +17,7 @@ class Graphics {
 		Graphics(DWORD  stdHandle);
 
 	public:	
-		static Graphics& getInstance(DWORD stdHandle = STD_OUTPUT_HANDLE);
+		static Graphics& getInstance(DWORD  stdHandle = STD_OUTPUT_HANDLE);
 		void clearScreen();
 		void moveTo(int x, int y);
 		void setBackground(Color color);
