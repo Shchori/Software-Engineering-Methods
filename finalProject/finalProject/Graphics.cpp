@@ -10,7 +10,7 @@ Graphics::Graphics(DWORD stdHandle)
 	updateConsoleAttributes();
 }
 
-Graphics& Graphics::getInstance(DWORD stdHandle = STD_OUTPUT_HANDLE)
+Graphics& Graphics::getInstance(DWORD stdHandle)
 {
 	if (instance)
 	{

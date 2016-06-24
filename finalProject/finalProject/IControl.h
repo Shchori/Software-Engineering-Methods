@@ -28,6 +28,7 @@ protected:
 	void _setLayer(int layer) { _layer = layer; };
 	int _getLayer() { return _layer; };
 public:
+	static void setFocused(IControl* c);
 	static IControl* getFocused() { return IControl::focused; };
 	bool isFoucus() { return _foucus; };
 	virtual int getHeight() { return height + 2; };
