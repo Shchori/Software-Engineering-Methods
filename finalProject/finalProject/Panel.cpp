@@ -6,10 +6,14 @@ Panel::Panel(int height, int width) :IControl(height, width + 2)
 {}
 
 void Panel::setCoord(COORD c) {
+	COORD old = { this->getCoord().X,  this->getCoord().Y };
+	int relativeX, relativeY;
 	IControl::setCoord(c);
 	for(int i = 0; i < _innerPanels.size(); i++) {
 		IControl& control = (*_innerPanels[i]);
-		COORD topLeftCoord = { this->getCoord().X + control.getCoord().X , this->getCoord().Y + control.getCoord().Y };
+		relativeX = control.getCoord().X - old.X;
+		relativeY = control.getCoord().Y - old.Y;
+		COORD topLeftCoord = { this->getCoord().X + relativeX, this->getCoord().Y + relativeY };
 		(*_innerPanels[i]).setCoord(topLeftCoord);
 	}
 }
