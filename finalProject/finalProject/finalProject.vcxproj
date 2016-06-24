@@ -150,7 +150,6 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Event.h" />
-    <ClInclude Include="EventEngine.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IControl.h" />
     <ClInclude Include="Label.h" />
@@ -161,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IControl.cpp" />
     <ClCompile Include="Label.cpp" />

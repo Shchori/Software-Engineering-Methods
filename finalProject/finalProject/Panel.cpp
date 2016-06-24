@@ -10,7 +10,7 @@ Panel::Panel(int height, int width) :IControl(height, width + 2)
 	IControl::setCoord(c);*/
 }
 
-void Panel::AddControl(IControl& control, int left, int top)
+void Panel::addControl(IControl& control, int left, int top)
 {
 	COORD panelCoord = { this->getCoord().X,this->getCoord().Y };
 	COORD topLeftCoord = { panelCoord.X +left, panelCoord.Y + top };
