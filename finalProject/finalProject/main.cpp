@@ -11,11 +11,12 @@
 #include "TextBox.h"
 #include <iostream>
 #include "Button.h"
-#include "MsgBox.h"
 #include "NumericBox.h"
 #include "RadioList.h"
 using namespace std;
 void main() {
+
+	
 	/*
 	BorderType b = BorderType::Double;
 	Label t(4);
@@ -63,22 +64,41 @@ void main() {
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
-	BorderType b = BorderType::Single;
-	vector<string> values = { "hi", "bi" };
-	COORD c = { 0,0 };
-	RadioList r(20,40,values);
-	r.setBorder(b);
-	
-	//r.setCoord(c);
-	/*MsgBox m(10,10);
-	COORD c = { 0,0 };
-	m.SetText("check");
-	m.setCoord(c);*/
+	Graphics g = Graphics::getInstance();
+	g.clearScreen();
 
-	Panel main(50, 40);
+	BorderType b = BorderType::Double;
+	Label t(4,"");
+	t.setValue("dfdf");
+	COORD f = {2, 1 };
+	t.setCoord(f);
+	t.setBorder(b);
+
+	Label text(1,"");
+	text.setValue("d");
+	COORD c = { 2,3 };
+	text.setCoord(c);
+	text.setBorder(b);
+
+	COORD v = { 16,30 };
+
+	Panel minP(20, 20);
+	minP.setBorder(b);
+	minP.setCoord(v);
+	minP.addControl(t, 2, 1);
+	Panel main(45, 45);
 	main.setBorder(b);
-	main.addControl(r,0,0);
+	COORD d = { 0,0 };
+	main.setCoord(d);
+	main.addControl(text, text.getCoord().X, text.getCoord().Y);
+	//main.addControl(t, t.getCoord().X, t.getCoord().Y);
+	main.addControl(minP, 20, 20);
+	g.clearScreen();
+
+
 	main.draw();
+	
+	
 	getchar();
 	
 
