@@ -5,6 +5,8 @@
 Panel::Panel(int height, int width) :IControl(height, width + 2)
 {}
 
+dflkdlfjdlsfjlsdjfdlkj
+
 void Panel::setCoord(COORD c) {
 	COORD old = { this->getCoord().X,  this->getCoord().Y };
 	int relativeX, relativeY;
