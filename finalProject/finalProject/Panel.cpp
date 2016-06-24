@@ -1,32 +1,18 @@
 #include "Panel.h"
-#include <typeinfo>
 
+//bool Panel::firstPanel = false;
 
 Panel::Panel(int height, int width) :IControl(height, width + 2)
-{}
-
-void Panel::setCoord(COORD c) {
-	COORD old = { this->getCoord().X,  this->getCoord().Y };
-	int relativeX, relativeY;
-	IControl::setCoord(c);
-	for(int i = 0; i < _innerPanels.size(); i++) {
-		IControl& control = (*_innerPanels[i]);
-		relativeX = control.getCoord().X - old.X;
-		relativeY = control.getCoord().Y - old.Y;
-		COORD topLeftCoord = { this->getCoord().X + relativeX, this->getCoord().Y + relativeY };
-		(*_innerPanels[i]).setCoord(topLeftCoord);
-	}
+{
+	/*if (!firstPanel)
+		firstPanel = true;
+	COORD c = {0,0};
+	IControl::setCoord(c);*/
 }
 
 void Panel::addControl(IControl& control, int left, int top)
 {
-	// set the absolute corrd
-	COORD panelCoord;
-	if (!this->_isCoordSet())
-		panelCoord = { 0,0 }; //will stay relative
-	else
-		panelCoord = { this->getCoord().X,this->getCoord().Y };
-
+	COORD panelCoord = { this->getCoord().X,this->getCoord().Y };
 	COORD topLeftCoord = { panelCoord.X +left, panelCoord.Y + top };
 	COORD topRightCoord = { topLeftCoord.X + control.getWidth(), topLeftCoord.Y };
 	COORD bottomLeftCoord = { topLeftCoord.X , topLeftCoord.Y + control.getHeight() };
@@ -62,61 +48,32 @@ void Panel::addControl(IControl& control, int left, int top)
 		control.setCoord(topLeftCoord);
 		// non - relative -> with offset:
 		// the exact Coord acording to the full screen
-		setInLocation(control);
+
+		senInLocation(control);
 	}
+
 
 }
 
 void Panel::draw() {
 	IControl::draw(); 
-	for (int i = 0; i < _innerPanels.size(); i++) {
-		if ((*_innerPanels[i]).getLayer() == 0)
-			(*_innerPanels[i]).draw();
-	}
-	for (int i = 0; i < _innerPanels.size(); i++) {
-		if ((*_innerPanels[i]).getLayer() == 1)
-			(*_innerPanels[i]).draw();
-	}
-	for (int i = 0; i < _innerPanels.size(); i++) {
-		if ((*_innerPanels[i]).getLayer() == 2)
-			(*_innerPanels[i]).draw();
-	}		
-}
-
-vector<IControl*> Panel::getAllControls() {
-	vector<IControl*> tempVec, result;
-	for(int i=0; i < _innerPanels.size(); i++) 
-	{
-		if (Panel* var = dynamic_cast<Panel*>(_innerPanels[i])) {
-			tempVec = var->getAllControls();
-			result.insert(result.end(), tempVec.begin(), tempVec.end());
-		}
-		else
-			result.push_back(_innerPanels[i]);
-	}
-
-	return result;
+	for (int i = 0; i < _innerPanels.size(); i++)
+		(*_innerPanels[i]).draw();
 }
 
 //----------------------------------------------------------------
 
-void Panel::setInLocation(IControl& control) {
+void Panel::senInLocation(IControl& control) {
 
 	IControl* temp;
-	int currentX, currentY, index = 0;
+	int current, index = 0;
 	int controlX = control.getCoord().X;
-	int controlY = control.getCoord().Y;
 
 	vector<IControl*> tempVec;
 
 	for (int i = 0; i < _innerPanels.size(); i++) {
-		currentX = (*_innerPanels[i]).getCoord().X;
-		currentY = (*_innerPanels[i]).getCoord().Y;
-		if (controlY < currentY) {
-			index = i;
-			break;
-		}
-		else if (controlX < currentX && controlY > currentY) {
+		current = (*_innerPanels[i]).getCoord().X;
+		if (controlX < current) {
 			index = i;
 			break;
 		}
