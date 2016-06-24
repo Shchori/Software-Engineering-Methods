@@ -10,16 +10,11 @@ RadioList::RadioList(int height, int width, vector<string> options):Panel(height
 		ops[i].setCoord(c2);
 		btn[i].setCoord(c1);
 	//	if (i % 2 != 0) {
-			
+			addControl(btn[i], btn[i].getCoord().X, btn[i].getCoord().Y);
+			addControl(ops[i], ops[i].getCoord().X, ops[i].getCoord().Y);
 		//}
 		
 	}
-
-	addControl(btn[0], 0,1);
-	addControl(ops[0], 6, 1);
-
-	addControl(btn[1],0, 4);
-	addControl(ops[1],6, 4);
 
 }
 
