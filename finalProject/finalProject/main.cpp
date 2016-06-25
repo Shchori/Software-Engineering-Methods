@@ -71,11 +71,17 @@ void main() {
 	Label t(4,"");
 	t.setValue("dfdf");
 	t.setBorder(b);
-
+	t.draw();
+	vector < string > vec = {"hi	", "how ", "are", "you"};
+	RadioList r(10, 10, vec);
+	COORD C1 = {4,4};
+	r.setCoord(C1);
+	g.clearScreen();
+	r.draw();
 	Label text(1,"");
 	text.setValue("d");
 	text.setBorder(b);
-
+	text.draw();
 	COORD v = { 16,30 };
 
 	Panel minP(10, 10);
