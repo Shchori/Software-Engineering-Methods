@@ -3,7 +3,7 @@
 #include<Windows.h>
 #include "Graphics.h"
 #include "border.h"
-
+#include <vector>
 using namespace std;
 
 class IControl {
@@ -51,5 +51,5 @@ public:
 	void hide() { this->setVisability(false); };
 	int getLayer() { return _layer; };
 	inline virtual ~IControl() {};
-
+	virtual vector<IControl*> getAllControls();
 };

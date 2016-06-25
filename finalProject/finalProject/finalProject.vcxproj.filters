@@ -51,6 +51,9 @@
     <ClInclude Include="TextBox.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="EventEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
@@ -60,9 +63,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Panel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Label.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -80,5 +80,9 @@
     <ClCompile Include="RadioList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EventEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp" />
   </ItemGroup>
 </Project>

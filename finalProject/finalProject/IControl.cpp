@@ -7,6 +7,7 @@ void IControl::setFocused(IControl* c) {
 		if(IControl::focused) IControl::focused->_focus = false;
 		c->_focus = true;
 		IControl::focused = c;
+		c->setBackgroundColor(Color::Red);
 	}
 }
 
@@ -78,4 +79,9 @@ bool IControl::inArea(COORD c)
 void IControl::setCoord(COORD c) {
 	this->_CoordSet = true;
 	_coord = c;
+}
+
+vector<IControl*> IControl::getAllControls() {
+	vector<IControl*> tempVec = {this}; 
+	return tempVec;
 }
