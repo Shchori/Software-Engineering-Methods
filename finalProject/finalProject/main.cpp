@@ -106,7 +106,7 @@ void main() {
 
 	main.draw();
 	
-	box.mousePressed(3, 2, true);
+	box.mousePressed(5, 2, true);
 	
 	getchar();
 	

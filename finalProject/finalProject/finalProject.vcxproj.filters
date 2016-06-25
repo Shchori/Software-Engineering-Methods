@@ -48,6 +48,9 @@
     <ClInclude Include="TextBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CheckList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="RadioList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,9 +72,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RadioList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MsgBox.cpp">
