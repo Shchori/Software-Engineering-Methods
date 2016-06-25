@@ -29,7 +29,9 @@ protected:
 		RadioList* radioList;
 
 	public:
-		ops[i].setValue(options[i]);
+		void setValue(string s, int i) {
+			this->setValue(s);
+		};
 		RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {};
 		
 	};
