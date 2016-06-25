@@ -16,21 +16,18 @@ protected:
 		{
 			virtual void MousePressed(Button &b, int x, int y, bool isLeft) {
 				if (RadioListButton* rb = dynamic_cast<RadioListButton*>(&b)) {
-					vector<RadioListButton> &btn = rb->radioList->btn;
-					for (int i = 0; i < btn.size(); ++i) {
-						if (&btn[i] == rb) {
-						
-						}
-					}
+					rb->radioList->setSelectedIndex(rb->index);
 				}
 			};
 
 		};
 		RadioList* radioList;
+		int index;
 
 	public:
 		void setValue(string s, int i) {
-			this->setValue(s);
+			Button::setValue(s);
+			index = i;
 		};
 		RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {};
 		
@@ -42,8 +39,8 @@ protected:
 public:
 	RadioList(int height, int width, vector<string> options);
 	void draw();
-	int GetSelectedIndex();
-	void SetSelectedIndex(int index);
+	int getSelectedIndex();
+	void setSelectedIndex(int index);
 	int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output);
 	int keyPress(KEY_EVENT_RECORD ker, HANDLE output);
 	~RadioList();

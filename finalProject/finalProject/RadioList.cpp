@@ -22,11 +22,11 @@ void RadioList::draw() {
 	g.setCursorVisibility(false);
 }
 
-int RadioList::GetSelectedIndex() {
+int RadioList::getSelectedIndex() {
 	return selectedIndex;
 }
 
-void RadioList::SetSelectedIndex(int index) {
+void RadioList::setSelectedIndex(int index) {
 	btn[selectedIndex].setValue("( )");
 	btn[index].setValue("(X)");
 	selectedIndex = index;
