@@ -16,7 +16,9 @@ void TextBox::mousePressed(int x, int y, bool isLeftPressed) {
 			 double totalCoord = labelX + labelSize;
 
 			 if (x > totalCoord) c.X = totalCoord;
-			 c.Y = Label::getHeight() + Label::getCoord().Y;
+			 int f = Label::getHeight();
+			 int t = Label::getCoord().Y;
+			 c.Y = Label::getHeight() + Label::getCoord().Y - 2;
 			 Graphics g = Graphics::getInstance();
 			 g.SetCursorPosition(c);
 		}
