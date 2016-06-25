@@ -13,6 +13,7 @@
 #include "Button.h"
 #include "NumericBox.h"
 #include "RadioList.h"
+#include "TextBox.h"
 using namespace std;
 void main() {
 
@@ -85,14 +86,20 @@ void main() {
 	main.setBorder(b);
 	COORD d = { 0,0 };
 	main.setCoord(d);
-	main.addControl(text, 8,9);
+	//main.addControl(text, 8,9);
 	//main.addControl(t, t.getCoord().X, t.getCoord().Y);
-	main.addControl(minP, 20, 20);
+
+	TextBox box(8, "ggggg");
+	box.setBorder(b);
+
+
+	main.addControl(box, 0, 0);
 	g.clearScreen();
 
 
 	main.draw();
 	
+	box.mousePressed(3, 2, true);
 	
 	getchar();
 	
