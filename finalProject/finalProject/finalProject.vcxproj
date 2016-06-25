@@ -166,6 +166,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MsgBox.cpp" />
     <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="RadioList.cpp" />
     <ClCompile Include="TextBox.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

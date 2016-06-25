@@ -75,6 +75,8 @@ void main() {
 	t.draw();
 	vector < string > vec = {"hi	", "how ", "are", "you"};
 	RadioList r(10, 10, vec);
+	r.setBorder(BorderType::Double);
+	r.setSelectedIndex(3);
 	COORD C1 = {4,4};
 	r.setCoord(C1);
 	g.clearScreen();

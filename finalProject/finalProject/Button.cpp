@@ -27,6 +27,7 @@ void Button::mousePressed(int x, int y, bool isLeftPressed)
 {
 	COORD c{ x,y };
 	if (this->event && this->inArea(c)) {
+		IControl::setFocused(this);
 		this->event->MousePressed(*this, x, y, true);
 	}
 }
