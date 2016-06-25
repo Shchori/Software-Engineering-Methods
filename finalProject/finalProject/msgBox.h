@@ -9,9 +9,9 @@ class MsgBox: public Panel
 	Label text;
 public:
 	MsgBox(int height, int width);
-	void SetText(string text);
+	void setText(string text);
 	string getText();
 	void draw();
-	~MsgBox();
+	virtual ~MsgBox();
 };
 

@@ -16,7 +16,6 @@
 using namespace std;
 void main() {
 
-	
 	/*
 	BorderType b = BorderType::Double;
 	Label t(4);
@@ -70,8 +69,6 @@ void main() {
 	BorderType b = BorderType::Double;
 	Label t(4,"");
 	t.setValue("dfdf");
-	COORD f = {2, 1 };
-	t.setCoord(f);
 	t.setBorder(b);
 	t.draw();
 	vector < string > vec = {"hi	", "how ", "are", "you"};
@@ -82,21 +79,19 @@ void main() {
 	r.draw();
 	Label text(1,"");
 	text.setValue("d");
-	COORD c = { 2,3 };
-	text.setCoord(c);
 	text.setBorder(b);
 	text.draw();
 	COORD v = { 16,30 };
 
-	Panel minP(20, 20);
+	Panel minP(10, 10);
 	minP.setBorder(b);
 	minP.setCoord(v);
 	minP.addControl(t, 2, 1);
-	Panel main(45, 45);
+	Panel main(40, 45);
 	main.setBorder(b);
 	COORD d = { 0,0 };
 	main.setCoord(d);
-	main.addControl(text, text.getCoord().X, text.getCoord().Y);
+	main.addControl(text, 8,9);
 	//main.addControl(t, t.getCoord().X, t.getCoord().Y);
 	main.addControl(minP, 20, 20);
 	g.clearScreen();

@@ -36,16 +36,16 @@
     <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
+    <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="IControlResponser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="msgBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RadioList.h">
+    <ClInclude Include="CheckBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,10 +68,13 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="msgBox.cpp">
+    <ClCompile Include="RadioList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RadioList.cpp">
+    <ClCompile Include="CheckBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
