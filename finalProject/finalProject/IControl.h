@@ -31,8 +31,8 @@ public:
 	static void setFocused(IControl* c);
 	static IControl* getFocused() { return IControl::focused; };
 	bool isFocus() { return _focus; };
-	virtual int getHeight() { return height + 2; };
-	virtual int getWidth() { return width + 2; };
+	virtual int getHeight() { return (_borderType==BorderType::None)?height:height + 2; };
+	virtual int getWidth() { return (_borderType == BorderType::None) ? width : width + 2; };
 	void setVisability(bool visability) { _cursorVisability = visability; };//of the cursor
 	bool getVisability() { return _cursorVisability; };//of the cursor
 	BorderType getBorder() { return _borderType; };
@@ -47,7 +47,6 @@ public:
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
 	bool beetween(int p, int x1, int x2);
-	void clearScreen() { g.clearScreen(); }
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
 	int getLayer() { return _layer; };

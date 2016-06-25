@@ -28,10 +28,10 @@ void Panel::addControl(IControl& control, int left, int top)
 		panelCoord = { this->getCoord().X,this->getCoord().Y };
 
 	COORD topLeftCoord = { panelCoord.X +left, panelCoord.Y + top };
-	COORD topRightCoord = { topLeftCoord.X + control.getWidth(), topLeftCoord.Y };
-	COORD bottomLeftCoord = { topLeftCoord.X , topLeftCoord.Y + control.getHeight() };
-	COORD bottomRightCoord = { topLeftCoord.X + control.getWidth() ,
-							  topLeftCoord.Y + control.getHeight() };
+	COORD topRightCoord = { topLeftCoord.X + control.getWidth()-1, topLeftCoord.Y };
+	COORD bottomLeftCoord = { topLeftCoord.X , topLeftCoord.Y + control.getHeight()-1 };
+	COORD bottomRightCoord = { topLeftCoord.X + control.getWidth()-1 ,
+							  topLeftCoord.Y + control.getHeight()-1 };
 
 	bool res, flag = false;
 
