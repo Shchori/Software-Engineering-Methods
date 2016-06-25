@@ -1,6 +1,6 @@
 #include "Label.h"
 
-Label::Label(int width, string str) :IControl(3, width + 2),str(str)
+Label::Label(int width, string str) :IControl(1, width ),str(str)
 {
 }
 
