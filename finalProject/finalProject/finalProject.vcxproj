@@ -156,6 +156,7 @@
     <ClInclude Include="Label.h" />
     <ClInclude Include="msgBox.h" />
     <ClInclude Include="Panel.h" />
+    <ClInclude Include="RadioList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
