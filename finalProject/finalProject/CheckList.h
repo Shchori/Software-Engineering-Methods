@@ -30,7 +30,9 @@ protected:
 			index = i;
 		};
 		RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {};
+		void keyDown(WORD code, char c) {
 
+		};
 	};
 	int size;
 	int selectedIndex;
@@ -44,4 +46,4 @@ public:
 	int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output);
 	int keyPress(KEY_EVENT_RECORD ker, HANDLE output);
 	~RadioList();
-};
+};s

@@ -29,7 +29,6 @@ void Button::mousePressed(int x, int y, bool isLeftPressed)
 	if (this->event && this->inArea(c)) {
 		this->event->MousePressed(*this, x, y, true);
 	}
-	return 0;
 }
 
 void Button::keyDown(WORD code, char c)

@@ -20,7 +20,7 @@ struct MouseListener
 
 
 
-class Button :public Label,public ResponserIControler
+class Button :public Label,public IControlResponser
 {
 protected:
 	MouseListener *event;

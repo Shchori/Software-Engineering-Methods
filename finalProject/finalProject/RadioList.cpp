@@ -7,6 +7,7 @@ RadioList::RadioList(int height, int width, vector<string> options) :Panel(heigh
 		COORD c1 = { 0, i * 1 };
 		COORD c2 = { 6, i * 1 };
 		ops[i].setValue(options[i]);
+		btn[i].setIndex(i);
 		ops[i].setCoord(c2);
 		btn[i].setCoord(c1);
 		addControl(btn[i], btn[i].getCoord().X, btn[i].getCoord().Y);
@@ -47,7 +48,7 @@ int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 							selectedIndex = i;
 						}
 
-						int selected = GetSelectedIndex();
+						int selected = getSelectedIndex();
 						btn[selectedIndex].setValue("( )");
 						btn[i].setValue("(X)");
 						selectedIndex = i;

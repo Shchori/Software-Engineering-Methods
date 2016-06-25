@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class RadioList: public Panel
+class RadioList : public Panel
 {
 protected:
 	class RadioListButton : public Button {
@@ -25,12 +25,13 @@ protected:
 		int index;
 
 	public:
-		void setValue(string s, int i) {
-			Button::setValue(s);
+		void setIndex(int i) {
 			index = i;
 		};
 		RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {};
-		
+		void keyDown(WORD code, char c) {
+
+		};
 	};
 	int size;
 	int selectedIndex;
@@ -45,4 +46,3 @@ public:
 	int keyPress(KEY_EVENT_RECORD ker, HANDLE output);
 	~RadioList();
 };
-
