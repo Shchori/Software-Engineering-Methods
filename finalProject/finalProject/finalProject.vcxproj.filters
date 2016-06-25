@@ -45,7 +45,10 @@
     <ClInclude Include="msgBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CheckBox.h">
+    <ClInclude Include="TextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RadioList.h">
@@ -74,10 +77,13 @@
     <ClCompile Include="RadioList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CheckBox.cpp">
+    <ClCompile Include="MsgBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MsgBox.cpp">
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

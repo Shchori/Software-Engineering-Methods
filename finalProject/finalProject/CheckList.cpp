@@ -1,13 +1,13 @@
-#include "CheckBox.h"
+#include "CheckList.h"
 
 
-CheckBox::CheckBox(int height, int width, vector<string> options):RadioList( height, width, options)
+CheckList::CheckList(int height, int width, vector<string> options):RadioList( height, width, options)
 {
 	selectedIndexes = new int[options.size()];
 }
 
 
-int CheckBox::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
+int CheckList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 	switch (mer.dwEventFlags)
 	{
 	case 0:
@@ -35,7 +35,7 @@ int CheckBox::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
 
 
 
-CheckBox::~CheckBox()
+CheckList::~CheckList()
 {
 	delete selectedIndexes;
 }

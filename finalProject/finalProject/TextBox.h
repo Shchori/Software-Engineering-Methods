@@ -1,19 +1,20 @@
 #pragma once
 #include "IControl.h"
+#include "IControlResponser.h"
+#include "Label.h"
 #include <vector>
 #include <iostream>
+
 using namespace std;
-class TextBox : public IControl
+
+class TextBox : public Label, public IControlResponser
 {
-	vector<char> value;
-	int dataLen;
-	int currPosition;
+private:
+
 public:
-	TextBox(int width);
-	void SetText(char value);
-	string GetText();
-	virtual void draw();
-	virtual int mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output);
-	virtual int keyPress(KEY_EVENT_RECORD ker, HANDLE output);
-	~TextBox();
+	TextBox(int width, string str);
+	void draw();
+	void keyDown(WORD code, char c);
+	void mousePressed(int x, int y, bool isLeftPressed);
+	virtual  ~TextBox() {}
 };
