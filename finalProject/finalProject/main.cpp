@@ -12,7 +12,6 @@
 #include <iostream>
 #include "Button.h"
 #include "NumericBox.h"
-#include "RadioList.h"
 #include "TextBox.h"
 using namespace std;
 void main() {
@@ -72,6 +71,7 @@ void main() {
 	t.setValue("dfdf");
 	t.setBorder(b);
 	t.draw();
+	/*
 	vector < string > vec = {"hi	", "how ", "are", "you"};
 	RadioList r(10, 10, vec);
 	COORD C1 = {4,4};
@@ -82,8 +82,8 @@ void main() {
 	text.setValue("d");
 	text.setBorder(b);
 	text.draw();
-	COORD v = { 16,30 };
-
+	*/
+COORD v = { 16,30 };
 	Panel minP(10, 10);
 	minP.setBorder(b);
 	minP.setCoord(v);
@@ -105,7 +105,7 @@ void main() {
 
 	main.draw();
 	
-	box.mousePressed(5, 2, true);
+	box.mousePressed(5, 1, true);
 	
 	getchar();
 	
