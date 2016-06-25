@@ -71,7 +71,7 @@ bool IControl::beetween(int p, int x1, int x2) {
 bool IControl::inArea(COORD c)
 {
 	int x = this->getCoord().X, y = this->getCoord().Y;
-	return beetween(c.X, x, x + width-1) && beetween(c.Y, y, y + this->height-1);
+	return beetween(c.X, x, x + this->getWidth()-1) && beetween(c.Y, y, y + this->getHeight()-1);
 }
 
 

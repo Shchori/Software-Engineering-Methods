@@ -30,7 +30,19 @@ protected:
 		};
 		RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {};
 		void keyDown(WORD code, char c) {
-
+			if (this->event) {
+				switch (code)
+				{
+				case VK_UP:
+					
+					break;
+				case VK_DOWN:
+					break;
+				default:
+					break;
+				}
+				Button::keyDown()
+			}
 		};
 	};
 	int size;
