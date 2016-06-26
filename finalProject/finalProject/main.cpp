@@ -13,8 +13,21 @@
 #include "Button.h"
 #include "NumericBox.h"
 #include "TextBox.h"
-
+#include "RadioList.h"
+#include "EventEngine.h"
 using namespace std;
+
+int main() { 
+	Graphics g = Graphics::getInstance();
+	g.clearScreen();
+	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
+	RadioList r(15, 15, ops);
+	EventEngine handle;
+	handle.run(r);
+	
+}
+
+/*
 void main() {
 
 	/*
@@ -56,7 +69,7 @@ void main() {
 	numericbox.draw();
 
 	main.draw();
-	*/
+	
 
 	//numericbox.addEvent(plus);
 	//numericbox.addEvent(plus);
@@ -85,7 +98,7 @@ void main() {
 	text.setValue("d");
 	text.setBorder(b);
 	text.draw();
-	*/
+	
 COORD v = { 16,30 };
 	Panel minP(10, 10);
 	minP.setBorder(b);
@@ -113,4 +126,4 @@ COORD v = { 16,30 };
 	getchar();
 	
 
-}
+}*/

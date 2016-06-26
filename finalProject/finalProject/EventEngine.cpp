@@ -44,16 +44,14 @@ void EventEngine::run(Control &c)
 		{
 			auto button = record.Event.MouseEvent.dwButtonState;
 			auto coord = record.Event.MouseEvent.dwMousePosition;
-			auto x = c.getCoord().X;
-			auto y = c.getCoord().Y;
-			if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
+				if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 			{
 				vector<IControl*> controls = c.getAllControls();
 				for (int i = 0; i < 3; ++i) {
 					for (int j = 0; j < controls.size(); ++j) {
-						if (controls[j]->getLayer() == i && controls[j]->isFocus()) {
+						if (controls[j]->getLayer() == i && controls[j]->isFocus()&& controls[j]->inArea(coord)) {
 							if (IControlResponser* rb = dynamic_cast<IControlResponser*>(controls[j])) {
-								rb->mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
+								rb->mousePressed(coord.X, coord.Y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
 								redraw = true;
 							}
 						}

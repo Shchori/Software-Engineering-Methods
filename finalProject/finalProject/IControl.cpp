@@ -82,6 +82,7 @@ void IControl::setCoord(COORD c) {
 }
 
 vector<IControl*> IControl::getAllControls() {
-	vector<IControl*> tempVec = {this}; 
+	vector<IControl*> tempVec;
+	if (this->_focus)tempVec.push_back(this);
 	return tempVec;
 }

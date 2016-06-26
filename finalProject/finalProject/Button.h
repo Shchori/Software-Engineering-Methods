@@ -30,7 +30,7 @@ public:
 	~Button();
 	void AddListener(MouseListener &listener);
 	void draw();
-	void mousePressed(int x, int y, bool isLeftPressed=true);
-	void keyDown(WORD code, char c);
+	virtual void mousePressed(int x, int y, bool isLeftPressed=true);
+	virtual void keyDown(WORD code, char c);
 
 };
