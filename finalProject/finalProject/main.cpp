@@ -17,6 +17,7 @@
 using namespace std;
 void main() {
 
+	
 	/*
 	BorderType b = BorderType::Double;
 	Label t(4);
@@ -66,7 +67,8 @@ void main() {
 	//n.draw();
 	Graphics g = Graphics::getInstance();
 	g.clearScreen();
-
+	g.setCursorPosition(2, 2);
+	COORD c2 = g.getCursorPosition();
 	BorderType b = BorderType::Double;
 	Label t(4,"");
 	t.setValue("dfdf");
@@ -106,7 +108,10 @@ COORD v = { 16,30 };
 
 	main.draw();
 	
-	box.mousePressed(5, 1, true);
+	box.mousePressed(4, 1, true);
+	WORD code = VK_BACK;
+	char c('B');
+	box.keyDown(code,c);
 	
 	getchar();
 	

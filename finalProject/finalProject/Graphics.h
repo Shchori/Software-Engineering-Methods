@@ -28,7 +28,8 @@ class Graphics {
 		void write(int x, int y, wstring s);
 		void setCursorVisibility(bool isVisible);
 		void updateConsoleAttributes();
-		void SetCursorPosition(COORD c);
-		void SetCursorPosition(int x, int y);
+		void setCursorPosition(COORD c);
+		void setCursorPosition(int x, int y);
+		COORD getCursorPosition();
 		~Graphics();
 };

@@ -113,13 +113,20 @@ void Graphics::updateConsoleAttributes()
 	SetConsoleTextAttribute(_console, attributes);
 }
 
-void Graphics::SetCursorPosition(COORD c) {
+void Graphics::setCursorPosition(COORD c) {
 	SetConsoleCursorPosition(_console, c);
 }
 
-void Graphics::SetCursorPosition(int x, int y) {
+void Graphics::setCursorPosition(int x, int y) {
 	COORD c = { x,y };
 	SetConsoleCursorPosition(_console, c);
+}
+
+COORD Graphics::getCursorPosition() {
+	CONSOLE_SCREEN_BUFFER_INFO info;
+	GetConsoleScreenBufferInfo(this->_console, &info);
+	return info.dwCursorPosition;
+
 }
 
 Graphics::~Graphics()
