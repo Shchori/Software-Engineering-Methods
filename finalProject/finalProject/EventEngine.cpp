@@ -1,6 +1,7 @@
 #include "EventEngine.h"
 
-EventEngine::EventEngine(DWORD input, DWORD output = STD_OUTPUT_HANDLE)
+
+EventEngine::EventEngine(DWORD input, DWORD output )
 	: _console(GetStdHandle(input)), _graphics(Graphics::getInstance(output))
 {
 	GetConsoleMode(_console, &_consoleMode);
@@ -30,8 +31,12 @@ void EventEngine::run(Control &c)
 				if (code == VK_TAB)
 					moveFocus(c, f);
 				else
-					f->keyDown(code, chr);
-				redraw = true;
+					if (IControlResponser* rb = dynamic_cast<IControlResponser*>(f)) {
+						rb->keyDown(code, chr);
+						redraw = true;
+					}
+
+
 			}
 			break;
 		}
@@ -39,34 +44,36 @@ void EventEngine::run(Control &c)
 		{
 			auto button = record.Event.MouseEvent.dwButtonState;
 			auto coord = record.Event.MouseEvent.dwMousePosition;
-			auto x = coord.X - c.getLeft();
-			auto y = coord.Y - c.getTop();
+			auto x = c.getCoord().X;
+			auto y = c.getCoord().Y;
 			if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 			{
-				c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
-				redraw = true;
+				vector<IControl*> controls = c.getAllControls();
+				for (int i = 0; i < 3; ++i) {
+					for (int j = 0; j < controls.size(); ++j) {
+						if (controls[j]->getLayer() == i && controls[j]->isFocus()) {
+							if (IControlResponser* rb = dynamic_cast<IControlResponser*>(controls[j])) {
+								rb->mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
+								redraw = true;
+							}
+						}
+					}
+				}
+				break;
 			}
-			break;
 		}
-		default:
-			break;
 		}
 	}
-}
 
-EventEngine::~EventEngine()
-{
-	SetConsoleMode(_console, _consoleMode);
 }
 
 void EventEngine::moveFocus(Control &main, Control *focused)
 {
-	vector<Control*> controls;
-	main.getAllControls(&controls);
+	vector<IControl*> controls = main.getAllControls();
 	auto it = find(controls.begin(), controls.end(), focused);
 	do
 		if (++it == controls.end())
 			it = controls.begin();
-	while (!(*it)->canGetFocus());
-	Control::setFocused(**it);
-}
+	while (!(*it)->isFocus());
+	Control::setFocused(*it);
+};

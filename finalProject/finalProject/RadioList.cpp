@@ -1,69 +1,52 @@
 #include "RadioList.h"
 
 
-RadioList::RadioList(int height, int width, vector<string> options) :Panel(height, width), selectedIndex(-1), ops(options.size(), Label(width - 5, "")), btn(options.size(), RadioListButton(this))
+RadioList::RadioList(int height, int width, vector<string> options) :Panel(height, width), selectedIndex(-1),size(options.size()), ops(options.size(), Label(width - 5, "")), btn(options.size(), RadioListButton(this))
 {
-	for (int i = 0; i < options.size(); ++i) {
-		COORD c1 = { 0, i * 1 };
-		COORD c2 = { 6, i * 1 };
+	for (int i = 0; i < size; ++i) {
+		COORD c1 = { 1, i * 2 + 1 };
+		COORD c2 = { 6, i * 2 + 1 };
 		ops[i].setValue(options[i]);
 		btn[i].setIndex(i);
-		ops[i].setCoord(c2);
-		btn[i].setCoord(c1);
-		addControl(btn[i], btn[i].getCoord().X, btn[i].getCoord().Y);
-		addControl(ops[i], ops[i].getCoord().X, ops[i].getCoord().Y);
+		addControl(btn[i], c1.X, c1.Y);
+		addControl(ops[i], c2.X, c2.Y);
 	}
 
 }
 
 void RadioList::draw() {
+	for (int i = 0; i < size; ++i) {
+		if (i != this->selectedIndex) {
+			ops[i].setBackgroundColor(this->getBackgroundColor());
+			ops[i].setForegroundColor(this->getForegroundColor());
+			btn[i].setValue("( )");
 
+		}
+		else {
+			ops[i].setForegroundColor(this->getBackgroundColor());
+			ops[i].setBackgroundColor(this->getForegroundColor());
+			btn[i].setValue("(X)");
+		}
+	}
 	Panel::draw();
 
 	g.setCursorVisibility(false);
 }
 
 int RadioList::getSelectedIndex() {
-	return selectedIndex;
+	return selectedIndex+1;
 }
 
 void RadioList::setSelectedIndex(int index) {
-	btn[selectedIndex].setValue("( )");
-	btn[index].setValue("(X)");
-	selectedIndex = index;
+
+	selectedIndex = index-1;
 }
 
-int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
-	switch (mer.dwEventFlags)
-	{
-	case 0:
-
-		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
-		{
-			if (getCoord().X<mer.dwMousePosition.X&& mer.dwMousePosition.X <= getCoord().X + 3) {
-				for (int i = 0; i < btn.size(); i++) {
-					if (getCoord().Y + i <= mer.dwMousePosition.Y && mer.dwMousePosition.Y < getCoord().Y + i + 1) {
-
-						if (selectedIndex == -1) {
-							selectedIndex = i;
-						}
-
-						int selected = getSelectedIndex();
-						btn[selectedIndex].setValue("( )");
-						btn[i].setValue("(X)");
-						selectedIndex = i;
-					}
-				}
-			}
-
-		}
-	}
-	return 0;
+string RadioList::getValue()
+{
+	return this->ops[selectedIndex].GetValue();
 }
 
-int RadioList::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
-	return 1;
-}
 
 RadioList::~RadioList()
 {

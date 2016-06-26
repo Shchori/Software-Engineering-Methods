@@ -87,14 +87,9 @@ vector<IControl*> Panel::getAllControls() {
 	vector<IControl*> tempVec, result;
 	for(int i=0; i < _innerPanels.size(); i++) 
 	{
-		if (Panel* var = dynamic_cast<Panel*>(_innerPanels[i])) {
-			tempVec = var->getAllControls();
+			tempVec = _innerPanels[i]->getAllControls();
 			result.insert(result.end(), tempVec.begin(), tempVec.end());
 		}
-		else
-			result.push_back(_innerPanels[i]);
-	}
-
 	return result;
 }
 
