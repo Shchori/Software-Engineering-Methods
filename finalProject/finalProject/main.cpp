@@ -12,35 +12,51 @@
 #include <iostream>
 #include "Button.h"
 #include "NumericBox.h"
+#include "TextBox.h"
 #include "RadioList.h"
+#include "EventEngine.h"
 using namespace std;
+
+int main() { 
+	Graphics g = Graphics::getInstance();
+	g.clearScreen();
+	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
+	RadioList r(15, 15, ops);
+	EventEngine handle;
+	handle.run(r);
+	
+}
+
+/*
 void main() {
+
+	
 	/*
 	BorderType b = BorderType::Double;
 	Label t(4);
-	t.SetValue("dfdf");
+	t.setValue("dfdf");
 	COORD f = { 15, 17 };
 	t.setCoord(f);
 	t.setBorder(b);
 
 	Label text(4);
-	text.SetValue("dddfd");
+	text.setValue("dddfd");
 	COORD c = { 2,3 };
 	text.setCoord(c);
 	text.setBorder(b);
 
 
 	TextBox te(30);
-	te.SetValue("hi");
+	te.setValue("hi");
 	COORD d = { 10,3 };
 	te.setCoord(d);
 	te.setBorder(b);
 
 	Panel main(25, 40);
 	main.setBorder(b);
-	main.AddControl(te, te.getCoord().X, te.getCoord().Y);
-	main.AddControl(t, t.getCoord().X, t.getCoord().Y);
-	main.AddControl(text, text.getCoord().X, text.getCoord().Y);
+	main.addControl(te, te.getCoord().X, te.getCoord().Y);
+	main.addControl(t, t.getCoord().X, t.getCoord().Y);
+	main.addControl(text, text.getCoord().X, text.getCoord().Y);
 
 	//main.draw();
 
@@ -49,12 +65,12 @@ void main() {
 	COORD numeric_c = { 6,7 };
 	NumericBox numericbox(10, 20, 0, 100, 1, 4, numeric_c);
 	numericbox.setBorder(b);
-	main.AddControl(numericbox, numericbox.getCoord().X, numericbox.getCoord().Y);
+	main.addControl(numericbox, numericbox.getCoord().X, numericbox.getCoord().Y);
 
 	numericbox.draw();
 
 	main.draw();
-	*/
+	
 
 	//numericbox.addEvent(plus);
 	//numericbox.addEvent(plus);
@@ -62,17 +78,57 @@ void main() {
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
+	Graphics g = Graphics::getInstance();
+	g.clearScreen();
+	g.setCursorPosition(2, 2);
+	COORD c2 = g.getCursorPosition();
 	BorderType b = BorderType::Double;
-	vector<string> values = { "hi", "bi" };
-	COORD c = { 2,2 };
-	RadioList r(values.size(),20,values);
-	r.setCoord(c);
+	Label t(4,"");
+	t.setValue("dfdf");
+	t.setBorder(b);
+	t.draw();
+	/*
+	vector < string > vec = {"hi	", "how ", "are", "you"};
+	RadioList r(10, 10, vec);
+	r.setBorder(BorderType::Double);
+	r.setSelectedIndex(3);
+	COORD C1 = {4,4};
+	r.setCoord(C1);
+	g.clearScreen();
 	r.draw();
-	Panel main(50, 40);
+	Label text(1,"");
+	text.setValue("d");
+	text.setBorder(b);
+	text.draw();
+	
+COORD v = { 16,30 };
+	Panel minP(10, 10);
+	minP.setBorder(b);
+	minP.setCoord(v);
+	minP.addControl(t, 2, 1);
+	Panel main(40, 45);
 	main.setBorder(b);
-	main.AddControl(r, r.getCoord().X, r.getCoord().Y);
+	COORD d = { 0,0 };
+	main.setCoord(d);
+	//main.addControl(text, 8,9);
+	//main.addControl(t, t.getCoord().X, t.getCoord().Y);
+
+	TextBox box(8, "ggggg");
+	box.setBorder(b);
+
+
+	main.addControl(box, 0, 0);
+	g.clearScreen();
+
+
 	main.draw();
+	
+	box.mousePressed(4, 1, true);
+	WORD code = VK_BACK;
+	char c('B');
+	box.keyDown(code,c);
+	
 	getchar();
 	
 
-}
+}*/

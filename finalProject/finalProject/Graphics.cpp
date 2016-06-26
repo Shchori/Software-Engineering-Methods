@@ -10,9 +10,6 @@ Graphics::Graphics(DWORD stdHandle)
 	updateConsoleAttributes();
 }
 
-Graphics& Graphics::getInstance() {
-	return getInstance(STD_OUTPUT_HANDLE);
-}
 Graphics& Graphics::getInstance(DWORD stdHandle)
 {
 	if (instance)
@@ -114,6 +111,22 @@ void Graphics::updateConsoleAttributes()
 	}
 
 	SetConsoleTextAttribute(_console, attributes);
+}
+
+void Graphics::setCursorPosition(COORD c) {
+	SetConsoleCursorPosition(_console, c);
+}
+
+void Graphics::setCursorPosition(int x, int y) {
+	COORD c = { x,y };
+	SetConsoleCursorPosition(_console, c);
+}
+
+COORD Graphics::getCursorPosition() {
+	CONSOLE_SCREEN_BUFFER_INFO info;
+	GetConsoleScreenBufferInfo(this->_console, &info);
+	return info.dwCursorPosition;
+
 }
 
 Graphics::~Graphics()

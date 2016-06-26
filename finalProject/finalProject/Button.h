@@ -6,32 +6,31 @@
 #include "IControl.h"
 #include "Label.h"
 #include "Graphics.h"
-#include "Event.h"
+#include "IControlResponser.h"
 
 class Button;
 
 struct MouseListener
 {
 	virtual void MousePressed(Button &b, int x, int y, bool isLeft) = 0;
+	
 };
 
 
 
 
-class Button :public Label
+
+class Button :public Label,public IControlResponser
 {
 protected:
 	MouseListener *event;
-
-private:
-	bool pressed;
+	
 public:
 	Button(string str, int width);
 	~Button();
 	void AddListener(MouseListener &listener);
 	void draw();
-	virtual int mouseEvent(int x, int y);
-	virtual int keyPress(KEY_EVENT_RECORD ker, HANDLE output, COORD);
-	//void MouseEventProc(MOUSE_EVENT_RECORD mer, HANDLE h);
+	virtual void mousePressed(int x, int y, bool isLeftPressed=true);
+	virtual void keyDown(WORD code, char c);
 
 };

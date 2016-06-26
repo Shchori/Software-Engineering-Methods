@@ -1,65 +1,52 @@
 #include "RadioList.h"
 
 
-RadioList::RadioList(int height, int width, vector<string> options):Panel(height, width),selectedIndex(-1),ops(options.size(),Label(width,"")), btn(options.size(),Button("( )", 3))
+RadioList::RadioList(int height, int width, vector<string> options) :Panel(height, width), selectedIndex(-1),size(options.size()), ops(options.size(), Label(width - 5, "")), btn(options.size(), RadioListButton(this))
 {
-	for (int i = 0; i < options.size();i++) {
-		ops[i].SetValue(options[i]);
+	for (int i = 0; i < size; ++i) {
+		COORD c1 = { 1, i * 2 + 1 };
+		COORD c2 = { 6, i * 2 + 1 };
+		ops[i].setValue(options[i]);
+		btn[i].setIndex(i);
+		addControl(btn[i], c1.X, c1.Y);
+		addControl(ops[i], c2.X, c2.Y);
 	}
 
-	for (int i = 0; i < ops.size(); i++) {
-		AddControl(btn[i], getCoord().X, getCoord().Y + i);
-		AddControl(ops[i], getCoord().X + 4, getCoord().Y + i);
-	}
 }
 
 void RadioList::draw() {
-	
+	for (int i = 0; i < size; ++i) {
+		if (i != this->selectedIndex) {
+			ops[i].setBackgroundColor(this->getBackgroundColor());
+			ops[i].setForegroundColor(this->getForegroundColor());
+			btn[i].setValue("( )");
+
+		}
+		else {
+			ops[i].setForegroundColor(this->getBackgroundColor());
+			ops[i].setBackgroundColor(this->getForegroundColor());
+			btn[i].setValue("(X)");
+		}
+	}
 	Panel::draw();
 
 	g.setCursorVisibility(false);
-	
-
 }
 
-size_t RadioList::GetSelectedIndex() {
-	return selectedIndex;
+int RadioList::getSelectedIndex() {
+	return selectedIndex+1;
 }
 
-void RadioList::SetSelectedIndex(size_t index) {
-	selectedIndex = index;
+void RadioList::setSelectedIndex(int index) {
+
+	selectedIndex = index-1;
 }
 
-int RadioList::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
-	switch (mer.dwEventFlags)
-	{
-	case 0:
-
-		if (mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
-		{
-			if (getCoord().X<mer.dwMousePosition.X&& mer.dwMousePosition.X<=getCoord().X+3) {
-				for (int i = 0; i < btn.size(); i++) {
-					if (getCoord().Y + i <= mer.dwMousePosition.Y && mer.dwMousePosition.Y < getCoord().Y + i + 1) {
-						
-						if (selectedIndex == -1) {
-							selectedIndex = i;
-						}
-
-						btn[selectedIndex].SetValue("( )");
-						btn[i].SetValue("(X)");
-						selectedIndex = i;
-					}
-				}
-			}
-			
-		}
-	}
-	return 1;
+string RadioList::getValue()
+{
+	return this->ops[selectedIndex].GetValue();
 }
 
-int RadioList::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
-	return 1;
-}
 
 RadioList::~RadioList()
 {

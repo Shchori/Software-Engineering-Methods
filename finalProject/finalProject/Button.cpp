@@ -2,7 +2,9 @@
 using namespace std;
 
 
-Button::Button(string str, int width) :Label(width, str), pressed(false) { }
+Button::Button(string str, int width) :Label(width, str),event(NULL) { 
+	this->_focus = true;
+}
 
 
 Button::~Button()
@@ -23,19 +25,23 @@ void Button::draw()
 
 }
 
-int Button::mouseEvent(int x, int y)
+void Button::mousePressed(int x, int y, bool isLeftPressed)
 {
 	COORD c{ x,y };
-	if (this->inArea(c)) {
-		pressed = true;
+	if (this->event && this->inArea(c)) {
+		IControl::setFocused(this);
 		this->event->MousePressed(*this, x, y, true);
 	}
-	return 0;
 }
 
-int Button::keyPress(KEY_EVENT_RECORD ker, HANDLE output, COORD)
+void Button::keyDown(WORD code, char c)
 {
-	return 0;
+	if (code == VK_RETURN && event)
+	{
+		this->event->MousePressed(*this, this->getCoord().X , this->getCoord().Y, true);
+	}
+
 }
+
 
 

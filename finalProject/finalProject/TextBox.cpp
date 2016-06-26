@@ -1,148 +1,86 @@
 #include "TextBox.h"
 
-TextBox::TextBox(int width) : IControl(width, 1) {
-	value.resize(width);
-
-	dataLen = -1;
-	currPosition = -1;
-	g.moveTo(1, 1);
-	COORD c;
-	c.X = getCoord().X + 1;
-	c.Y = getCoord().Y + 1;
-
-	setCoord(c);
-	g.setCursorVisibility(true);
-}
-
-void TextBox::SetText(char value) {
-	COORD c;
-	string s(1, value);
-
-	if (currPosition == dataLen) {
-		this->value.at(dataLen) = value;
-		g.write(s);
-	}
-	else if (currPosition < dataLen) {
-		string subS;
-		for (int i = dataLen; i >= currPosition; i--) {
-			this->value[i] = this->value[i - 1];
-		}
-		this->value[currPosition] = value;
-		string sub = "";
-		for (int i = currPosition; i < dataLen + 1; i++) {
-			sub += (this->value[i]);
-		}
-		g.write(sub);
-
-	}
-	g.moveTo(getCoord().X + 1, getCoord().Y);
-	c.X = getCoord().X + 1;
-	c.Y = getCoord().Y;
-	setCoord(c);
-}
-
-string TextBox::GetText() {
-	string s = string(value.begin(), value.end());
-	return s;
+TextBox::TextBox(int width, string str = "") :Label(width, str){
+	this->_focus = true;
 }
 
 void TextBox::draw() {
-	drawBorder();
+	Label::draw();
 }
 
-int TextBox::mouseEvent(MOUSE_EVENT_RECORD mer, HANDLE output) {
-	COORD c = mer.dwMousePosition;
-	cout << "mouse";
-	if (c.X < dataLen && c.Y == getCoord().Y) {
-		g.moveTo(c.X, c.Y);
-		setCoord(c);
-	}
-	else if (c.Y == getCoord().Y) {
-		g.moveTo(width, c.Y);
-	}
-	else {
-		g.setCursorVisibility(false);
-	}
-	c.Y = getCoord().Y + 1;
-	return 0;
-}
+void TextBox::mousePressed(int x, int y, bool isLeftPressed) {
+	if(isLeftPressed) {
+		COORD c = { x,y };
+		if (Label::inArea(c)) {
 
+			 double labelSize = Label::GetValue().size();
+			 double labelX = Label::getCoord().X;
+			 double totalCoord = labelX + labelSize;
 
-int TextBox::keyPress(KEY_EVENT_RECORD ker, HANDLE output) {
-	COORD c;
-	// if key was pressed
-	if (ker.bKeyDown) {
-		//checks the key value
-		switch (ker.wVirtualKeyCode) {
-		case VK_BACK:// backspace
-			if (currPosition > -1 && dataLen > -1) {
-				c.X = getCoord().X-1 ;
-				c.Y = getCoord().Y;
-				g.moveTo(c.X, c.Y);
-
-				if (currPosition <= dataLen) {
-					string sub = "";
-					for (int i = currPosition+1; i <= dataLen; i++) {
-						sub += (this->value[i]);
-						this->value[i-1] = this->value[i];
-					}
-					this->value[currPosition] = ' ';
-					sub += " ";
-					g.write(sub);
-					setCoord(c);
-					
-				}
-				currPosition--;
-				dataLen--;
-				g.moveTo(c.X, c.Y);
-
-			}
-			break;
-		case VK_LEFT:
-			if (currPosition>-1) {
-				c.X = getCoord().X - 1;
-				c.Y = getCoord().Y;
-				g.moveTo(c.X, c.Y);
-				setCoord(c);
-				currPosition--;
-			}
-
-			break;
-		case VK_RIGHT:
-			if (currPosition < dataLen) {
-				c.X = getCoord().X + 1;
-				c.Y = getCoord().Y;
-				g.moveTo(c.X, c.Y);
-				setCoord(c);
-				currPosition++;
-			}
-			break;
-		case VK_DOWN:case VK_TAB:
-			break;
-		case VK_UP:
-			break;
-		case VK_SPACE: case VK_RETURN:
-			break;
-		case VK_LBUTTON:break;
-		default:
-			width = 20;
-			//cout << "width:" << width << " " << currData;
-			if (dataLen != width - 1) {
-				dataLen++;
-				currPosition++;
-				/*g.moveTo(getCoord().X + 1, getCoord().Y);
-				COORD c;
-				c.X = getCoord().X + 1;
-				c.Y = getCoord().Y;
-				setCoord(c);*/
-				//value.at(dataLen) = ker.uChar.AsciiChar;
-				SetText(ker.uChar.AsciiChar);
-			}
-			break;
+			 if (x > totalCoord) c.X = totalCoord;
+			 c.Y = Label::getHeight() + Label::getCoord().Y - 2;
+			 Graphics g = Graphics::getInstance();
+			 g.setCursorPosition(c);
 		}
 	}
-	return 0;
 }
 
-TextBox::~TextBox() {
+void TextBox::keyDown(WORD code, char c) {
+
+	Graphics g = Graphics::getInstance();
+	COORD position = g.getCursorPosition();
+	int pos = position.X;
+
+	if (Label::inArea(position)) {
+			switch (code) {
+
+			case VK_LEFT:
+				if (pos > 1) {
+					position.X -= 1;
+					g.setCursorPosition(position);
+				}
+				break;
+
+			case VK_RIGHT:
+			{
+				double labelSize = Label::GetValue().size();
+				double labelX = Label::getCoord().X;
+				double totalCoord = labelX + labelSize;
+
+				if (pos < totalCoord) {
+					position.X += 1;
+					g.setCursorPosition(position);
+				}
+			}
+			break;
+			case VK_UP:     break;
+			case VK_DOWN:   break;
+
+			default:
+					//insert char in the middle of the string
+					if (code >= 32 && code <= 176 && this->GetValue().length() < this->getWidth()) {
+						string s = this->GetValue();
+						s.insert(pos,s);
+						this->setValue(s);
+						position.X += 1;
+						g.setCursorPosition(position);
+					}
+
+					//for backspace
+					else if (code == 8 && pos > 0) {
+						string s = "";
+						for (int i = 0; i < pos; i++) {
+							s += this->GetValue()[i];
+						}
+						for(int i=pos+1; i<this->GetValue().length();i++)
+							s += this->GetValue()[i];
+
+						this->setValue(s);
+						position.X -= 1;
+						g.setCursorPosition(position);
+					}
+					break;
+			}
+		}
+
 }
