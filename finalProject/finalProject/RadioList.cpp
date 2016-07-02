@@ -43,7 +43,10 @@ string RadioList::getValue()
 {
 	return this->ops[selectedIndex].GetValue();
 }
-
+void RadioList::clearSelection(){
+	if (selectedIndex >= 0) btn[selectedIndex].setValue("( )");
+	this->selectedIndex = -1;
+};
 
 RadioList::~RadioList()
 {
