@@ -4,10 +4,11 @@ IControl* IControl::focused = NULL;
 
 void IControl::setFocused(IControl* c) {
 	if (c) {
-		if(IControl::focused) IControl::focused->_focus = false;
+		if (IControl::focused) {
+			IControl::focused->_focus = false;
+		}
 		c->_focus = true;
 		IControl::focused = c;
-		c->setBackgroundColor(Color::Red);
 	}
 }
 

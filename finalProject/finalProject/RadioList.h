@@ -27,31 +27,33 @@ protected:
 	vector<RadioListButton> btn;
 };
 
-
-
 class RadioListButton : public Button {
-public:
-
-	struct RadiolistMouseListener :public MouseListener
+protected:
+	
+	struct RadiolistMouseListener : public MouseListener
 	{
+	public:
 		RadiolistMouseListener() {};
-		void mousePressed(Button &b, int x, int y, bool isLeft) {
+		void MousePressed(Button &b, int x, int y, bool isLeft) {
 			if (RadioListButton* rb = dynamic_cast<RadioListButton*>(&b)) {
-				rb->radioList->setSelectedIndex(rb->index);
+				rb->radioList->setSelectedIndex(rb->index+1);
 			}
 		};
-
+		~RadiolistMouseListener() {
+			cout << "shit!!";
+		};
 	};
-
-	void setIndex(int i) {	
+	RadioList* radioList;
+	int index;
+	RadiolistMouseListener* l;
+public:
+	void setIndex(int i) {
 		index = i;
 	};
-
-	RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r){
+	RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {
 		l = new RadiolistMouseListener();
-		this->AddListener((this->l));
+		this->AddListener(*l);
 	};
-
 	void keyDown(WORD code, char c) {
 		Button::keyDown(code, c);
 		int size = this->radioList->size;
@@ -68,8 +70,4 @@ public:
 		}
 
 	}
-protected:
-	RadioList* radioList;
-	int index;
-	RadiolistMouseListener *l;
 };

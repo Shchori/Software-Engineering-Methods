@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="border.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckList.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="EventEngine.h" />
     <ClInclude Include="Graphics.h" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckList.cpp" />
     <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IControl.cpp" />
