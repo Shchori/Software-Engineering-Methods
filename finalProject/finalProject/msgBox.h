@@ -11,10 +11,13 @@ class MsgBox: public Panel
 	//vector<Button> btns;
 	vector<MsgBoxButton> btns;
 	Label text;
+	string pressedValue;
 public:
-	MsgBox(int height, int width);
+	MsgBox(int height, int width, string str="");
 	void setText(string text);
 	string getText();
+	string getPressedValue();
+	void setPressedValue(string value);
 	void draw();
 	virtual ~MsgBox();
 protected:
@@ -33,6 +36,7 @@ protected:
 		void mousePressed(Button &b, int x, int y, bool isLeft) {
 			if (MsgBoxButton* rb = dynamic_cast<MsgBoxButton*>(&b)) {
 				rb->msgBox->setVisability(false);
+				rb->msgBox->setPressedValue(b.GetValue());
 			}
 		};
 		~MsgBoxMouseListener() {
