@@ -8,8 +8,10 @@ RadioList::RadioList(int height, int width, vector<string> options) :Panel(heigh
 		COORD c2 = { 6, i * 2 + 1 };
 		ops[i].setValue(options[i]);
 		btn[i].setIndex(i);
+		btn[i].mousePressed(3, 2, true);
 		addControl(btn[i], c1.X, c1.Y);
 		addControl(ops[i], c2.X, c2.Y);
+		//btn[i].mousePressed(1, 3, true);
 	}
 
 }
@@ -38,8 +40,9 @@ int RadioList::getSelectedIndex() {
 }
 
 void RadioList::setSelectedIndex(int index) {
-
+	btn[selectedIndex].setValue("( )");
 	selectedIndex = index-1;
+	btn[selectedIndex].setValue("(X)");
 }
 
 string RadioList::getValue()

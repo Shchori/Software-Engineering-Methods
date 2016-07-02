@@ -17,6 +17,18 @@
 #include "EventEngine.h"
 
 using namespace std;
+
+int main() { 
+	Graphics g = Graphics::getInstance();
+	g.clearScreen();
+	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
+	RadioList r(15, 15, ops);
+	EventEngine handle;
+	handle.run(r);
+	
+}
+
+/*
 void main() {
 
 	
@@ -59,7 +71,7 @@ void main() {
 	numericbox.draw();
 
 	main.draw();
-	*/
+	
 
 	//numericbox.addEvent(plus);
 	//numericbox.addEvent(plus);
@@ -67,7 +79,7 @@ void main() {
 	//vector<string> lab = {"hi","bi"};
 	//RadioList n(10, 20,lab );
 	//n.draw();
-	/*Graphics g = Graphics::getInstance();
+	Graphics g = Graphics::getInstance();
 	g.clearScreen();
 	g.setCursorPosition(2, 2);
 	COORD c2 = g.getCursorPosition();
@@ -75,7 +87,7 @@ void main() {
 	Label t(4,"");
 	t.setValue("dfdf");
 	t.setBorder(b);
-	t.draw();*/
+	t.draw();
 	/*
 	vector < string > vec = {"hi	", "how ", "are", "you"};
 	RadioList r(10, 10, vec);
@@ -89,12 +101,8 @@ void main() {
 	text.setValue("d");
 	text.setBorder(b);
 	text.draw();
-	*/
-
-
-
-
-	/*COORD v = { 16,30 };
+	
+COORD v = { 16,30 };
 	Panel minP(10, 10);
 	minP.setBorder(b);
 	minP.setCoord(v);
@@ -119,20 +127,9 @@ void main() {
 	box.mousePressed(4, 1, true);
 	WORD code = VK_BACK;
 	char c('B');
-	box.keyDown(code,c);*/
-
-
-
-//===============================================================
-
-	Graphics g = Graphics::getInstance();
-	g.clearScreen();
-	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
-	RadioList r(15, 15, ops);
-	EventEngine handle;
-	handle.run(r);
+	box.keyDown(code,c);
 	
 	getchar();
 	
 
-}
+}*/
