@@ -55,6 +55,9 @@ public:
 		l = new RadiolistMouseListener();
 		this->AddListener(*l);
 	};
+	~RadioListButton() {
+		delete l;
+	}
 	void keyDown(WORD code, char c) {
 		Button::keyDown(code, c);
 		int size = this->radioList->size;

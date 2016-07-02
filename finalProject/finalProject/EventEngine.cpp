@@ -21,7 +21,8 @@ void EventEngine::run(Control &c)
 		if (redraw)
 		{
 			_graphics.clearScreen();
-			c.draw();
+				c.draw();
+			redraw = false;
 		}
 		_graphics.setCursorPosition(temp);
 
