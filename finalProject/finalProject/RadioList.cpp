@@ -3,6 +3,7 @@
 
 RadioList::RadioList(int height, int width, vector<string> options) :Panel(height, width), selectedIndex(-1),size(options.size()), ops(options.size(), Label(width - 5, "")), btn(options.size(), RadioListButton(this))
 {
+	g.setCursorVisibility(false);
 	for (int i = 0; i < size; ++i) {
 		COORD c1 = { 1, i * 2 + 1 };
 		COORD c2 = { 6, i * 2 + 1 };
@@ -21,8 +22,6 @@ void RadioList::draw() {
 			ops[i].setForegroundColor(this->getForegroundColor());
 	}
 	Panel::draw();
-
-	g.setCursorVisibility(false);
 }
 
 

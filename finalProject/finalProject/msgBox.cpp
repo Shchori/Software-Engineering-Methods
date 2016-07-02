@@ -16,7 +16,6 @@ MsgBox::MsgBox(int height, int width) :Panel(height, width), btns(2, Button("", 
 	addControl(text,text.getCoord().X, text.getCoord().Y);
 
 	for (int i = 0; i < 2; i++) {
-		this->btns[i]._setLayer(2); 
 		addControl(btns[i], btns[i].getCoord().X, btns[i].getCoord().Y);
 	}
 
