@@ -68,19 +68,21 @@ void Panel::addControl(IControl& control, int left, int top)
 }
 
 void Panel::draw() {
-	IControl::draw(); 
-	for (int i = 0; i < _innerPanels.size(); i++) {
-		if ((*_innerPanels[i]).getLayer() == 0)
-			(*_innerPanels[i]).draw();
+	if (this->getVisability()) {
+		IControl::draw();
+		for (int i = 0; i < _innerPanels.size(); i++) {
+			if ((*_innerPanels[i]).getLayer() == 0)
+				(*_innerPanels[i]).draw();
+		}
+		for (int i = 0; i < _innerPanels.size(); i++) {
+			if ((*_innerPanels[i]).getLayer() == 1)
+				(*_innerPanels[i]).draw();
+		}
+		for (int i = 0; i < _innerPanels.size(); i++) {
+			if ((*_innerPanels[i]).getLayer() == 2)
+				(*_innerPanels[i]).draw();
+		}
 	}
-	for (int i = 0; i < _innerPanels.size(); i++) {
-		if ((*_innerPanels[i]).getLayer() == 1)
-			(*_innerPanels[i]).draw();
-	}
-	for (int i = 0; i < _innerPanels.size(); i++) {
-		if ((*_innerPanels[i]).getLayer() == 2)
-			(*_innerPanels[i]).draw();
-	}		
 }
 
 vector<IControl*> Panel::getAllControls() {

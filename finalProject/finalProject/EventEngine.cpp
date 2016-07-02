@@ -20,6 +20,7 @@ void EventEngine::run(Control &c)
 		COORD temp = _graphics.getCursorPosition();
 		if (redraw)
 		{
+			_graphics.clearScreen();
 			c.draw();
 		}
 		_graphics.setCursorPosition(temp);
