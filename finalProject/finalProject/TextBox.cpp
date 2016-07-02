@@ -28,8 +28,8 @@ void TextBox::mousePressed(int x, int y, bool isLeftPressed) {
 void TextBox::keyDown(WORD code, char c) {
 
 	Graphics g = Graphics::getInstance();
-	COORD position = g.getCursorPosition();
-	int pos = position.X;
+	COORD position = g.getCursorPosition();	
+	int pos = position.X-1;
 
 	if (Label::inArea(position)) {
 			switch (code) {
@@ -45,7 +45,7 @@ void TextBox::keyDown(WORD code, char c) {
 			{
 				double labelSize = Label::GetValue().size();
 				double labelX = Label::getCoord().X;
-				double totalCoord = labelX + labelSize;
+				double totalCoord = labelX + labelSize - 1;
 
 				if (pos < totalCoord) {
 					position.X += 1;
@@ -60,22 +60,18 @@ void TextBox::keyDown(WORD code, char c) {
 					//insert char in the middle of the string
 					if (code >= 32 && code <= 176 && this->GetValue().length() < this->getWidth()) {
 						string s = this->GetValue();
-						string temp;
-						for (int i = 0; i < pos; i++) 
-							temp += s[i];
-						
-						temp += c;
+						s.insert(pos,1,c);
+						this->setValue(s);
 
-						for (int i = pos+1 ; i < this->GetValue().length(); i++)
-							temp += s[i];
-		
-						this->setValue(temp);
-						position.X += 1;
+						if(pos != Label::getCoord().X + this->GetValue().length() - 1)
+							position.X += 1;
+						else
+							position.X = Label::getCoord().X - 1;
 						g.setCursorPosition(position);
 					}
 
 					//for backspace
-					else if (code == 8 && pos > 0) {
+					else if (code == 8) {
 						string s = "";
 						for (int i = 0; i < pos; i++) {
 							s += this->GetValue()[i];
@@ -84,8 +80,14 @@ void TextBox::keyDown(WORD code, char c) {
 							s += this->GetValue()[i];
 
 						this->setValue(s);
-						position.X -= 1;
+
+						if(pos!=0)
+						   position.X -= 1;
+						else
+							position.X = Label::getCoord().X + 1;
+
 						g.setCursorPosition(position);
+
 					}
 					break;
 			}

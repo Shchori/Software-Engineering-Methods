@@ -26,14 +26,16 @@ int main() {
 	TextBox box(8, "ggggg");
 	box.setBorder(b);
 
-
+	
 
 	Panel main(25, 40);
 	main.addControl(box, 0, 0);
 	//main.draw();
 
+
 	EventEngine handle;
-	handle.run(box);
+	handle.run(main);
+	
 	getchar();
 	
 }
