@@ -25,6 +25,11 @@ void RadioList::draw() {
 	g.setCursorVisibility(false);
 }
 
+
+void RadioList::addControl(IControl& control, int left, int top) {
+	Panel::addControl(control, left, top);
+}
+
 int RadioList::getSelectedIndex() {
 	return selectedIndex+1;
 }

@@ -156,6 +156,7 @@
     <ClInclude Include="IControlResponser.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="msgBox.h" />
+    <ClInclude Include="NumericBox.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="RadioList.h" />
     <ClInclude Include="TextBox.h" />

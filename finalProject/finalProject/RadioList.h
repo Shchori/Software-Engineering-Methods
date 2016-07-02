@@ -20,7 +20,7 @@ public:
 	string getValue();
 	~RadioList();
 protected:
-	
+	virtual void addControl(IControl& control, int left, int top);
 	int size;
 	int selectedIndex;
 	vector<Label> ops;

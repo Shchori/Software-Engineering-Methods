@@ -26,6 +26,7 @@ protected:
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
 	void _setLayer(int layer) { _layer = layer; };
+	int getLayer() { return _layer; };
 	
 public:
 	static void setFocused(IControl* c);
@@ -49,7 +50,6 @@ public:
 	bool beetween(int p, int x1, int x2);
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
-	int getLayer() { return _layer; };
 	inline virtual ~IControl() {};
 	virtual vector<IControl*> getAllControls();
 };

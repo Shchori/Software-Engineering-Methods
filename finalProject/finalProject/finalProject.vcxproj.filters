@@ -57,6 +57,9 @@
     <ClInclude Include="CheckList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NumericBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
