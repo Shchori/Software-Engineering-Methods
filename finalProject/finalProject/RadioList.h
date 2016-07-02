@@ -42,7 +42,6 @@ protected:
 			}
 		};
 		~RadiolistMouseListener() {
-			cout << "shit!!";
 		};
 	};
 	RadioList* radioList;
@@ -50,10 +49,10 @@ protected:
 	RadiolistMouseListener* l;
 public:
 	void setIndex(int i) {
-		index = i;
+				index = i;
 	};
 	RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {
-		this->AddListener(l);
+		this->AddListener(*l);
 	};
 	void keyDown(WORD code, char c) {
 		Button::keyDown(code, c);

@@ -154,6 +154,7 @@
     <ClInclude Include="IControl.h" />
     <ClInclude Include="IControlResponser.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="NumericBox.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="RadioList.h" />
     <ClInclude Include="TextBox.h" />
@@ -165,7 +166,9 @@
     <ClCompile Include="IControl.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NumericBox.cpp" />
     <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="RadioList.cpp" />
     <ClCompile Include="TextBox.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
