@@ -18,17 +18,8 @@ RadioList::RadioList(int height, int width, vector<string> options) :Panel(heigh
 
 void RadioList::draw() {
 	for (int i = 0; i < size; ++i) {
-		if (i != this->selectedIndex) {
 			ops[i].setBackgroundColor(this->getBackgroundColor());
 			ops[i].setForegroundColor(this->getForegroundColor());
-			btn[i].setValue("( )");
-
-		}
-		else {
-			ops[i].setForegroundColor(this->getBackgroundColor());
-			ops[i].setBackgroundColor(this->getForegroundColor());
-			btn[i].setValue("(X)");
-		}
 	}
 	Panel::draw();
 

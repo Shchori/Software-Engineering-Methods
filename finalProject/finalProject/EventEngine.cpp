@@ -6,7 +6,7 @@ EventEngine::EventEngine(DWORD input, DWORD output )
 {
 	// Retrieves the current input/output mode of a console's input/output buffer
 	GetConsoleMode(_console, &_consoleMode);
-	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
+	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT | ENABLE_EXTENDED_FLAGS);
 }
 
 void EventEngine::run(Control &c)
