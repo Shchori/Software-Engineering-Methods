@@ -36,8 +36,10 @@ void EventEngine::run(Control &c)
 			{
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;//ascii
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;//val
-				if (code == VK_TAB)
+				if (code == VK_TAB) {
 					moveFocus(c, f);//to the next
+					redraw = true;
+				}
 				else
 					if (IControlResponser* rb = dynamic_cast<IControlResponser*>(f)) {
 						rb->keyDown(code, chr);//any kind of button press
@@ -76,10 +78,10 @@ void EventEngine::run(Control &c)
 void EventEngine::moveFocus(Control &main, Control *focused)
 {
 	vector<IControl*> controls = main.getAllControls();
-	auto it = find(controls.begin(), controls.end(), focused);
+	auto it = find(controls.rbegin(), controls.rend(), focused);
 	do
-		if (++it == controls.end())
-			it = controls.begin();
+		if (++it == controls.rend())
+			it = controls.rbegin();
 	while (!(*it)->isFocus());
 	Control::setFocused(*it);
 };

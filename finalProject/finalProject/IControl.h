@@ -21,7 +21,7 @@ protected:
 	Color _backGroundColor;
 	Graphics g;
 	bool _showcruser;
-	bool _cursorVisability;
+	bool _visability;
 	bool _focus;
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
@@ -32,8 +32,8 @@ public:
 	bool isFocus() { return _focus; };
 	virtual int getHeight() { return (_borderType==BorderType::None)?height:height + 2; };
 	virtual int getWidth() { return (_borderType == BorderType::None) ? width : width + 2; };
-	void setVisability(bool visability) { _cursorVisability = visability; };//of the cursor
-	bool getVisability() { return _cursorVisability; };//of the cursor
+	void setVisability(bool visability) { _visability = visability; };//of the cursor
+	bool getVisability() { return _visability; };//of the cursor
 	BorderType getBorder() { return _borderType; };
 	void setBorder(BorderType border) { _borderType = border; draw(); };
 	void setBackgroundColor(Color background) { _backGroundColor = background; }
