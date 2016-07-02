@@ -56,7 +56,7 @@ void IControl::drawBorder() {
 }
 
 void IControl::draw() {
-	if (_cursorVisability || this->_isCoordSet()) {
+	if (_cursorVisability && this->_isCoordSet()) {
 		g.setCursorVisibility(this->_cursorVisability);
 		if (IControl::focused == this) {
 			g.setBackground(this->_foregroundColor);

@@ -16,7 +16,7 @@ public:
 	RadioList(int height, int width, vector<string> options);
 	void draw();
 	int getSelectedIndex();
-	void setSelectedIndex(int index);
+	virtual void setSelectedIndex(int index);
 	void clearSelection();
 	string getValue();
 	~RadioList();
@@ -42,7 +42,6 @@ protected:
 			}
 		};
 		~RadiolistMouseListener() {
-			cout << "shit!!";
 		};
 	};
 	RadioList* radioList;

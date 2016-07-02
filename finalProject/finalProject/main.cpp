@@ -14,6 +14,8 @@
 #include "TextBox.h"
 #include "RadioList.h"
 #include "EventEngine.h"
+#include "CheckList.h"
+#include "msgBox.h"
 
 using namespace std;
 
@@ -21,19 +23,21 @@ int main() {
 	Graphics g = Graphics::getInstance();
 	g.clearScreen();
 	BorderType b = BorderType::Double;
-	//vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
+	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
 	//RadioList r(15, 15, ops);
-	TextBox box(8, "ggggg");
-	box.setBorder(b);
-
-
+	//TextBox box(8, "ggggg");
+	//box.setBorder(b);
+	CheckList box(15, 15, ops);
+	MsgBox msg(10,20);
+	msg.setText("bla bla");
 
 	Panel main(25, 40);
 	main.addControl(box, 0, 0);
+	main.addControl(msg, 0, 0);
 	//main.draw();
 
 	EventEngine handle;
-	handle.run(box);
+	handle.run(main);
 	getchar();
 	
 }
