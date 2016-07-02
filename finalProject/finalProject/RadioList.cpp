@@ -1,7 +1,7 @@
 #include "RadioList.h"
 
 
-RadioList::RadioList(int height, int width, vector<string> options) :Panel(height, width), selectedIndex(-1),size(options.size()), ops(options.size(), Label(width - 5, "")), btn(options.size(), RadioListButton(this))
+RadioList::RadioList(int height, int width, vector<string> options) :Panel(height, width), selectedIndex(-1),size(options.size()), ops(options.size(), Label(width - 3, "")), btn(options.size(), RadioListButton(this))
 {
 	g.setCursorVisibility(false);
 	for (int i = 0; i < size; ++i) {

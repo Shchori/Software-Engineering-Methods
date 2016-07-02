@@ -1,12 +1,13 @@
 #include "CheckList.h"
 
 
-CheckList::CheckList(int height, int width, vector<string> options):RadioList(height, width,  options){ 
-	selectedIndexes = new int[options.size()];
+CheckList::CheckList(int height, int width, vector<string> options):RadioList(height, width,  options){
+	selectedIndexes = new int[5]();
 };
 
 vector<string> CheckList::getSelectedIndexes() {
 	vector<string> selected;
+	selected.resize(ops.size());
 	for (int i = 0; i < ops.size(); i++) {
 		selected.push_back(ops[i].GetValue());
 	}
@@ -21,11 +22,12 @@ void CheckList::clearSelection() {
 }
 
 void CheckList::setSelectedIndex(int index) {
-	selectedIndexes[ index - 1] = 1- selectedIndexes[index-1];
-	(selectedIndexes[index - 1])? btn[selectedIndex].setValue("(X)") : btn[selectedIndex].setValue("( )");
+	selectedIndex = index - 1;
+	selectedIndexes[selectedIndex] = 1- selectedIndexes[selectedIndex];
+	(selectedIndexes[selectedIndex])? btn[selectedIndex].setValue("(X)") : btn[selectedIndex].setValue("( )");
 }
 
 CheckList::~CheckList()
 {
-	delete selectedIndexes;
+	delete [] selectedIndexes;
 };

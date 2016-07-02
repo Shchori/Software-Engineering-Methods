@@ -1,7 +1,7 @@
 #include "MsgBox.h"
 
 
-MsgBox::MsgBox(int height, int width) :Panel(height, width), btns(2, Button("", 5)), text(width, "")
+MsgBox::MsgBox(int height, int width, string str) :Panel(height, width), text(width, str), btns(2, MsgBoxButton(this))
 {
 	BorderType b = BorderType::Single;
 	btns[0].setValue("OK");
@@ -9,6 +9,7 @@ MsgBox::MsgBox(int height, int width) :Panel(height, width), btns(2, Button("", 
 
 	btns[0].setBorder(b);
 	btns[1].setBorder(b);
+	setBorder(b);
 
 	btns[0].setCoord((width / 2) - 8, height - 5);
 	btns[1].setCoord((width / 2) + 2, height - 5);
@@ -28,6 +29,13 @@ void MsgBox::setText(string text) {
 
 string MsgBox::getText() {
 	return text.GetValue();
+}
+
+string MsgBox::getPressedValue() {
+	return pressedValue;
+}
+void MsgBox::setPressedValue(string value) {
+	pressedValue = value;
 }
 
 void MsgBox::draw() {

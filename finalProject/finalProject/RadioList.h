@@ -16,7 +16,7 @@ public:
 	RadioList(int height, int width, vector<string> options);
 	void draw();
 	int getSelectedIndex();
-	void setSelectedIndex(int index);
+	virtual void setSelectedIndex(int index);
 	void clearSelection();
 	string getValue();
 	~RadioList();
@@ -49,11 +49,15 @@ protected:
 	RadiolistMouseListener* l;
 public:
 	void setIndex(int i) {
-				index = i;
+		index = i;
 	};
 	RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {
+		l = new RadiolistMouseListener();
 		this->AddListener(*l);
 	};
+	~RadioListButton() {
+		delete l;
+	}
 	void keyDown(WORD code, char c) {
 		Button::keyDown(code, c);
 		int size = this->radioList->size;
