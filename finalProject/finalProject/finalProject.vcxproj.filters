@@ -48,10 +48,7 @@
     <ClInclude Include="TextBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CheckList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NumericBox.h">
+    <ClInclude Include="RadioList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -78,9 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Label.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

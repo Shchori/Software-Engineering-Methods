@@ -12,9 +12,9 @@ Button::~Button()
 }
 
 
-void Button::AddListener(MouseListener *listener)
+void Button::AddListener(MouseListener &listener)
 {
-	this->event = listener;
+	this->event = &listener;
 
 }
 
