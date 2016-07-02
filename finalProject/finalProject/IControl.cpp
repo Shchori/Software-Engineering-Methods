@@ -58,8 +58,14 @@ void IControl::drawBorder() {
 void IControl::draw() {
 	if (_cursorVisability || this->_isCoordSet()) {
 		g.setCursorVisibility(this->_cursorVisability);
-		g.setBackground(this->_backGroundColor);
-		g.setForeground(this->_foregroundColor);
+		if (IControl::focused == this) {
+			g.setBackground(this->_foregroundColor);
+			g.setForeground(this->_backGroundColor);
+		}
+		else {
+			g.setBackground(this->_backGroundColor);
+			g.setForeground(this->_foregroundColor);
+		}
 		g.updateConsoleAttributes();
 		this->drawBorder();
 	}
