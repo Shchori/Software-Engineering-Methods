@@ -17,6 +17,7 @@ public:
 	void draw();
 	int getSelectedIndex();
 	void setSelectedIndex(int index);
+	void clearSelection();
 	string getValue();
 	~RadioList();
 protected:
@@ -36,7 +37,8 @@ protected:
 		RadiolistMouseListener() {};
 		void MousePressed(Button &b, int x, int y, bool isLeft) {
 			if (RadioListButton* rb = dynamic_cast<RadioListButton*>(&b)) {
-				rb->radioList->setSelectedIndex(rb->index+1);
+				if (rb->index == rb->radioList->selectedIndex) rb->radioList->clearSelection();
+				else	rb->radioList->setSelectedIndex(rb->index+1);
 			}
 		};
 		~RadiolistMouseListener() {
