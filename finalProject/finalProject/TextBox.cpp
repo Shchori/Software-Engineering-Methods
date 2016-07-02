@@ -60,8 +60,16 @@ void TextBox::keyDown(WORD code, char c) {
 					//insert char in the middle of the string
 					if (code >= 32 && code <= 176 && this->GetValue().length() < this->getWidth()) {
 						string s = this->GetValue();
-						s.insert(pos,s);
-						this->setValue(s);
+						string temp;
+						for (int i = 0; i < pos; i++) 
+							temp += s[i];
+						
+						temp += c;
+
+						for (int i = pos+1 ; i < this->GetValue().length(); i++)
+							temp += s[i];
+		
+						this->setValue(temp);
 						position.X += 1;
 						g.setCursorPosition(position);
 					}
