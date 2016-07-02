@@ -6,18 +6,24 @@ EventEngine::EventEngine(DWORD input, DWORD output )
 {
 	// Retrieves the current input/output mode of a console's input/output buffer
 	GetConsoleMode(_console, &_consoleMode);
-	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
+	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT | ENABLE_EXTENDED_FLAGS);
 }
 
 void EventEngine::run(Control &c)
 {
+
 	// infinite loop
+	vector<IControl*> controls = c.getAllControls();
+	if(controls.size() > 0) IControl::setFocused(controls[0]);
 	for (bool redraw = true;;)
 	{
+		COORD temp = _graphics.getCursorPosition();
 		if (redraw)
 		{
 			c.draw();
 		}
+		_graphics.setCursorPosition(temp);
+
 		INPUT_RECORD record;
 		DWORD count;
 		ReadConsoleInput(_console, &record, 1, &count);//read 1 event each time
