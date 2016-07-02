@@ -4,12 +4,14 @@
 EventEngine::EventEngine(DWORD input, DWORD output )
 	: _console(GetStdHandle(input)), _graphics(Graphics::getInstance(output))
 {
+	// Retrieves the current input/output mode of a console's input/output buffer
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
 
 void EventEngine::run(Control &c)
 {
+	// infinite loop
 	for (bool redraw = true;;)
 	{
 		if (redraw)
@@ -18,21 +20,21 @@ void EventEngine::run(Control &c)
 		}
 		INPUT_RECORD record;
 		DWORD count;
-		ReadConsoleInput(_console, &record, 1, &count);
+		ReadConsoleInput(_console, &record, 1, &count);//read 1 event each time
 		switch (record.EventType)
 		{
 		case KEY_EVENT:
 		{
-			auto f = Control::getFocused();
+			auto f = Control::getFocused(); // pointer to function?
 			if (f != nullptr && record.Event.KeyEvent.bKeyDown)
 			{
-				auto code = record.Event.KeyEvent.wVirtualKeyCode;
-				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
+				auto code = record.Event.KeyEvent.wVirtualKeyCode;//ascii
+				auto chr = record.Event.KeyEvent.uChar.AsciiChar;//val
 				if (code == VK_TAB)
-					moveFocus(c, f);
+					moveFocus(c, f);//to the next
 				else
 					if (IControlResponser* rb = dynamic_cast<IControlResponser*>(f)) {
-						rb->keyDown(code, chr);
+						rb->keyDown(code, chr);//any kind of button press
 						redraw = true;
 					}
 
