@@ -24,16 +24,17 @@ int main() {
 	g.clearScreen();
 	BorderType b = BorderType::Double;
 	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
-	//RadioList r(15, 15, ops);
+	RadioList r(15, 15, ops);
 	//TextBox box(8, "ggggg");
 	//box.setBorder(b);
 	CheckList box(15, 15, ops);
 	MsgBox msg(10,20);
 	msg.setText("bla bla");
-
-	Panel main(25, 40);
-	main.addControl(box, 0, 0);
-	main.addControl(msg, 0, 0);
+	int x = msg.getLayer();
+	Panel main(60, 60);
+	main.addControl(box, 10, 20);
+	main.addControl(msg, 1, 1);
+	main.addControl(r, 0, 0);
 	//main.draw();
 
 	EventEngine handle;
