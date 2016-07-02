@@ -52,7 +52,8 @@ public:
 		index = i;
 	};
 	RadioListButton(RadioList *r) :RadioListButton::Button("( )", 3), radioList(r) {
-		this->AddListener(l);
+		l = new RadiolistMouseListener();
+		this->AddListener(*l);
 	};
 	void keyDown(WORD code, char c) {
 		Button::keyDown(code, c);
