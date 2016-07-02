@@ -10,16 +10,12 @@ MsgBox::MsgBox(int height, int width) :Panel(height, width), btns(2, Button("", 
 	btns[0].setBorder(b);
 	btns[1].setBorder(b);
 
-	COORD c1 = { (width/2)-8,height-5 };
-	COORD c2 = { (width/2)+2,height-5 };
-	COORD c3 = { 2,1 };
-	btns[0].setCoord(c1);
-	btns[1].setCoord(c2);
-	text.setCoord(c3);
+	btns[0].setCoord((width / 2) - 8, height - 5);
+	btns[1].setCoord((width / 2) + 2, height - 5);
+	text.setCoord(2, 1);
 	addControl(text,text.getCoord().X, text.getCoord().Y);
 
 	for (int i = 0; i < 2; i++) {
-	//	btns[i]._setLayer(2);
 		addControl(btns[i], btns[i].getCoord().X, btns[i].getCoord().Y);
 	}
 
@@ -41,6 +37,9 @@ void MsgBox::draw() {
 	g.setCursorVisibility(false);
 }
 
+void MsgBox::addControl(IControl& control, int left, int top) {
+	Panel::addControl(control, left, top);
+}
 
 MsgBox::~MsgBox()
 {
