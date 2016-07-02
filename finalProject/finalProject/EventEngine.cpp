@@ -11,13 +11,19 @@ EventEngine::EventEngine(DWORD input, DWORD output )
 
 void EventEngine::run(Control &c)
 {
+
 	// infinite loop
+	vector<IControl*> controls = c.getAllControls();
+	if(controls.size() > 0) IControl::setFocused(controls[0]);
 	for (bool redraw = true;;)
 	{
+		COORD temp = _graphics.getCursorPosition();
 		if (redraw)
 		{
 			c.draw();
 		}
+		_graphics.setCursorPosition(temp);
+
 		INPUT_RECORD record;
 		DWORD count;
 		ReadConsoleInput(_console, &record, 1, &count);//read 1 event each time

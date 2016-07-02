@@ -11,7 +11,6 @@
 #include "TextBox.h"
 #include <iostream>
 #include "Button.h"
-#include "NumericBox.h"
 #include "TextBox.h"
 #include "RadioList.h"
 #include "EventEngine.h"
@@ -21,10 +20,21 @@ using namespace std;
 int main() { 
 	Graphics g = Graphics::getInstance();
 	g.clearScreen();
-	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
-	RadioList r(15, 15, ops);
+	BorderType b = BorderType::Double;
+	//vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
+	//RadioList r(15, 15, ops);
+	TextBox box(8, "ggggg");
+	box.setBorder(b);
+
+
+
+	Panel main(25, 40);
+	main.addControl(box, 0, 0);
+	//main.draw();
+
 	EventEngine handle;
-	handle.run(r);
+	handle.run(box);
+	getchar();
 	
 }
 

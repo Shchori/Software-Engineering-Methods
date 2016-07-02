@@ -13,5 +13,8 @@ public:
 	string getText();
 	void draw();
 	virtual ~MsgBox();
+protected:
+	virtual void addControl(IControl& control, int left, int top);
+
 };
 
