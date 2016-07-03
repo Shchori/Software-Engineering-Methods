@@ -55,8 +55,11 @@ public:
 		l = new RadiolistMouseListener();
 		this->AddListener(*l);
 	};
-	~RadioListButton() {
+
+	void deleteEventListener() {
 		delete l;
+	}
+	~RadioListButton() {
 	}
 	void keyDown(WORD code, char c) {
 		Button::keyDown(code, c);
