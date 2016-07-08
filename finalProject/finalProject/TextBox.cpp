@@ -2,6 +2,7 @@
 
 TextBox::TextBox(int width, string str ) :Label(width, str){
 	this->_focus = true;
+	this->_showcruser = true;
 }
 
 void TextBox::draw() {
@@ -61,7 +62,7 @@ void TextBox::keyDown(WORD code, char c) {
 					//insert char in the middle of the string
 					if (code >= 32 && code <= 176 && this->GetValue().length() < this->getWidth()) {
 						string s = this->GetValue();
-						s.insert(pos,1,c);
+						s.insert(pos-this->getCoord().X,1,c);
 						this->setValue(s);
 
 						if(pos != Label::getCoord().X + this->GetValue().length() - 1)
@@ -74,6 +75,7 @@ void TextBox::keyDown(WORD code, char c) {
 					//for backspace
 					else if (code == 8) {
 						string s = "";
+						pos -= this->getCoord().X + 1;
 						for (int i = 0; i < pos; i++) {
 							s += this->GetValue()[i];
 						}

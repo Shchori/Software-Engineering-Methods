@@ -16,12 +16,14 @@ void EventEngine::run(Control &c)
 	if(controls.size() > 0) IControl::setFocused(controls[0]);
 	for (bool redraw = true;;)
 	{
+
 		controls = c.getAllControls();
 		COORD temp = _graphics.getCursorPosition();
 		if (redraw)
 		{
 			_graphics.clearScreen();
 				c.draw();
+				_graphics.setCursorVisibility(IControl::getFocused()->getCruserVisability());
 			redraw = false;
 		}
 		_graphics.setCursorPosition(temp);
@@ -59,7 +61,7 @@ void EventEngine::run(Control &c)
 			coord.Y -= 1;
 				if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 			{
-				vector<IControl*> controls = c.getAllControls();
+					vector<IControl*> controls = c.getAllControls();
 				for (int i = 0; i < 3; ++i) {
 					for (int j = 0; j < controls.size(); ++j) {
 						if (controls[j]->getLayer() == i && controls[j]->isFocus()&& controls[j]->inArea(coord)) {

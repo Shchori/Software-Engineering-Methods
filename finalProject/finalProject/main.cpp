@@ -31,6 +31,8 @@ int main(int argc, char **argv)
 	TextBox tName(20);
 	tName.setValue("Sherlock Holmes");
 	tName.setBorder(BorderType::Single);
+	tName.setBackgroundColor(Color::Green);
+	tName.setForegroundColor(Color::Blue);
 	TextBox tAddress(25);
 	tAddress.setValue("221B Baker Street, London");
 	tAddress.setBorder(BorderType::Single);

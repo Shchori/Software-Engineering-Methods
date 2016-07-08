@@ -12,3 +12,4 @@
 #include "Panel.h"
 #include "RadioList.h"
 #include "TextBox.h"
+#include <string.h>
