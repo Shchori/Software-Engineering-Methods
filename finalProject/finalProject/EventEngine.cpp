@@ -11,12 +11,12 @@ EventEngine::EventEngine(DWORD input, DWORD output )
 
 void EventEngine::run(Control &c)
 {
-
+	vector<IControl*> controls;
 	// infinite loop
-	vector<IControl*> controls = c.getAllControls();
 	if(controls.size() > 0) IControl::setFocused(controls[0]);
 	for (bool redraw = true;;)
 	{
+		controls = c.getAllControls();
 		COORD temp = _graphics.getCursorPosition();
 		if (redraw)
 		{

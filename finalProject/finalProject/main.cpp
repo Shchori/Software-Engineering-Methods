@@ -39,8 +39,8 @@ int main() {
 	Panel main(60, 60);
 	//main.addControl(num, 0, 0);
 	main.addControl(r, 0, 0);
-	EventEngine handle;
 	main.draw();
+	EventEngine handle;
 	handle.run(main);
 	getchar();
 	
