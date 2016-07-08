@@ -14,6 +14,7 @@
 #include "TextBox.h"
 #include "RadioList.h"
 #include "EventEngine.h"
+#include "NumericBox.h"
 
 using namespace std;
 
@@ -30,12 +31,14 @@ int main() {
 	r2.setBorder(BorderType::Single);
 	TextBox box(8, "ggggg");
 	box.setBorder(b);
-
+	g.clearScreen();
+	NumericBox num(30, 0, 4000);
+	num.setValue(1000);
 
 
 	Panel main(60, 60);
-	main.addControl(r, 0, 0);
-	main.addControl(r2, 22, 20);
+	//main.addControl(num, 0, 0);
+	main.addControl(r2, 0, 0);
 	main.draw();
 
 	EventEngine handle;

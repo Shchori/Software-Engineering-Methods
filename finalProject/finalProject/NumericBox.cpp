@@ -6,8 +6,10 @@ struct Minus_Struct :public MouseListener
 {
 private:
 	NumericBox *_box;
-	Minus_Struct(NumericBox &box) :_box(&box) {}
+	
 public:
+	Minus_Struct(NumericBox &box) :_box(&box) {}
+
 	void mousePressed(Button &b, int x, int y, bool isLeft) {
 		COORD c = { x,y };
 		if (b.inArea(c) && isLeft)
@@ -35,11 +37,16 @@ public:
 	}
 }plusListener;
 
-NumericBox::NumericBox(int height, int width, int minVal, int maxVal) :Panel(height, width),_plus("+",3), _minus("-",3),_val(4,""){
+NumericBox::NumericBox(int width, int minVal, int maxVal) :Panel(1, width),_plus("+",1), _minus("-",1),_val(4,""){
 	_minVal = minVal;
 	_maxVal = maxVal;
 	_currentVal = minVal;
 	setValue(minVal);
+
+	BorderType b = BorderType::Single;
+	_minus.setBorder(b);
+	_plus.setBorder(b);
+	Panel::setBorder(b);
 
 	Plus_Struct * plus = new plusListener(*this);
 	_plus.AddListener(*plus);
@@ -48,8 +55,9 @@ NumericBox::NumericBox(int height, int width, int minVal, int maxVal) :Panel(hei
 	_minus.AddListener(*minus);
 
 	addControl(_plus, 0, 0);
-	addControl(_val, 4, 0);
-	addControl(_minus, 9, 0);
+	addControl(_val, ((int)(width/2)) - 1, 0);
+	addControl(_minus, width + 1, 0);
+	//each numericBox - the width at least 8
 
 	this->_setLayer(0);	
 }
@@ -61,6 +69,12 @@ void NumericBox::setValue(int value) {
 	}
 }
 
-void NumericBox::mousePressed(int x, int y) {
-
-}
+/*void NumericBox::mousePressed(int x, int y) {
+	COORD c = { x,y };
+	if (_plus.inArea(c)) {
+		_plus.mousePressed(x, y, TRUE);
+	}
+	else if (_minus.inArea(c)) {
+		_minus.mousePressed(x, y, TRUE);
+	}
+}*/

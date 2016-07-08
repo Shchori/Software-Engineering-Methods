@@ -57,7 +57,7 @@
     <ClInclude Include="msgBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComboBox.h">
+    <ClInclude Include="NumericBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClCompile Include="MsgBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComboBox.cpp">
+    <ClCompile Include="NumericBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class NumericBox : public Panel, public IControlResponser
+class NumericBox : public Panel
 {
 private:
 	Button _plus;
@@ -18,11 +18,9 @@ private:
 	int _currentVal;
 
 public:
-	NumericBox(int height, int width, int minVal, int maxVal);
+	NumericBox(int width, int minVal, int maxVal);
 	int getValue() { return _currentVal; }
 	void setValue(int value);
 	void draw() { Panel::draw(); }
-	void mousePressed(int x, int y);
-	void keyDown(WORD code, char c) {}
-	virtual ~NumericBox(){}
+	~NumericBox(){}
 };
