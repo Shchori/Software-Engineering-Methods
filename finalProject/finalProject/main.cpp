@@ -15,7 +15,13 @@ private:
 };
 int main(int argc, char **argv)
 {
-	Label lName(20);
+	vector<string> str = { "hello", "you" };
+	RadioList r(20, 20, str);
+	Panel main(40, 40);
+	main.addControl(r, 2, 2);
+	EventEngine engine;
+	engine.run(main);
+	/*Label lName(20);
 	lName.setValue("Name: ");
 
 	Label lAddress(20);
@@ -68,7 +74,7 @@ int main(int argc, char **argv)
 	main.addControl(bSubmit, 1, 22);
 	Control::setFocused(&tName);
 	EventEngine engine;
-	engine.run(main);
+	engine.run(main);*/
 	return 0;
 }
 
