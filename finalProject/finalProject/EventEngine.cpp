@@ -1,16 +1,25 @@
 #include "EventEngine.h"
 
 
-EventEngine::EventEngine(DWORD input, DWORD output )
-	: _console(GetStdHandle(input)), _graphics(Graphics::getInstance(output))
+void EventEngine::moveFocus(Control &main, Control *focused)
 {
+	vector<IControl*> controls = main.getAllControls();
+	auto it = find(controls.begin(), controls.end(), focused);
+	do
+		if (it == controls.end() || ++it == controls.end())
+			it = controls.begin();
+	while (!(*it)->isFocus() && (*it)->getVisability());
+	Control::setFocused(*it);
+};
+
+EventEngine::EventEngine(DWORD input, DWORD output )
+	: _console(GetStdHandle(input)), _graphics(Graphics::getInstance(output)){
 	// Retrieves the current input/output mode of a console's input/output buffer
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT | ENABLE_EXTENDED_FLAGS);
 }
 
-void EventEngine::run(Control &c)
-{
+void EventEngine::run(Control &c){
 	vector<IControl*> controls;
 	// infinite loop
 	if(controls.size() > 0) IControl::setFocused(controls[0]);
@@ -80,13 +89,3 @@ void EventEngine::run(Control &c)
 
 }
 
-void EventEngine::moveFocus(Control &main, Control *focused)
-{
-	vector<IControl*> controls = main.getAllControls();
-	auto it = find(controls.begin(), controls.end(), focused);
-	do
-		if (it == controls.end() || ++it == controls.end())
-			it = controls.begin();
-	while (!(*it)->isFocus() && (*it)->getVisability());
-	Control::setFocused(*it);
-};
