@@ -13,6 +13,9 @@ struct MyListener : public MouseListener
 private:
 	Control &_c;
 };
+
+
+
 int main(int argc, char **argv)
 {
 Label lName(20);
