@@ -51,4 +51,8 @@ void RadioList::clearSelection(){
 
 RadioList::~RadioList()
 {
+	for (int i = 0; i < btn.size();i++) {
+		btn[i].deleteEventListener();
+	}
+	
 }
