@@ -14,14 +14,8 @@ private:
 	Control &_c;
 };
 int main(int argc, char **argv)
-{/*
-	vector<string> str = { "hello", "you" };
-	RadioList r(20, 20, str);
-	Panel main(40, 40);
-	main.addControl(r, 2, 2);
-	EventEngine engine;
-	engine.run(main);*/
-	Label lName(20);
+{
+Label lName(20);
 	lName.setValue("Name: ");
 
 	Label lAddress(20);
@@ -35,7 +29,7 @@ int main(int argc, char **argv)
 	Label lAge(20);
 	lAge.setValue("Age:");
 	TextBox tName(20);
-	tName.setValue("dd");
+	tName.setValue("Sherlock Holmes");
 	tName.setBorder(BorderType::Single);
 	tName.setBackgroundColor(Color::Green);
 	tName.setForegroundColor(Color::Blue);
@@ -57,22 +51,23 @@ int main(int argc, char **argv)
 	Button bSubmit("Submit",10);
 	bSubmit.AddListener(listener);
 	bSubmit.setBorder(BorderType::Double);
-	Panel main(60,60);
-	main.addControl(lName, 1, 2);
-	main.addControl(lAddress, 1, 5);
-	main.addControl(lCountry, 1, 8);
-	main.addControl(lSex, 1, 11);
-	main.addControl(lInterests, 1, 15);
-	main.addControl(lAge, 1, 20);
-	
-	main.addControl(cCountry, 25, 8);
-	main.addControl(rSex, 25, 11);
-	main.addControl(clInterests, 25, 15);
-	main.addControl(nAge, 25, 20);
+	MsgBox msg(5, 20, "Are you Ok?");
+	Panel main(100,100);
+	main.addControl(lName, 1, 3);
+	main.addControl(lAddress, 1, 6);
+	main.addControl(lCountry, 1, 10);
+	main.addControl(lSex, 1, 22);
+	main.addControl(lInterests, 1, 34);
+	main.addControl(lAge, 1, 40);
+	main.addControl(tName, 25, 3);
+	main.addControl(tAddress, 25, 6);
+	main.addControl(cCountry, 25, 10);
+	main.addControl(rSex, 25, 22);
+	main.addControl(clInterests, 25, 34);
+	main.addControl(nAge, 25, 40);
+	main.addControl(msg, 10, 10);
 
-	main.addControl(tName, 25, 2);
-	main.addControl(tAddress, 25, 5);
-	main.addControl(bSubmit, 1, 22);
+	main.addControl(bSubmit, 1, 45);
 	Control::setFocused(&tName);
 	EventEngine engine;
 	engine.run(main);

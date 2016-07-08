@@ -1,6 +1,6 @@
 #include "ComboBox.h"
 
-ComboBox::ComboBox(int width,vector<string> options):Panel(3,width),value(width - 4,""),radio(options.size()*3,width,options), openB("V",1),open(false){
+ComboBox::ComboBox(int width,vector<string> options):Panel(3,width),value(width - 4,""),radio(options.size(),width,options), openB("V",1),open(false){
 	listener = new openBoxListener(*this);
 	openB.AddListener(*listener);
 	radio.setVisability(false);
@@ -24,7 +24,7 @@ void ComboBox::draw()
 void ComboBox::setCoord(COORD c)
 {
 	Panel::setCoord(c);
-	c.Y += 3;
+	c.Y += 4;
 	this->radio.setCoord(c);
 }
 vector<IControl*> ComboBox::getAllControls()
