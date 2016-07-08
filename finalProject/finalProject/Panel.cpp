@@ -91,14 +91,32 @@ vector<IControl*> Panel::getAllControls() {
 //----------------------------------------------------------------
 
 void Panel::setInLocation(IControl& control) {
-
-	IControl* temp;
-	int currentX, currentY, index = 0;
+	if (!_innerPanels.size()) {
+		_innerPanels.push_back(&control);
+			return;
+	};
+	int currentX, currentY;
 	int controlX = control.getCoord().X;
 	int controlY = control.getCoord().Y;
 
-	vector<IControl*> tempVec;
-
+	
+	for (auto it = this->_innerPanels.begin(); it != this->_innerPanels.end(); ++it) {
+			if (controlY < (*it)->getCoord().Y) {
+				_innerPanels.insert(it, &control);
+				return;
+			}
+			else if (controlY == (*it)->getCoord().Y) {
+				if (controlX <= (*it)->getCoord().X) {
+					_innerPanels.insert(it, &control);
+					return;
+				}
+			}
+		}
+	
+	_innerPanels.insert(_innerPanels.end(), &control);
+	return;
+	}
+	/*
 	for (int i = 0; i < _innerPanels.size(); i++) {
 		currentX = (*_innerPanels[i]).getCoord().X;
 		currentY = (*_innerPanels[i]).getCoord().Y;
@@ -112,15 +130,8 @@ void Panel::setInLocation(IControl& control) {
 		}
 	}
 
-	if (index == 0) {
-		for (int i = 0; i < _innerPanels.size(); i++)
+	for (int i = 0; i < index; i++) 		
 			tempVec.push_back(_innerPanels[i]);
-	}
-
-	else {
-		for (int i = 0; i < index ; i++)
-			tempVec.push_back(_innerPanels[i]);
-	}
 	
 	tempVec.push_back(&control);
 
@@ -128,8 +139,8 @@ void Panel::setInLocation(IControl& control) {
 		tempVec.push_back(_innerPanels[i]);
 
 	_innerPanels = tempVec;
+	*/
 
-}
 
 
 
