@@ -1,5 +1,8 @@
 #include "RadioList.h"
 
+void RadioList::addControl(IControl& control, int left, int top) {
+	Panel::addControl(control, left, top);
+}
 
 RadioList::RadioList(int height, int width, vector<string> options) :Panel(height, width), selectedIndex(-1),size(options.size()), ops(options.size(), Label(width - 3, "")), btn(options.size(), RadioListButton(this))
 {
@@ -21,11 +24,6 @@ void RadioList::draw() {
 			ops[i].setForegroundColor(this->getForegroundColor());
 	}
 	Panel::draw();
-}
-
-
-void RadioList::addControl(IControl& control, int left, int top) {
-	Panel::addControl(control, left, top);
 }
 
 int RadioList::getSelectedIndex() {
@@ -55,15 +53,17 @@ void RadioList::setSelectedIndex(int index) {
 	}
 }
 
+void RadioList::clearSelection() {
+	if (selectedIndex >= 0) btn[selectedIndex].setValue("( )");
+	this->selectedIndex = -1;
+};
+
+
 string RadioList::getValue()
 {
 	if (selectedIndex < 0) return "";
 	return this->ops[selectedIndex].GetValue();
 }
-void RadioList::clearSelection(){
-	if (selectedIndex >= 0) btn[selectedIndex].setValue("( )");
-	this->selectedIndex = -1;
-};
 
 RadioList::~RadioList()
 {

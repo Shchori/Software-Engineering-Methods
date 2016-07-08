@@ -25,8 +25,9 @@ protected:
 	bool _focus;
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
-	
+
 public:
+	virtual void draw() = 0;
 	static void setFocused(IControl* c);
 	static IControl* getFocused() { return IControl::focused; };
 	bool isFocus() { return _focus; };
@@ -44,13 +45,13 @@ public:
 	virtual void setCoord(COORD c);
 	virtual void _setLayer(int layer) { _layer = layer; };
 	virtual void setCoord(int x, int y) { COORD c = { x,y }; this->setCoord(c); };
-	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
 	bool getCruserVisability() {return this->_showcruser;};
 	bool beetween(int p, int x1, int x2);
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
 	int getLayer() { return _layer; };
-	inline virtual ~IControl() {};
 	virtual vector<IControl*> getAllControls();
+	inline virtual ~IControl() {};
+
 };

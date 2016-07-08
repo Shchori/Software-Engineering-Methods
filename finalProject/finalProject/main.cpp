@@ -13,6 +13,17 @@ struct MyListener : public MouseListener
 private:
 	Control &_c;
 };
+struct MyListener2 : public MouseListener
+{
+	MyListener2(Control &c) : _c(c) { }
+	void mousePressed(Button &b, int x, int y, bool isLeft)
+	{
+		EventEngine e;
+		e.run(_c);
+	}
+private:
+	Control &_c;
+};
 int main(int argc, char **argv)
 {
 Label lName(20);
@@ -51,23 +62,35 @@ Label lName(20);
 	Button bSubmit("Submit",10);
 	bSubmit.AddListener(listener);
 	bSubmit.setBorder(BorderType::Double);
+	Button next("next page", 12);
+	next.setBorder(BorderType::Double);
+	Panel page2(50, 50);
+	MsgBox msg2(5, 20, "Are you Ok?", "hello");
+	page2.addControl(msg2,20,20);
+	page2.addControl(tName, 2, 2);
+	MyListener2 listener2(page2);
+	next.AddListener(listener2);
+	next.setBackgroundColor(Color::Purple);
+	bSubmit.setBorder(BorderType::Double);
 	MsgBox msg(5, 20, "Are you Ok?", "hello");
 	Panel main(100,100);
 	main.addControl(lName, 1, 3);
 	main.addControl(lAddress, 1, 6);
 	main.addControl(lCountry, 1, 10);
-	main.addControl(lSex, 1, 22);
-	main.addControl(lInterests, 1, 34);
-	main.addControl(lAge, 1, 40);
+	main.addControl(lSex, 1, 15);
+	main.addControl(lInterests, 1, 20);
+	main.addControl(lAge, 1, 27);
 	main.addControl(tName, 25, 3);
 	main.addControl(tAddress, 25, 6);
 	main.addControl(cCountry, 25, 10);
-	main.addControl(rSex, 25, 22);
-	main.addControl(clInterests, 25, 34);
-	main.addControl(nAge, 25, 40);
-	main.addControl(msg, 10, 10);
-	main.addControl(bSubmit, 1, 45);
+	main.addControl(rSex, 25, 15);
+	main.addControl(clInterests, 25, 20);
+	main.addControl(nAge, 25, 27);
+	main.addControl(msg, 15, 10);
+	main.addControl(bSubmit, 1, 32);
+	main.addControl(next, 65, 3);
 	EventEngine engine;
+
 	engine.run(main);
 	return 0;
 }
