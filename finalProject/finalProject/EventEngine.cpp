@@ -23,7 +23,7 @@ void EventEngine::run(Control &c)
 		{
 			_graphics.clearScreen();
 				c.draw();
-				_graphics.setCursorVisibility(IControl::getFocused()->getCruserVisability());
+				if(IControl::getFocused())_graphics.setCursorVisibility(IControl::getFocused()->getCruserVisability());
 			redraw = false;
 		}
 		_graphics.setCursorPosition(temp);

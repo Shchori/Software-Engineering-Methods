@@ -11,8 +11,8 @@ MsgBox::MsgBox(int height, int width, string str) :Panel(height, width), text(wi
 	btns[1].setBorder(b);
 	setBorder(b);
 
-	btns[0].setCoord((width / 2) - 8, height - 5);
-	btns[1].setCoord((width / 2) + 2, height - 5);
+	btns[0].setCoord((width / 2) - 8, height - 2);
+	btns[1].setCoord((width / 2) + 2, height - 2);
 	text.setCoord(2, 1);
 	addControl(text,text.getCoord().X, text.getCoord().Y);
 

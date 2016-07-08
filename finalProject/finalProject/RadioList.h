@@ -37,8 +37,8 @@ protected:
 		RadiolistMouseListener() {};
 		void mousePressed(Button &b, int x, int y, bool isLeft) {
 			if (RadioListButton* rb = dynamic_cast<RadioListButton*>(&b)) {
-				if (rb->index == rb->radioList->selectedIndex) rb->radioList->clearSelection();
-				else	rb->radioList->setSelectedIndex(rb->index+1);
+				//if (rb->index == rb->radioList->selectedIndex) rb->radioList->clearSelection();
+				rb->radioList->setSelectedIndex(rb->index);
 			}
 		};
 		~RadiolistMouseListener() {

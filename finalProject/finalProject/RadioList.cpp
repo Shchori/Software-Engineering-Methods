@@ -34,9 +34,22 @@ int RadioList::getSelectedIndex() {
 }
 
 void RadioList::setSelectedIndex(int index) {
-	if(selectedIndex >= 0)btn[selectedIndex].setValue("( )");
-	selectedIndex = index-1;
-	btn[selectedIndex].setValue("(X)");
+	if (selectedIndex == -1) {
+		selectedIndex = index;
+		btn[selectedIndex].setValue("(X)");
+	}
+	else {
+		if(selectedIndex == index) {
+			btn[selectedIndex].setValue("( )");
+			selectedIndex = -1;
+		}
+		else {
+			btn[selectedIndex].setValue("( )");
+			btn[index].setValue("(X)");
+			selectedIndex = index;
+		}
+		
+	}
 }
 
 string RadioList::getValue()
