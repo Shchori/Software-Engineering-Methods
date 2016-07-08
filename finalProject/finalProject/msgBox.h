@@ -12,12 +12,15 @@ private:
 	//vector<Button> btns;
 	vector<MsgBoxButton> btns;
 	Label text;
+	Label title;
 	string pressedValue;
 protected:
 	virtual void addControl(IControl& control, int left, int top);
 public:
-	MsgBox(int height, int width, string str="");
+	MsgBox(int height, int width, string str="", string title="");
 	void setText(string text);
+	string getTitle();
+	void setTitle(string title);
 	string getText();
 	string getPressedValue();
 	void setPressedValue(string value);
