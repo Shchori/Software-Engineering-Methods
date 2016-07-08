@@ -4,8 +4,10 @@
 #include "button.h"
 #include "RadioList.h"
 
+struct openBoxListener;
 class ComboBox: public Panel{
 private:
+	
 	class radioListForComboBox :public RadioList {
 	public:
 		radioListForComboBox(int height, int width, vector<string> options) :RadioList(height, width, options){};
@@ -18,7 +20,31 @@ private:
 	radioListForComboBox radio;
 	Button openB;
 	bool open;
+	openBoxListener *listener;
 public:
 	ComboBox(int width, vector<string> options);
+	void setOpen(bool open) { radio.setVisability(open); this->open = open; };
+	bool getOpen() { return open; };
+	void draw();
+	void setCoord(COORD c);
+	vector<IControl*> getAllControls();
 };
 
+
+struct openBoxListener :public MouseListener
+{
+private:
+	ComboBox *_box;
+
+public:
+	openBoxListener(ComboBox &box) :_box(&box) {}
+
+	void mousePressed(Button &b, int x, int y, bool isLeft) {
+		COORD c = { x,y };
+		if (b.inArea(c) && isLeft)
+		{
+			this->_box->setOpen(!_box->getOpen());
+		}
+
+	}
+};

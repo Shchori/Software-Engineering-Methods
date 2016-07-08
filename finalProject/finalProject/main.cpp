@@ -15,7 +15,7 @@
 #include "RadioList.h"
 #include "EventEngine.h"
 #include "NumericBox.h"
-
+#include "ComboBox.h"
 using namespace std;
 
 int main() { 
@@ -23,7 +23,7 @@ int main() {
 	g.clearScreen();
 	BorderType b = BorderType::Double;
 	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
-	RadioList r(15, 15, ops);
+	ComboBox r(15, ops);
 	r.setBorder(BorderType::Double);
 	r.setBackgroundColor(Color::Green);
 	r.setForegroundColor(Color::Red);
@@ -38,10 +38,9 @@ int main() {
 
 	Panel main(60, 60);
 	//main.addControl(num, 0, 0);
-	main.addControl(r2, 0, 0);
-	main.draw();
-
+	main.addControl(r, 0, 0);
 	EventEngine handle;
+	main.draw();
 	handle.run(main);
 	getchar();
 	
