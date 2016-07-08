@@ -19,6 +19,11 @@ private:
 	int _maxVal;
 	int _currentVal;
 
+protected:
+	void addControl(IControl& control, int left, int top) {
+		Panel::addControl(control, left, top);
+	}
+
 public:
 	NumericBox(int width, int minVal, int maxVal);
 	int getValue() { return _currentVal; }

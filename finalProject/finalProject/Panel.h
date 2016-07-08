@@ -9,6 +9,7 @@
 using namespace std;
 
 class Panel : public IControl {
+	
 protected:
 	vector<IControl*> _innerPanels;
 	void setInLocation(IControl& control);

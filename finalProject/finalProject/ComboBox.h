@@ -21,6 +21,11 @@ private:
 	Button openB;
 	bool open;
 	openBoxListener *listener;
+
+protected:
+	void addControl(IControl& control, int left, int top) {
+		Panel::addControl(control, left, top);
+	}
 public:
 	ComboBox(int width, vector<string> options);
 	void setOpen(bool open) { radio.setVisability(open); this->open = open; };

@@ -11,7 +11,17 @@ class RadioListButton;
 
 class RadioList : public Panel
 {
+	
+private:
 	friend RadioListButton;
+
+protected:
+	virtual void addControl(IControl& control, int left, int top);
+	int size;
+	int selectedIndex;
+	vector<Label> ops;
+	vector<RadioListButton> btn;
+
 public:
 	RadioList(int height, int width, vector<string> options);
 	void draw();
@@ -20,12 +30,7 @@ public:
 	void clearSelection();
 	string getValue();
 	~RadioList();
-protected:
-	virtual void addControl(IControl& control, int left, int top);
-	int size;
-	int selectedIndex;
-	vector<Label> ops;
-	vector<RadioListButton> btn;
+
 };
 
 class RadioListButton : public Button {
