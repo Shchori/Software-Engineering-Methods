@@ -54,9 +54,6 @@ void Panel::addControl(IControl& control, int left, int top)
 	}
 	
 
-	else
-	 flag = true;
-
 	if (!flag)
 	{
 		control.setCoord(topLeftCoord);

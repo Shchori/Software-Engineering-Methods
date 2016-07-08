@@ -5,11 +5,10 @@ RadioList::RadioList(int height, int width, vector<string> options) :Panel(heigh
 {
 	g.setCursorVisibility(false);
 	for (int i = 0; i < size; ++i) {
-		COORD c1 = { 1, i * 2 + 1 };
-		COORD c2 = { 6, i * 2 + 1 };
+		COORD c1 = { 1, i };
+		COORD c2 = { 6, i };
 		ops[i].setValue(options[i]);
 		btn[i].setIndex(i);
-		btn[i].mousePressed(3, 2, true);
 		addControl(btn[i], c1.X, c1.Y);
 		addControl(ops[i], c2.X, c2.Y);
 	}
