@@ -11,8 +11,8 @@ ComboBox::ComboBox(int width,vector<string> options):Panel(3,width),value(width 
 	openB.setBorder(BorderType::Single);
 	this->_setLayer(1);
 }
-void ComboBox::draw()
-{
+
+void ComboBox::draw(){
 	this->value.setValue(radio.getValue());
 	Panel::draw();
 	if (open) {
@@ -21,14 +21,14 @@ void ComboBox::draw()
 		radio.draw();
 	}
 }
-void ComboBox::setCoord(COORD c)
-{
+
+void ComboBox::setCoord(COORD c){
 	Panel::setCoord(c);
 	c.Y += 4;
 	this->radio.setCoord(c);
 }
-vector<IControl*> ComboBox::getAllControls()
-{
+
+vector<IControl*> ComboBox::getAllControls(){
 		vector<IControl*> tempVec, result;
 	result = Panel::getAllControls();
 	if (open) {

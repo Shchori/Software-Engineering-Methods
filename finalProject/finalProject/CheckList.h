@@ -8,8 +8,8 @@ private:
 	int* selectedIndexes;
 public:
 	CheckList(int height, int width, vector<string> options);
-	vector<string> getSelectedIndexes();
 	void setSelectedIndex(int index);
+	vector<string> getSelectedIndexes();
 	void clearSelection();
 	~CheckList();
 };

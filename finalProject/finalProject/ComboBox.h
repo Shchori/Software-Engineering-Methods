@@ -7,7 +7,6 @@
 struct openBoxListener;
 class ComboBox: public Panel{
 private:
-	
 	class radioListForComboBox :public RadioList {
 	public:
 		radioListForComboBox(int height, int width, vector<string> options) :RadioList(height, width, options){};
@@ -21,7 +20,6 @@ private:
 	Button openB;
 	bool open;
 	openBoxListener *listener;
-
 protected:
 	void addControl(IControl& control, int left, int top) {
 		Panel::addControl(control, left, top);
