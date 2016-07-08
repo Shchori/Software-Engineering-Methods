@@ -13,6 +13,8 @@ private:
 	Button _plus;
 	Button _minus;
 	Label _val;
+	MouseListener* _plusP;
+	MouseListener* _minusP;
 	int _minVal;
 	int _maxVal;
 	int _currentVal;
@@ -22,5 +24,8 @@ public:
 	int getValue() { return _currentVal; }
 	void setValue(int value);
 	void draw() { Panel::draw(); }
-	~NumericBox(){}
+	virtual ~NumericBox(){
+		delete _minusP;
+		delete _plusP;
+	}
 };

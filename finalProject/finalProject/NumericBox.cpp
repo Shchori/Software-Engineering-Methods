@@ -48,11 +48,11 @@ NumericBox::NumericBox(int width, int minVal, int maxVal) :Panel(1, width),_plus
 	_plus.setBorder(b);
 	Panel::setBorder(b);
 
-	Plus_Struct * plus = new plusListener(*this);
-	_plus.AddListener(*plus);
+	_plusP = new plusListener(*this);
+	_plus.AddListener(*_plusP);
 
-	Minus_Struct * minus = new Minus_Struct(*this);
-	_minus.AddListener(*minus);
+	_minusP = new Minus_Struct(*this);
+	_minus.AddListener(*_minusP);
 
 	addControl(_plus, 0, 0);
 	addControl(_val, ((int)(width/2)) - 1, 0);
