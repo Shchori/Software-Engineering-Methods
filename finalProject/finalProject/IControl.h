@@ -21,11 +21,10 @@ protected:
 	Color _backGroundColor;
 	Graphics g;
 	bool _showcruser;
-	bool _cursorVisability;
+	bool _visability;
 	bool _focus;
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
-	void _setLayer(int layer) { _layer = layer; };
 	
 public:
 	static void setFocused(IControl* c);
@@ -33,8 +32,8 @@ public:
 	bool isFocus() { return _focus; };
 	virtual int getHeight() { return (_borderType==BorderType::None)?height:height + 2; };
 	virtual int getWidth() { return (_borderType == BorderType::None) ? width : width + 2; };
-	void setVisability(bool visability) { _cursorVisability = visability; };//of the cursor
-	bool getVisability() { return _cursorVisability; };//of the cursor
+	void setVisability(bool visability) { _visability = visability; };//of the cursor
+	bool getVisability() { return _visability; };//of the cursor
 	BorderType getBorder() { return _borderType; };
 	void setBorder(BorderType border) { _borderType = border; draw(); };
 	void setBackgroundColor(Color background) { _backGroundColor = background; }
@@ -43,6 +42,7 @@ public:
 	Color getForegroundColor() { return _foregroundColor; };
 	virtual COORD getCoord() { 	return _coord; };
 	virtual void setCoord(COORD c);
+	virtual void _setLayer(int layer) { _layer = layer; };
 	virtual void setCoord(int x, int y) { COORD c = { x,y }; this->setCoord(c); };
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);

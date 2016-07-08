@@ -12,7 +12,7 @@ class Button;
 
 struct MouseListener
 {
-	virtual void MousePressed(Button &b, int x, int y, bool isLeft) = 0;
+	virtual void mousePressed(Button &b, int x, int y, bool isLeft) = 0;
 	
 };
 
@@ -23,7 +23,7 @@ struct MouseListener
 class Button :public Label,public IControlResponser
 {
 protected:
-	MouseListener *event;
+	struct MouseListener *event;
 	
 public:
 	Button(string str, int width);

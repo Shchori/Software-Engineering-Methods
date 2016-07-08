@@ -11,19 +11,36 @@
 #include "TextBox.h"
 #include <iostream>
 #include "Button.h"
-#include "NumericBox.h"
 #include "TextBox.h"
 #include "RadioList.h"
 #include "EventEngine.h"
+
 using namespace std;
 
 int main() { 
 	Graphics g = Graphics::getInstance();
 	g.clearScreen();
+	BorderType b = BorderType::Double;
 	vector<string> ops = { "Hi","You","Fuckers",":-)","<3" };
 	RadioList r(15, 15, ops);
+	r.setBorder(BorderType::Double);
+	r.setBackgroundColor(Color::Green);
+	r.setForegroundColor(Color::Red);
+	RadioList r2(15, 15, ops);
+	r2.setBorder(BorderType::Single);
+	TextBox box(8, "ggggg");
+	box.setBorder(b);
+
+
+
+	Panel main(60, 60);
+	main.addControl(r, 0, 0);
+	main.addControl(r2, 22, 20);
+	main.draw();
+
 	EventEngine handle;
-	handle.run(r);
+	handle.run(main);
+	getchar();
 	
 }
 

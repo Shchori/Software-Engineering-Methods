@@ -12,7 +12,7 @@ Button::~Button()
 }
 
 
-void Button::AddListener(MouseListener & listener)
+void Button::AddListener(MouseListener &listener)
 {
 	this->event = &listener;
 
@@ -29,8 +29,8 @@ void Button::mousePressed(int x, int y, bool isLeftPressed)
 {
 	COORD c{ x,y };
 	if (this->event && this->inArea(c)) {
+		this->event->mousePressed(*this, x, y, true);
 		IControl::setFocused(this);
-		this->event->MousePressed(*this, x, y, true);
 	}
 }
 
@@ -38,7 +38,7 @@ void Button::keyDown(WORD code, char c)
 {
 	if (code == VK_RETURN && event)
 	{
-		this->event->MousePressed(*this, this->getCoord().X , this->getCoord().Y, true);
+		this->event->mousePressed(*this, this->getCoord().X , this->getCoord().Y, true);
 	}
 
 }

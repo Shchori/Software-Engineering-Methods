@@ -4,17 +4,14 @@ IControl* IControl::focused = NULL;
 
 void IControl::setFocused(IControl* c) {
 	if (c) {
-		if(IControl::focused) IControl::focused->_focus = false;
-		c->_focus = true;
 		IControl::focused = c;
-		c->setBackgroundColor(Color::Red);
 	}
 }
 
 
 IControl::IControl(int height, int width):
 	height(height),width(width),_backGroundColor(Color::Black),_showcruser(false),
-		 _cursorVisability(true), _focus(false), _borderType(BorderType::None), _foregroundColor(Color::White), g(Graphics::getInstance())
+	_visability(true), _focus(false), _borderType(BorderType::None), _foregroundColor(Color::White), g(Graphics::getInstance())
 {
 
 	this->_CoordSet = false;
@@ -55,10 +52,16 @@ void IControl::drawBorder() {
 }
 
 void IControl::draw() {
-	if (_cursorVisability || this->_isCoordSet()) {
-		g.setCursorVisibility(this->_cursorVisability);
-		g.setBackground(this->_backGroundColor);
-		g.setForeground(this->_foregroundColor);
+	if (_visability || this->_isCoordSet()) {
+		g.setCursorVisibility(this->_showcruser);
+		if (IControl::focused == this) {
+			g.setBackground(this->_foregroundColor);
+			g.setForeground(this->_backGroundColor);
+		}
+		else {
+			g.setBackground(this->_backGroundColor);
+			g.setForeground(this->_foregroundColor);
+		}
 		g.updateConsoleAttributes();
 		this->drawBorder();
 	}

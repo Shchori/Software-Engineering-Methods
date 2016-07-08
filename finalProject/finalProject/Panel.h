@@ -8,17 +8,24 @@
 
 using namespace std;
 
-class Panel: public IControl {
-	protected:
-		vector<IControl*> _innerPanels;
-		void setInLocation(IControl& control);
-
+class Panel : public IControl {
+protected:
+	vector<IControl*> _innerPanels;
+	void setInLocation(IControl& control);
+	
 	public:
 		Panel(int height, int width);
 		void addControl(IControl& control, int left, int top);
 		void draw();
 		void setCoord(COORD c);
+		virtual void _setLayer(int layer) {
+			IControl::_setLayer(layer);
+			for (int i = 0; i < _innerPanels.size(); i++) {
+				_innerPanels[i]->_setLayer(layer);
+			}
+		}
 		vector<IControl*> getAllControls();
 		virtual ~Panel() {};
+
 
 };

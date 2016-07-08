@@ -11,7 +11,7 @@ class TextBox : public Label, public IControlResponser
 {
 private:
 
-public:
+public:          
 	TextBox(int width, string str);
 	void draw();
 	void keyDown(WORD code, char c);
