@@ -8,20 +8,23 @@ class MsgBoxButton;
 
 class MsgBox: public Panel
 {
-	//vector<Button> btns;
+private:
 	vector<MsgBoxButton> btns;
 	Label text;
+	Label title;
 	string pressedValue;
+protected:
+	virtual void addControl(IControl& control, int left, int top);
 public:
-	MsgBox(int height, int width, string str="");
+	MsgBox(int height, int width, string str="", string title="");
 	void setText(string text);
 	string getText();
+	void setTitle(string title);
+	string getTitle();
 	string getPressedValue();
 	void setPressedValue(string value);
 	void draw();
 	virtual ~MsgBox();
-protected:
-	virtual void addControl(IControl& control, int left, int top);
 
 };
 

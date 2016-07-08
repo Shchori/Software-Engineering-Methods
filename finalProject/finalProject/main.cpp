@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 	Button bSubmit("Submit",10);
 	bSubmit.AddListener(listener);
 	bSubmit.setBorder(BorderType::Double);
-	MsgBox msg(5, 20, "Are you Ok?");
+	MsgBox msg(5, 20, "Are you Ok?", "hello");
 	Panel main(100,100);
 	main.addControl(lName, 1, 3);
 	main.addControl(lAddress, 1, 6);
@@ -66,7 +66,6 @@ int main(int argc, char **argv)
 	main.addControl(clInterests, 25, 34);
 	main.addControl(nAge, 25, 40);
 	main.addControl(msg, 10, 10);
-
 	main.addControl(bSubmit, 1, 45);
 	Control::setFocused(&tName);
 	EventEngine engine;
