@@ -34,16 +34,20 @@ int RadioList::getSelectedIndex() {
 }
 
 void RadioList::setSelectedIndex(int index) {
+	//for users the index starts from 1
+	index--;
+	//if nothing has selected
 	if (selectedIndex == -1) {
 		selectedIndex = index;
 		btn[selectedIndex].setValue("(X)");
 	}
 	else {
+		//if clicked selected Index
 		if(selectedIndex == index) {
 			btn[selectedIndex].setValue("( )");
 			selectedIndex = -1;
 		}
-		else {
+		else {//if click new index
 			btn[selectedIndex].setValue("( )");
 			btn[index].setValue("(X)");
 			selectedIndex = index;

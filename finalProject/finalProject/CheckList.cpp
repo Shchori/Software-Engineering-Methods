@@ -22,7 +22,7 @@ void CheckList::clearSelection() {
 }
 
 void CheckList::setSelectedIndex(int index) {
-	selectedIndex = index;
+	selectedIndex = index - 1;
 	selectedIndexes[selectedIndex] = 1- selectedIndexes[selectedIndex];
 	(selectedIndexes[selectedIndex])? btn[selectedIndex].setValue("(X)") : btn[selectedIndex].setValue("( )");
 }

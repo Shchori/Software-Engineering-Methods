@@ -16,11 +16,9 @@ private:
 int main(int argc, char **argv)
 {
 	vector<string> str = { "hello", "you" };
-	CheckList r(10, 20, str);
-	//CheckList c(10, 10, str);
+	RadioList r(20, 20, str);
 	Panel main(40, 40);
 	main.addControl(r, 2, 2);
-	//main.addControl(c, 2, 15);
 	EventEngine engine;
 	engine.run(main);
 	/*Label lName(20);
@@ -37,7 +35,7 @@ int main(int argc, char **argv)
 	Label lAge(20);
 	lAge.setValue("Age:");
 	TextBox tName(20);
-	tName.setValue("ffff");
+	tName.setValue("Sherlock Holmes");
 	tName.setBorder(BorderType::Single);
 	tName.setBackgroundColor(Color::Green);
 	tName.setForegroundColor(Color::Blue);
