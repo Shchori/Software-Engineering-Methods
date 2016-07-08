@@ -29,7 +29,7 @@ void ComboBox::setCoord(COORD c)
 }
 vector<IControl*> ComboBox::getAllControls()
 {
-	vector<IControl*> tempVec, result;
+		vector<IControl*> tempVec, result;
 	result = Panel::getAllControls();
 	if (open) {
 		tempVec = radio.getAllControls();

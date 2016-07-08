@@ -1,6 +1,6 @@
 #include "TextBox.h"
 
-TextBox::TextBox(int width, string str = "") :Label(width, str){
+TextBox::TextBox(int width, string str ) :Label(width, str){
 	this->_focus = true;
 }
 
@@ -9,6 +9,7 @@ void TextBox::draw() {
 }
 
 void TextBox::mousePressed(int x, int y, bool isLeftPressed) {
+	IControl::setFocused(this);
 	if(isLeftPressed) {
 		COORD c = { x,y };
 		if (Label::inArea(c)) {
