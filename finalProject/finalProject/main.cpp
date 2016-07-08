@@ -15,7 +15,7 @@ private:
 };
 int main(int argc, char **argv)
 {
-	Label lName(20);
+Label lName(20);
 	lName.setValue("Name: ");
 
 	Label lAddress(20);

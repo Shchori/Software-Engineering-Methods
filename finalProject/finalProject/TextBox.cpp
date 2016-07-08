@@ -23,8 +23,8 @@ void TextBox::mousePressed(int x, int y, bool isLeftPressed) {
 				 c.X = x;
 			 else if (x > totalCoord)
 				 c.X = totalCoord ;
-			 else
-				 c.X = Label::getCoord().X + 1;
+			 else if(this->GetValue().length() == 0)
+				 c.X = Label::getCoord().X + 2;
 			 c.Y = Label::getHeight() + Label::getCoord().Y - 2;
 			 Graphics g = Graphics::getInstance();
 			 g.setCursorPosition(c);
