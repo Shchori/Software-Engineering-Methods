@@ -14,14 +14,14 @@ private:
 	Control &_c;
 };
 int main(int argc, char **argv)
-{
+{/*
 	vector<string> str = { "hello", "you" };
 	RadioList r(20, 20, str);
 	Panel main(40, 40);
 	main.addControl(r, 2, 2);
 	EventEngine engine;
-	engine.run(main);
-	/*Label lName(20);
+	engine.run(main);*/
+	Label lName(20);
 	lName.setValue("Name: ");
 
 	Label lAddress(20);
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 	Label lAge(20);
 	lAge.setValue("Age:");
 	TextBox tName(20);
-	tName.setValue("ffff");
+	tName.setValue("dd");
 	tName.setBorder(BorderType::Single);
 	tName.setBackgroundColor(Color::Green);
 	tName.setForegroundColor(Color::Blue);
@@ -64,17 +64,18 @@ int main(int argc, char **argv)
 	main.addControl(lSex, 1, 11);
 	main.addControl(lInterests, 1, 15);
 	main.addControl(lAge, 1, 20);
-	main.addControl(tName, 25, 2);
-	main.addControl(tAddress, 25, 5);
+	
 	main.addControl(cCountry, 25, 8);
 	main.addControl(rSex, 25, 11);
 	main.addControl(clInterests, 25, 15);
 	main.addControl(nAge, 25, 20);
 
+	main.addControl(tName, 25, 2);
+	main.addControl(tAddress, 25, 5);
 	main.addControl(bSubmit, 1, 22);
 	Control::setFocused(&tName);
 	EventEngine engine;
-	engine.run(main);*/
+	engine.run(main);
 	return 0;
 }
 

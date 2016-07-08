@@ -115,8 +115,15 @@ void Panel::setInLocation(IControl& control) {
 		}
 	}
 
-	for (int i = 0; i < index; i++) 		
+	if (index == 0) {
+		for (int i = 0; i < _innerPanels.size(); i++)
 			tempVec.push_back(_innerPanels[i]);
+	}
+
+	else {
+		for (int i = 0; i < index ; i++)
+			tempVec.push_back(_innerPanels[i]);
+	}
 	
 	tempVec.push_back(&control);
 
