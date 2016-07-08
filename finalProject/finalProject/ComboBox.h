@@ -28,6 +28,8 @@ public:
 	void draw();
 	void setCoord(COORD c);
 	vector<IControl*> getAllControls();
+	int getSelectedIndex() { return this->radio.getSelectedIndex(); };
+	void setSelectedIndex(int index) { radio.setSelectedIndex(index); };
 };
 
 

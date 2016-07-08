@@ -5,6 +5,7 @@ IControl* IControl::focused = NULL;
 void IControl::setFocused(IControl* c) {
 	if (c) {
 		IControl::focused = c;
+		c->g.setCursorVisibility(c->getCruserVisability());
 	}
 }
 

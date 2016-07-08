@@ -81,10 +81,10 @@ void EventEngine::run(Control &c)
 void EventEngine::moveFocus(Control &main, Control *focused)
 {
 	vector<IControl*> controls = main.getAllControls();
-	auto it = find(controls.rbegin(), controls.rend(), focused);
+	auto it = find(controls.begin(), controls.end(), focused);
 	do
-		if (++it == controls.rend())
-			it = controls.rbegin();
+		if (++it == controls.end())
+			it = controls.begin();
 	while (!(*it)->isFocus());
 	Control::setFocused(*it);
 };

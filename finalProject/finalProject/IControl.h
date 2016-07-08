@@ -32,10 +32,10 @@ public:
 	bool isFocus() { return _focus; };
 	virtual int getHeight() { return (_borderType==BorderType::None)?height:height + 2; };
 	virtual int getWidth() { return (_borderType == BorderType::None) ? width : width + 2; };
-	void setVisability(bool visability) { _visability = visability; };//of the cursor
+	virtual void setVisability(bool visability) { _visability = visability; };//of the cursor
 	bool getVisability() { return _visability; };//of the cursor
 	BorderType getBorder() { return _borderType; };
-	void setBorder(BorderType border) { _borderType = border; draw(); };
+	void setBorder(BorderType border) { _borderType = border; };
 	void setBackgroundColor(Color background) { _backGroundColor = background; }
 	Color getBackgroundColor() { return _backGroundColor; }
 	void setForegroundColor(Color Color) { _foregroundColor = Color; }
@@ -46,6 +46,7 @@ public:
 	virtual void setCoord(int x, int y) { COORD c = { x,y }; this->setCoord(c); };
 	virtual void draw() = 0;
 	virtual bool inArea(COORD c);
+	bool getCruserVisability() {return this->_showcruser;};
 	bool beetween(int p, int x1, int x2);
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
