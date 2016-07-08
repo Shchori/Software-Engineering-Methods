@@ -1,5 +1,5 @@
 #include "EventEngine.h"
-
+#include "TextBox.h"
 
 EventEngine::EventEngine(DWORD input, DWORD output )
 	: _console(GetStdHandle(input)), _graphics(Graphics::getInstance(output))
@@ -11,6 +11,7 @@ EventEngine::EventEngine(DWORD input, DWORD output )
 
 void EventEngine::run(Control &c)
 {
+	_graphics.setCursorVisibility(false);
 	vector<IControl*> controls;
 	// infinite loop
 	if(controls.size() > 0) IControl::setFocused(controls[0]);
@@ -27,7 +28,11 @@ void EventEngine::run(Control &c)
 			redraw = false;
 		}
 		_graphics.setCursorPosition(temp);
-
+		auto f = Control::getFocused(); // pointer to function?
+		if (!f) {
+			moveFocus(c, f);
+			redraw = true;
+		}
 		INPUT_RECORD record;
 		DWORD count;
 		ReadConsoleInput(_console, &record, 1, &count);//read 1 event each time
@@ -35,8 +40,8 @@ void EventEngine::run(Control &c)
 		{
 		case KEY_EVENT:
 		{
-			auto f = Control::getFocused(); // pointer to function?
-			if (f != nullptr && record.Event.KeyEvent.bKeyDown)
+
+			 if (f != nullptr && record.Event.KeyEvent.bKeyDown)
 			{
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;//ascii
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;//val
@@ -44,8 +49,7 @@ void EventEngine::run(Control &c)
 					moveFocus(c, f);//to the next
 					redraw = true;
 				}
-				else
-					if (IControlResponser* rb = dynamic_cast<IControlResponser*>(f)) {
+				else if (IControlResponser* rb = dynamic_cast<IControlResponser*>(f)) {
 						rb->keyDown(code, chr);//any kind of button press
 						redraw = true;
 					}
@@ -89,4 +93,11 @@ void EventEngine::moveFocus(Control &main, Control *focused)
 			it = controls.begin();
 	while (!(*it)->isFocus() && (*it)->getVisability());
 	Control::setFocused(*it);
+	if (TextBox* tb = dynamic_cast<TextBox*>(*it)) {
+		COORD c = tb->getCoord();
+		c.X += tb->GetValue().size()+1;
+		c.Y += 1;
+		_graphics.setCursorPosition(c);
+	}
+
 };
