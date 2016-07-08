@@ -72,7 +72,7 @@ Label lName(20);
 	next.AddListener(listener2);
 	next.setBackgroundColor(Color::Purple);
 	bSubmit.setBorder(BorderType::Double);
-	MsgBox msg(5, 20, "Are you Ok?", "hello");
+	MsgBox msg(6, 20, "Are you Ok?", "hello");
 	Panel main(100,100);
 	main.addControl(lName, 1, 3);
 	main.addControl(lAddress, 1, 6);

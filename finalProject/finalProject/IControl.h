@@ -32,6 +32,7 @@ public:
 	static IControl* getFocused() { return IControl::focused; };
 	bool isFocus() { return _focus; };
 	virtual int getHeight() { return (_borderType==BorderType::None)?height:height + 2; };
+	virtual void setHeight(int h) { height = h ; };
 	virtual int getWidth() { return (_borderType == BorderType::None) ? width : width + 2; };
 	virtual void setVisability(bool visability) { _visability = visability; };//of the cursor
 	bool getVisability() { return _visability; };//of the cursor

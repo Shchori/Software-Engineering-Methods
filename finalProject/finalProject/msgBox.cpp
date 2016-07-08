@@ -9,6 +9,11 @@ MsgBox::MsgBox(int height, int width, string str, string title) :Panel(height, w
 	BorderType b = BorderType::Single;
 	btns[0].setValue("OK");
 	btns[1].setValue("Cancel");
+
+	if (height < 5) {
+		height = 5;
+		setHeight(5);
+	}
 	
 	btns[0].setCoord((width / 2) - 8, height - 2);
 	btns[1].setCoord((width / 2) + 2, height - 2);
