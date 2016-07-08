@@ -38,7 +38,7 @@ int main() {
 
 	Panel main(60, 60);
 	//main.addControl(num, 0, 0);
-	main.addControl(r, 0, 0);
+	main.addControl(box, 0, 0);
 	main.draw();
 	EventEngine handle;
 	handle.run(main);
