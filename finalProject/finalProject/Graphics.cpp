@@ -29,7 +29,7 @@ void Graphics::clearScreen()
 	GetConsoleScreenBufferInfo(_console, &csbi);
 	auto size = csbi.dwSize.X * csbi.dwSize.Y;
 	setBackground(Color::Black);
-	//FillConsoleOutputAttribute(_console, csbi.wAttributes, size, { 0, 0 }, &d);
+	FillConsoleOutputAttribute(_console, csbi.wAttributes, size, { 0, 0 }, &d);
 	FillConsoleOutputCharacter(_console, L' ', size, { 0, 0 }, &d);
 }
 
