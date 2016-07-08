@@ -25,9 +25,9 @@ protected:
 	bool _focus;
 	void drawBorder();
 	bool _isCoordSet() { return _CoordSet; };
-	virtual void draw() = 0;
 
 public:
+	virtual void draw() = 0;
 	static void setFocused(IControl* c);
 	static IControl* getFocused() { return IControl::focused; };
 	bool isFocus() { return _focus; };
