@@ -16,10 +16,15 @@ void TextBox::mousePressed(int x, int y, bool isLeftPressed) {
 		if (Label::inArea(c)) {
 
 			 double labelSize = Label::GetValue().size();
-			 double labelX = Label::getCoord().X;
-			 double totalCoord = labelX + labelSize;
+			 double labelX = Label::getCoord().X ;
+			 double totalCoord = labelX + labelSize;//end label
 
-			 if (x > totalCoord) c.X = totalCoord;
+			 if (x <= totalCoord && x > labelX && labelSize != 0)
+				 c.X = x;
+			 else if (x > totalCoord)
+				 c.X = totalCoord ;
+			 else
+				 c.X = Label::getCoord().X + 1;
 			 c.Y = Label::getHeight() + Label::getCoord().Y - 2;
 			 Graphics g = Graphics::getInstance();
 			 g.setCursorPosition(c);
@@ -31,13 +36,13 @@ void TextBox::keyDown(WORD code, char c) {
 
 	Graphics g = Graphics::getInstance();
 	COORD position = g.getCursorPosition();	
-	int pos = position.X-1;
+	int pos = position.X;
 
 	if (Label::inArea(position)) {
 			switch (code) {
 
 			case VK_LEFT:
-				if (pos > 1) {
+				if (pos - Label::getCoord().X - 1  > 0) {
 					position.X -= 1;
 					g.setCursorPosition(position);
 				}
@@ -47,7 +52,7 @@ void TextBox::keyDown(WORD code, char c) {
 			{
 				double labelSize = Label::GetValue().size();
 				double labelX = Label::getCoord().X;
-				double totalCoord = labelX + labelSize - 1;
+				double totalCoord = labelX + labelSize ;
 
 				if (pos < totalCoord) {
 					position.X += 1;
@@ -59,17 +64,20 @@ void TextBox::keyDown(WORD code, char c) {
 			case VK_DOWN:   break;
 
 			default:
+				
 					//insert char in the middle of the string
-					if (code >= 32 && code <= 176 && this->GetValue().length() < this->getWidth()) {
-						string s = this->GetValue();
-						s.insert(pos-this->getCoord().X,1,c);
-						this->setValue(s);
+					if (code >= 32 && code <= 176 && this->GetValue().length() + 2 < this->getWidth()) {
+						 {
+							string s = this->GetValue();
+							s.insert(pos-this->getCoord().X -1 ,1,c);
+							this->setValue(s);
 
-						if(pos != Label::getCoord().X + this->GetValue().length() - 1)
-							position.X += 1;
-						else
-							position.X = Label::getCoord().X - 1;
-						g.setCursorPosition(position);
+							if(pos < Label::getCoord().X + this->GetValue().length())
+								position.X += 1;
+
+							g.setCursorPosition(position);
+						}
+						
 					}
 
 					//for backspace
