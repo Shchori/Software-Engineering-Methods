@@ -36,7 +36,7 @@ void Panel::addControl(IControl& control, int left, int top)
 	bool res, flag = false;
 
 	res = this->inArea(bottomLeftCoord);
-	if (res)
+	if (res && control.getLayer() == 0)
 	{
 		for (int i = 0; i < _innerPanels.size() && !(flag); i++)
 		{
