@@ -1,5 +1,8 @@
 #include "MsgBox.h"
 
+void MsgBox::addControl(IControl& control, int left, int top) {
+	Panel::addControl(control, left, top);
+}
 
 MsgBox::MsgBox(int height, int width, string str, string title) :Panel(height, width), text(width, str), title(width,title), btns(2, MsgBoxButton(this))
 {
@@ -32,7 +35,6 @@ string MsgBox::getText() {
 	return text.GetValue();
 }
 
-
 void MsgBox::setTitle(string title) {
 	this->title.setValue(title);
 }
@@ -55,10 +57,5 @@ void MsgBox::draw() {
 	g.setCursorVisibility(false);
 }
 
-void MsgBox::addControl(IControl& control, int left, int top) {
-	Panel::addControl(control, left, top);
-}
-
-MsgBox::~MsgBox()
-{
+MsgBox::~MsgBox(){
 }

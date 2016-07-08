@@ -5,6 +5,12 @@ CheckList::CheckList(int height, int width, vector<string> options):RadioList(he
 	selectedIndexes = new int[5]();
 };
 
+void CheckList::setSelectedIndex(int index) {
+	selectedIndex = index - 1;
+	selectedIndexes[selectedIndex] = 1 - selectedIndexes[selectedIndex];
+	(selectedIndexes[selectedIndex]) ? btn[selectedIndex].setValue("(X)") : btn[selectedIndex].setValue("( )");
+}
+
 vector<string> CheckList::getSelectedIndexes() {
 	vector<string> selected;
 	selected.resize(ops.size());
@@ -21,13 +27,6 @@ void CheckList::clearSelection() {
 	}
 }
 
-void CheckList::setSelectedIndex(int index) {
-	selectedIndex = index - 1;
-	selectedIndexes[selectedIndex] = 1- selectedIndexes[selectedIndex];
-	(selectedIndexes[selectedIndex])? btn[selectedIndex].setValue("(X)") : btn[selectedIndex].setValue("( )");
-}
-
-CheckList::~CheckList()
-{
+CheckList::~CheckList(){
 	delete [] selectedIndexes;
 };

@@ -51,6 +51,7 @@ public:
 	void show() { this->setVisability(true); };
 	void hide() { this->setVisability(false); };
 	int getLayer() { return _layer; };
-	inline virtual ~IControl() {};
 	virtual vector<IControl*> getAllControls();
+	inline virtual ~IControl() {};
+
 };
