@@ -1,24 +1,10 @@
 #include "ComboBox.h"
 
 
-ComboBox::ComboBox(int width,vector<string> options):Panel(3,width),master("",width),selectedIndex(0){
-
-	for (int i = 0; i < options.size(); i++) {
-		this->options[i].setValue(options[i]);
-		addControl(this->options[i],getCoord().X,i);
-	}
-
+ComboBox::ComboBox(int width,vector<string> options):Panel(1,width),value(width - 3,""),radio(options.size()*3,width,options), openB("V",1),open(false){
+	radio.setVisability(false);
+	this->addControl(value, 0, 0);
+	this->addControl(openB, width - 3,0);
 }
 
-void ComboBox::setSelectedIndex(int index) {
-	this->selectedIndex = index-1;
-	master = options[selectedIndex];
-}
 
-int ComboBox::getSelectedIndex() {
-	return this->selectedIndex;
-}
-
-ComboBox::~ComboBox()
-{
-}

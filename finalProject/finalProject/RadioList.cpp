@@ -41,6 +41,7 @@ void RadioList::setSelectedIndex(int index) {
 
 string RadioList::getValue()
 {
+	if (selectedIndex < 0) return "";
 	return this->ops[selectedIndex].GetValue();
 }
 void RadioList::clearSelection(){
