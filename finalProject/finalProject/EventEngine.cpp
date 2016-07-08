@@ -56,6 +56,7 @@ void EventEngine::run(Control &c)
 		{
 			auto button = record.Event.MouseEvent.dwButtonState;
 			auto coord = record.Event.MouseEvent.dwMousePosition;
+			coord.Y -= 1;
 				if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 			{
 				vector<IControl*> controls = c.getAllControls();
