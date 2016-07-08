@@ -15,7 +15,7 @@ IControl::IControl(int height, int width):
 {
 
 	this->_CoordSet = false;
-	this->_layer = 0;
+	this->_setLayer(0);
 }
 
 

@@ -9,7 +9,7 @@ ComboBox::ComboBox(int width,vector<string> options):Panel(3,width),value(width 
 	radio.setBorder(BorderType::Single);
 	value.setBorder(BorderType::Single);
 	openB.setBorder(BorderType::Single);
-	radio._setLayer(1);
+	this->_setLayer(1);
 }
 void ComboBox::draw()
 {

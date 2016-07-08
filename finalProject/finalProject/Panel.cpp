@@ -70,17 +70,13 @@ void Panel::addControl(IControl& control, int left, int top)
 void Panel::draw() {
 	if (this->getVisability()) {
 		IControl::draw();
-		for (int i = 0; i < _innerPanels.size(); i++) {
-			if ((*_innerPanels[i]).getLayer() == 0)
-				(*_innerPanels[i]).draw();
-		}
-		for (int i = 0; i < _innerPanels.size(); i++) {
-			if ((*_innerPanels[i]).getLayer() == 1)
-				(*_innerPanels[i]).draw();
-		}
-		for (int i = 0; i < _innerPanels.size(); i++) {
-			if ((*_innerPanels[i]).getLayer() == 2)
-				(*_innerPanels[i]).draw();
+
+		for (int j = 0; j < 3; ++j) {
+			for (int i = 0; i < _innerPanels.size(); ++i) {
+				if (_innerPanels[i]->getLayer() == j) {
+					_innerPanels[i]->draw();
+				}
+			}
 		}
 	}
 }
