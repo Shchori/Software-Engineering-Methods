@@ -61,10 +61,10 @@ void EventEngine::run(Control &c)
 			coord.Y -= 1;
 				if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 			{
-					vector<IControl*> controls = c.getAllControls();
+				vector<IControl*> controls = c.getAllControls();
 				for (int i = 0; i < 3; ++i) {
 					for (int j = 0; j < controls.size(); ++j) {
-						if (controls[j]->getLayer() == i && controls[j]->isFocus()&& controls[j]->inArea(coord)) {
+						if (controls[j]->getLayer() == i && controls[j]->isFocus()&& controls[j]->inArea(coord) && controls[j]->getVisability()) {
 							if (IControlResponser* rb = dynamic_cast<IControlResponser*>(controls[j])) {
 								rb->mousePressed(coord.X, coord.Y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
 								redraw = true;
@@ -87,6 +87,6 @@ void EventEngine::moveFocus(Control &main, Control *focused)
 	do
 		if (++it == controls.end())
 			it = controls.begin();
-	while (!(*it)->isFocus());
+	while (!(*it)->isFocus() && (*it)->getVisability());
 	Control::setFocused(*it);
 };

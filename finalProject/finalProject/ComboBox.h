@@ -13,7 +13,7 @@ private:
 		radioListForComboBox(int height, int width, vector<string> options) :RadioList(height, width, options){};
 		void setSelectedIndex(int index) {
 			RadioList::setSelectedIndex(index);
-			this->_visability = false;
+			this->setVisability(false);
 		};
 	};
 	Label value;
