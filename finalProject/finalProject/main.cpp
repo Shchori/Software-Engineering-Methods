@@ -15,7 +15,7 @@ private:
 };
 int main(int argc, char **argv)
 {
-/*Label lName(20);
+Label lName(20);
 	lName.setValue("Name: ");
 
 	Label lAddress(20);
@@ -51,47 +51,26 @@ int main(int argc, char **argv)
 	Button bSubmit("Submit",10);
 	bSubmit.AddListener(listener);
 	bSubmit.setBorder(BorderType::Double);
-	MsgBox msg(5, 20, "Are you Ok?");
-
-
-
-
+	MsgBox msg(5, 20, "Are you Ok?", "hello");
 	Panel main(100,100);
 	main.addControl(lName, 1, 3);
 	main.addControl(lAddress, 1, 6);
-	main.addControl(tName, 25, 3);
-	main.addControl(tAddress, 25, 6);
-	/*main.addControl(lCountry, 1, 10);
+	main.addControl(lCountry, 1, 10);
 	main.addControl(lSex, 1, 22);
 	main.addControl(lInterests, 1, 34);
 	main.addControl(lAge, 1, 40);
-	
+	main.addControl(tName, 25, 3);
+	main.addControl(tAddress, 25, 6);
 	main.addControl(cCountry, 25, 10);
 	main.addControl(rSex, 25, 22);
 	main.addControl(clInterests, 25, 34);
 	main.addControl(nAge, 25, 40);
-	main.addControl(msg, 10, 10);*/
-/*
-	main.addControl(bSubmit, 1, 22);
+	main.addControl(msg, 10, 10);
+	main.addControl(bSubmit, 1, 45);
 	Control::setFocused(&tName);
 	EventEngine engine;
 	engine.run(main);
-	return 0;*/
-
-	Graphics g = Graphics::getInstance();
-	g.clearScreen();
-	BorderType b = BorderType::Double;
-	g.clearScreen();
-	NumericBox num(30, 0, 4000);
-	num.setValue(1435);
-
-	EventEngine handle;
-	Panel main(60, 60);
-	main.addControl(num, 0, 0);
-	//main.addControl(r2, 0, 0);
-	handle.run(main);
-	getchar();
-
+	return 0;
 }
 
 

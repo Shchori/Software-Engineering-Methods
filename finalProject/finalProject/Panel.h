@@ -16,7 +16,7 @@ protected:
 	
 	public:
 		Panel(int height, int width);
-		void addControl(IControl& control, int left, int top);
+		virtual void addControl(IControl& control, int left, int top);
 		void draw();
 		void setCoord(COORD c);
 
