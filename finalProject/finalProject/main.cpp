@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 	Label lAge(20);
 	lAge.setValue("Age:");
 	TextBox tName(20);
-	tName.setValue("Sherlock Holmes");
+	tName.setValue("ffff");
 	tName.setBorder(BorderType::Single);
 	tName.setBackgroundColor(Color::Green);
 	tName.setForegroundColor(Color::Blue);
